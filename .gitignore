@@ -1,4 +1,6 @@
-# Python
+# ============================================================
+# Python build / bytecode
+# ============================================================
 __pycache__/
 *.py[cod]
 *$py.class
@@ -20,7 +22,9 @@ wheels/
 .installed.cfg
 *.egg
 
-# Environments
+# ============================================================
+# Virtual environments
+# ============================================================
 .env
 .venv
 env/
@@ -29,7 +33,22 @@ ENV/
 env.bak/
 venv.bak/
 
-# IDEs
+# ============================================================
+# Test / lint / type-check caches
+# ============================================================
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.pytype/
+.tox/
+htmlcov/
+.coverage
+coverage.xml
+*.cover
+
+# ============================================================
+# Editors / OS cruft
+# ============================================================
 .vscode/
 .idea/
 *.swp
@@ -37,22 +56,33 @@ venv.bak/
 .DS_Store
 Thumbs.db
 
-# Test/coverage
-.pytest_cache/
-.coverage
-htmlcov/
-.tox/
-coverage.xml
-*.cover
+# ============================================================
+# Logs and scratch files
+# ============================================================
+*.log
+*.tmp
+*.bak
 
-# Plugin runtime cache (AstrBot-managed)
+# ============================================================
+# AstrBot plugin runtime state
+# ============================================================
+# main.py persists the per-user "last game used" map into plugin_data/ inside
+# the plugin directory at runtime (see MHHelperPlugin._plugin_state_dir).
+# That is user data, never source.
+plugin_data/
 data/icons/
 
-# Local scrape artifacts (kept out, only committed canonical data)
+# ============================================================
+# Local scrape artifacts (only the canonical data/ is committed)
+# ============================================================
 scraper/.cache/
 
-# Local debug / probe scripts that should never be tracked
+# ============================================================
+# Local debug / probe scripts that must never be tracked
+# ============================================================
 scripts/_*.py
 
-# Agent / tooling workspace data (memory notes, not part of the plugin)
+# ============================================================
+# Agent / tooling workspace data (memory notes, not plugin source)
+# ============================================================
 .workbuddy/
