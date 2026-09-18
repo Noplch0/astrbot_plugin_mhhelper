@@ -608,7 +608,7 @@ class MHHelperPlugin(Star):
 
     @mh.command("帮助", alias={"help", "用法"})
     async def mh_help(self, event: AstrMessageEvent):
-        """查看完整帮助：全部子命令、作品标识与用法示例"""
+        """查看完整帮助：全部子命令与用法示例"""
         async for r in self._dispatch(event, "help"):
             yield r
 
@@ -619,13 +619,13 @@ class MHHelperPlugin(Star):
         alias={"monster", "info", "肉质", "肉", "meat", "弱点", "属性", "weak"},
     )
     async def mh_monster(self, event: AstrMessageEvent):
-        """查询怪物：属性弱点（最强两项）/ 肉质表 / 异常累积（用法：/mh 怪物 <名字> [作品]）"""
+        """查询怪物：属性弱点 / 肉质表 / 异常累积（用法：/mh 怪物 <名字>）"""
         async for r in self._dispatch(event, "monster"):
             yield r
 
     @mh.command("技能", alias={"skill"})
     async def mh_skill(self, event: AstrMessageEvent):
-        """查看技能各等级效果（用法：/mh 技能 <名字> [作品]）"""
+        """查看技能各等级效果（用法：/mh 技能 <名字>）"""
         async for r in self._dispatch(event, "skill"):
             yield r
 
@@ -638,6 +638,6 @@ class MHHelperPlugin(Star):
     @filter.permission_type(filter.PermissionType.ADMIN)
     @mh.command("更新", alias={"update", "刷新"})
     async def mh_update(self, event: AstrMessageEvent):
-        """管理员：从 kiranico 在线刷新该作品数据（用法：/mh 更新 [作品]）"""
+        """管理员：从 kiranico 在线刷新当前作品的数据（用法：/mh 更新）"""
         async for r in self._dispatch(event, "update"):
             yield r
