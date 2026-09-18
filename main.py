@@ -20,14 +20,24 @@ import asyncio
 import json
 import logging
 import os
+import sys
 from pathlib import Path
 from typing import Any
 
-from astrbot.api.event import AstrMessageEvent, filter
-from astrbot.api.star import Star, register
-from astrbot.core.config.astrbot_config import AstrBotConfig  # type: ignore
+# Make sibling subpackages importable when AstrBot loads this file as a module.
+# AstrBot v4 imports the plugin via `__import__("astrbot_plugin_mhhelper.main", ...)`,
+# which means the plugin's own directory is not on sys.path — so `from core import …`
+# fails with ModuleNotFoundError. Prepending __file__'s parent fixes that, and
+# is a no-op when AstrBot already placed the dir on sys.path.
+_PKG_DIR = Path(__file__).resolve().parent
+if str(_PKG_DIR) not in sys.path:
+    sys.path.insert(0, str(_PKG_DIR))
 
-from core.data_loader import GAMES, GAME_LABELS, get_loader
+from astrbot.api.event import AstrMessageEvent, filter  # noqa: E402
+from astrbot.api.star import Star, register  # noqa: E402
+from astrbot.core.config.astrbot_config import AstrBotConfig  # type: ignore  # noqa: E402
+
+from core.data_loader import GAMES, GAME_LABELS, get_loader  # noqa: E402
 from core.errors import (
     DataNotLoaded,
     GameDisabled,
