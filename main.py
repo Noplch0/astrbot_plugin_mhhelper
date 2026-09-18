@@ -2,18 +2,18 @@
 
 The whole plugin exposes exactly **one** AstrBot command (group):
 
-    /mh <子命令> [名字] [作品]
+    /mh <子命令> <名字>
 
 Registering a single command group instead of ~20 flat commands is what makes
 the WebUI 「指令管理」 page readable: it shows one collapsible `mh` row whose
 badge counts the sub-commands, and expanding it lists the second-level
 sub-commands with their descriptions (taken from each handler's docstring).
 
-    /mh 帮助              查看完整帮助            (help)
-    /mh 怪物 <名字> [作品]  属性弱点 / 肉质表 / 状态异常 (monster)
-    /mh 技能 <名字> [作品]  技能各等级效果          (skill)
-    /mh 作品              列出已启用作品            (games)
-    /mh 更新 [作品]         管理员：在线刷新数据      (update)
+    /mh 帮助         查看完整帮助                        (help)
+    /mh 怪物 <名字>   属性弱点 / 肉质表 / 异常累积          (monster)
+    /mh 技能 <名字>   技能各等级效果                      (skill)
+    /mh 作品         列出已启用作品（标注当前作品）         (games)
+    /mh 更新         管理员：在线刷新当前作品的数据        (update)
 
 `基础信息 / 肉质 / 弱点` 已合并成 `怪物` 一条，按「怪物名 → 属性弱点 → 肉质表 → 异常累积」的顺序输出；图片模式下卡片顶部还会居中显示怪物图标。
 
@@ -21,8 +21,8 @@ sub-commands with their descriptions (taken from each handler's docstring).
 等老名字都保留为别名，习惯输入照旧可用，返回的都是同一份合并报告）。
 
 全局只有**一份**「当前作品」（存放在配置项 `default_game`），所有命令都用它；
-    管理员用 `/mh 作品 <作品名>` 切换（会写回配置并保存，重启不丢），普通命令
-    **不再接受 [作品] 后缀**。
+管理员用 `/mh 作品 <作品名>` 切换（会写回配置并保存，重启不丢），普通命令
+**不再接受 [作品] 后缀**。
 作品标识支持：mhworld / world / 世界、mhrise / rise / 崛起、mhwilds / wilds / 荒野。
 
 用户直接发送裸 `/mh`（不带子命令）时，AstrBot 会自动渲染出本指令组的树形
