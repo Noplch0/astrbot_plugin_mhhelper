@@ -236,11 +236,16 @@ class _Filter:
 
 
 class _FakeEvent:
-    def __init__(self, message_str: str, sender_id: str = "10001", platform: str = "aiocqhttp"):
+    def __init__(self, message_str: str, sender_id: str = "10001",
+                 platform: str = "aiocqhttp", role: str = "member"):
         self.message_str = message_str
         self._sender_id = sender_id
         self.platform = platform
+        self.role = role
         self.unified_msg_origin = f"{platform}:GroupMessage:{sender_id}"
+
+    def is_admin(self) -> bool:
+        return self.role == "admin"
 
     def get_sender_id(self) -> str:
         return self._sender_id
@@ -317,27 +322,32 @@ def load_plugin():
     return mod
 
 
-def make_plugin(state_dir: Path | None = None, config: dict | None = None):
-    """Instantiate the plugin, keeping its runtime state out of the repo.
+class _FakeConfig(dict):
+    """Plugin config that remembers whether it has been persisted."""
 
-    ``state_dir`` redirects the state directory. The redirect is applied to the
-    *class* only for the duration of ``__init__`` (which resolves
-    ``_state_path`` once) and then restored — patching the class permanently
-    would leak the redirect into every later test, and into every later test
-    *module*, since ``load_plugin()`` caches a single module object.
+    def __init__(self, *a, **kw):
+        super().__init__(*a, **kw)
+        self.saved = False
+
+    def save_config(self) -> None:
+        self.saved = True
+
+
+def make_plugin(state_dir: Path | None = None, config: dict | None = None):
+    """Instantiate the plugin.
+
+    ``state_dir`` is accepted (and ignored) for backwards compatibility with
+    tests written before the plugin stopped keeping its own state file — the
+    current game now lives in the plugin *config* and is persisted by AstrBot.
     """
     mod = load_plugin()
-    cls = mod.MHHelperPlugin
-    if state_dir is None:
-        return cls(None, config)
-
-    state_dir.mkdir(parents=True, exist_ok=True)
-    original = cls._plugin_state_dir
-    cls._plugin_state_dir = lambda self: state_dir
-    try:
-        return cls(None, config)
-    finally:
-        cls._plugin_state_dir = original
+    inst = mod.MHHelperPlugin(None, None)   # 用插件自己的默认值填充
+    cfg = _FakeConfig(inst.config)          # dict 子类，带 save_config
+    if config:
+        cfg.update(config)
+    inst.config = cfg
+    inst._init_indexes()                    # 配置变了，启用集合要重算
+    return inst
 
 
 def root_groups() -> list[CommandGroupFilter]:
@@ -413,7 +423,8 @@ def dispatch(
     blocked = bool(hits) and hits[0].is_admin_only and not as_admin
     text = ""
     if hits and not blocked:
-        event = _FakeEvent(message, sender_id, platform)
+        event = _FakeEvent(message, sender_id, platform,
+                           role="admin" if as_admin else "member")
         text = "\n".join(asyncio.run(_collect(hits[0], plugin, event)))
     return Dispatch(
         tree=None,

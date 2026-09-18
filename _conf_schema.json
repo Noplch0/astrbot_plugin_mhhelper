@@ -3,7 +3,7 @@
     "type": "string",
     "default": "mhwilds",
     "options": ["mhworld", "mhrise", "mhwilds"],
-    "description": "未指定 game 时的默认作品"
+    "description": "当前作品。管理员可用 /mh 作品 <作品名> 切换（这里会同步更新）"
   },
   "enable_world": {
     "type": "bool",

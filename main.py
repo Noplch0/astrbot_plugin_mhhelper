@@ -20,7 +20,9 @@ sub-commands with their descriptions (taken from each handler's docstring).
 括号里是等价别名：`/mh meat Rathian` == `/mh 怪物 Rathian`（`肉质`/`弱点`/`属性`
 等老名字都保留为别名，习惯输入照旧可用，返回的都是同一份合并报告）。
 
-`作品` 可省略；省略时按「该用户上次使用 → 配置 default_game」解析。
+全局只有**一份**「当前作品」（存放在配置项 `default_game`），所有命令都用它；
+    管理员用 `/mh 作品 <作品名>` 切换（会写回配置并保存，重启不丢），普通命令
+    **不再接受 [作品] 后缀**。
 作品标识支持：mhworld / world / 世界、mhrise / rise / 崛起、mhwilds / wilds / 荒野。
 
 用户直接发送裸 `/mh`（不带子命令）时，AstrBot 会自动渲染出本指令组的树形
@@ -37,13 +39,12 @@ sub-commands with their descriptions (taken from each handler's docstring).
 """
 from __future__ import annotations
 
-import json
 import logging
 import re
 import sys
+from pathlib import Path
 import time
 from collections.abc import Mapping
-from pathlib import Path
 from typing import Any
 
 # ---------------------------------------------------------------------------
@@ -163,6 +164,7 @@ from core.formatter import (  # noqa: E402
     render_help,
     render_monster_report,
     render_skill,
+    render_switch_result,
     render_update_result,
 )
 from core.monster_index import get_monster_index  # noqa: E402
@@ -179,16 +181,7 @@ from core.skill_index import get_skill_index  # noqa: E402
 log = logging.getLogger("astrbot-mhhelper")
 
 PLUGIN_NAME = "astrbot_plugin_mhhelper"
-PLUGIN_VERSION = "0.3.7"
-
-#: 运行期状态：每个用户上次查询的作品。
-STATE_FILENAME = "user_last_game.json"
-
-#: 旧版（<= v0.3.0）把状态写在插件目录下的这个文件夹里。新版按官方规范
-#: 改写到 AstrBot 的 `data/plugin_data/<插件名>/`，并在首次保存时把旧文件
-#: 迁移过去后再删除（见 `_drop_legacy_state`）。这里的常量仍要保留：既是
-#: 迁移来源，也是官方目录完全不可用时的最后退路。
-LEGACY_STATE_DIRNAME = "plugin_data"
+PLUGIN_VERSION = "0.3.8"
 
 #: 指令组名与别名 —— 面板里显示的顶层条目就是它。
 GROUP_NAME = "mh"
@@ -215,9 +208,6 @@ GAME_ALIASES: dict[str, str] = {
     "曙光": "mhrise",
 }
 
-#: 只接受「作品」一个参数的子命令（没有「名字」参数）。
-_GAME_ONLY_SUBS: frozenset[str] = frozenset({"games", "update"})
-
 #: 作品 → 控制其可用性的配置项。
 _ENABLE_CONFIG_KEY: dict[str, str] = {
     "mhworld": "enable_world",
@@ -227,8 +217,8 @@ _ENABLE_CONFIG_KEY: dict[str, str] = {
 
 #: 缺少「名字」参数时提示的用法片段，键为 _dispatch 的内部子命令标识。
 USAGE: dict[str, str] = {
-    "monster": "怪物 <名字> [作品]",
-    "skill": "技能 <名字> [作品]",
+    "monster": "怪物 <名字>",
+    "skill": "技能 <名字>",
 }
 
 
@@ -240,19 +230,11 @@ def _resolve_game(token: str | None) -> str:
     return GAME_ALIASES.get(key, key)
 
 
-def _looks_like_game(token: str) -> bool:
-    return token in GAMES or token in GAME_ALIASES
-
-
 @register(PLUGIN_NAME, "Noplch0", "怪物猎人信息查询 (MHWorld / MHRise / MHWilds)", PLUGIN_VERSION)
 class MHHelperPlugin(Star):
     def __init__(self, context, config: AstrBotConfig | None = None):
         super().__init__(context)
         self.config = config or self._default_config()
-        #: 插件自身目录 —— 只在「官方数据目录不可用」时才用来落盘（见 _plugin_state_dir）。
-        self._data_root = Path(__file__).resolve().parent
-        self._state_path = self._plugin_state_dir() / STATE_FILENAME
-        self._user_game_cache: dict[str, str] = self._load_user_state()
         self._init_indexes()
 
     # ------------------- lifecycle -------------------
@@ -260,124 +242,6 @@ class MHHelperPlugin(Star):
     async def initialize(self) -> None:
         self._init_indexes()
         log.info("[%s] loaded.", PLUGIN_NAME)
-
-    async def terminate(self) -> None:
-        self._save_user_state()
-
-    # ------------------- persistent state -------------------
-    # AstrBot 官方规范：持久化数据必须放在 AstrBot 的 `data/` 目录下
-    # （即 `data/plugin_data/<插件名>/`），**不能**放在插件自身目录里 ——
-    # 插件目录在更新 / 重装时会被整体替换，放在里面的数据会一起丢。
-    # https://docs.astrbot.app/dev/star/guides/storage.html
-    #
-    # 解析顺序：官方 API → 从插件路径反推 → 退回插件目录（保命用，会告警）。
-
-    @staticmethod
-    def _plugin_id() -> str:
-        """插件名，用作 `data/plugin_data/` 下的子目录名。"""
-        return PLUGIN_NAME
-
-    def _official_state_dir(self) -> Path | None:
-        """``Path(get_astrbot_data_path()) / "plugin_data" / <插件名>``。
-
-        官方 API（AstrBot >= 4.9.2 提供 ``self.name``；``astrbot_path`` 更早
-        就有）。不可用时返回 ``None``，交给下一级解析。
-        """
-        try:
-            from astrbot.core.utils.astrbot_path import get_astrbot_data_path
-
-            root = Path(get_astrbot_data_path())
-        except Exception:  # noqa: BLE001 - 老版本 AstrBot 没有这个模块
-            return None
-        return root / "plugin_data" / self._plugin_id()
-
-    def _derived_state_dir(self) -> Path | None:
-        """退路：插件装在 ``<root>/data/plugins/<插件名>``，据此反推官方目录。
-
-        只在上面那个官方 API 不可用时（很老的 AstrBot）才会用到。目录结构
-        不符合预期时返回 ``None``，避免在莫名其妙的路径下建目录。
-        """
-        plugins = self._data_root.parent
-        data = plugins.parent
-        if plugins.name != "plugins" or data.name != "data":
-            return None
-        return data / "plugin_data" / self._plugin_id()
-
-    def _legacy_state_path(self) -> Path:
-        """旧版位置：插件目录下的 ``plugin_data/user_last_game.json``。"""
-        return self._data_root / LEGACY_STATE_DIRNAME / STATE_FILENAME
-
-    def _plugin_state_dir(self) -> Path:
-        """解析状态目录；逐级降级，保证插件在任何部署形态下都能启动。"""
-        for resolver in (self._official_state_dir, self._derived_state_dir):
-            try:
-                candidate = resolver()
-            except Exception:  # noqa: BLE001
-                candidate = None
-            if candidate is None:
-                continue
-            try:
-                candidate.mkdir(parents=True, exist_ok=True)
-            except OSError as exc:
-                log.warning("[%s] 无法创建数据目录 %s: %s", PLUGIN_NAME, candidate, exc)
-                continue
-            return candidate
-        # 最后退路：官方目录实在不可用时退回插件目录。宁可位置不标准，
-        # 也好过因为盘写不进去而让整个插件加载失败。
-        fallback = self._data_root / LEGACY_STATE_DIRNAME
-        fallback.mkdir(parents=True, exist_ok=True)
-        log.warning(
-            "[%s] 官方数据目录不可用，状态将写在插件目录内（更新插件会丢）: %s",
-            PLUGIN_NAME,
-            fallback,
-        )
-        return fallback
-
-    def _state_candidates(self) -> list[Path]:
-        """按优先级列出可能存有状态的文件，用于迁移期读取旧数据。"""
-        paths = [self._state_path]
-        legacy = self._legacy_state_path()
-        if legacy != self._state_path:
-            paths.append(legacy)
-        return paths
-
-    def _load_user_state(self) -> dict[str, str]:
-        for path in self._state_candidates():
-            if not path.is_file():
-                continue
-            try:
-                data = json.loads(path.read_text(encoding="utf-8"))
-            except Exception as exc:  # noqa: BLE001
-                log.warning("[%s] 状态文件无法解析，已忽略 %s: %s", PLUGIN_NAME, path, exc)
-                continue
-            if isinstance(data, dict):
-                return {str(k): str(v) for k, v in data.items()}
-        return {}
-
-    def _save_user_state(self) -> None:
-        try:
-            self._state_path.write_text(
-                json.dumps(self._user_game_cache, ensure_ascii=False, indent=2),
-                encoding="utf-8",
-            )
-        except Exception as exc:  # noqa: BLE001
-            log.warning("Failed to save user state: %s", exc)
-            return
-        self._drop_legacy_state()
-
-    def _drop_legacy_state(self) -> None:
-        """迁移成功后删掉插件目录里的旧状态文件，避免两份数据互相打架。
-
-        只有在确实写到别的位置（即 ``_state_path`` 不是旧路径）时才清理。
-        """
-        legacy = self._legacy_state_path()
-        if legacy == self._state_path or not legacy.is_file():
-            return
-        try:
-            legacy.unlink()
-            legacy.parent.rmdir()  # 目录空了就一并收拾干净
-        except OSError:
-            pass  # 里面还有别的东西，留着即可
 
     # ------------------- internal helpers -------------------
 
@@ -412,23 +276,39 @@ class MHHelperPlugin(Star):
             except DataNotLoaded:
                 log.warning("[%s] data missing for %s", PLUGIN_NAME, g)
 
-    def _user_default_game(self, event: AstrMessageEvent) -> str:
-        uid = self._event_user_id(event)
-        if uid and uid in self._user_game_cache:
-            return self._user_game_cache[uid]
-        return self.config.get("default_game", "mhwilds")
+    def _current_game(self) -> str:
+        """当前生效的作品 —— 全局只有一份，就是配置项 ``default_game``。
 
-    def _remember_game(self, event: AstrMessageEvent, game: str) -> None:
-        uid = self._event_user_id(event)
-        if uid:
-            self._user_game_cache[uid] = game
+        管理员用 `/mh 作品 <作品名>` 切换（写回配置并保存，重启不丢）。
+        配置里的作品被禁用或不存在时，退回第一个启用的作品，保证总有数据可查。
+        """
+        configured = str(self.config.get("default_game", "") or "")
+        if configured in self._enabled_games:
+            return configured
+        for game in GAMES:  # 固定顺序，保证可复现
+            if game in self._enabled_games:
+                log.info(
+                    "[%s] default_game=%s 不可用，回退到 %s",
+                    PLUGIN_NAME, configured, game,
+                )
+                return game
+        return configured or "mhwilds"
+
+    def _set_current_game(self, game: str) -> None:
+        """切换全局作品并写回配置项 ``default_game``（重启后仍生效）。"""
+        self.config["default_game"] = game
+        # AstrBotConfig 有 save_config()；测试替身是普通 dict，没有就跳过。
+        save = getattr(self.config, "save_config", None)
+        if callable(save):
+            save()
 
     @staticmethod
-    def _event_user_id(event: AstrMessageEvent) -> str:
+    def _is_admin(event: AstrMessageEvent) -> bool:
+        """运行时判断管理员 —— `/mh 作品 <作品名>` 只对管理员开放。"""
         try:
-            return str(event.get_sender_id())
-        except Exception:
-            return ""
+            return bool(event.is_admin())
+        except Exception:  # noqa: BLE001 - 适配器没实现就按非管理员处理
+            return False
 
     @staticmethod
     def _arg_tokens(event: AstrMessageEvent) -> list[str]:
@@ -450,21 +330,12 @@ class MHHelperPlugin(Star):
         return tokens[1:]
 
     def _split_args(self, event: AstrMessageEvent, sub: str) -> tuple[str, list[str]]:
-        """Resolve `[名字…] [作品]` into (game, name_tokens)."""
-        parts = self._arg_tokens(event)
-        game_hint = None
-        # 最后一个 token 可能是作品标识
-        if parts and _looks_like_game(parts[-1]):
-            game_hint = _resolve_game(parts[-1])
-            parts = parts[:-1]
-        elif sub in _GAME_ONLY_SUBS and parts:
-            # 这些子命令只接受一个可选的作品标识
-            only = _resolve_game(parts[0])
-            if only in GAMES:
-                game_hint = only
-                parts = parts[1:]
-        game = game_hint or self._user_default_game(event)
-        return game, parts
+        """返回（当前作品，名字参数）。
+
+        v0.3.8 起**所有命令都不再接受 [作品] 后缀**：全局只有一份「当前作品」，
+        由管理员用 `/mh 作品 <作品名>` 切换，普通命令一律使用它。
+        """
+        return self._current_game(), self._arg_tokens(event)
 
     # ------------------- output delivery -------------------
     # 格式化层统一产出 markdown，这里按平台决定怎么把它送到用户面前：
@@ -584,6 +455,7 @@ class MHHelperPlugin(Star):
             )
             return
         if game not in self._enabled_games:
+            # 只有「一个启用的作品都没有」才会走到这里（_current_game 会自动回退）。
             yield self._text_result(
                 event,
                 render_error(
@@ -592,13 +464,52 @@ class MHHelperPlugin(Star):
                 ),
             )
             return
-        self._remember_game(event, game)
 
         max_rows = self.config.get("max_rows_per_message", 30)
 
         try:
             if sub == "games":
-                yield await self._emit(event, render_games(self._monster_idx.list_games()))
+                games = self._monster_idx.list_games()
+                if not name_args:
+                    yield await self._emit(
+                        event, render_games(games, current=self._current_game())
+                    )
+                    return
+                # 带参数 = 切换全局作品。**仅管理员**；这个用法不写进帮助，
+                # 普通用户在指令列表里看不到它。
+                if not self._is_admin(event):
+                    yield self._text_result(
+                        event,
+                        render_error("需要管理员权限", "切换作品是管理员操作。"),
+                    )
+                    return
+                target = _resolve_game(name_args[0])
+                if target not in GAMES:
+                    known = " / ".join(GAME_LABELS.get(g, g) for g in games) or "无"
+                    yield self._text_result(
+                        event,
+                        render_error(
+                            "未知作品",
+                            f"无法识别的作品: {name_args[0]}",
+                            [f"可用作品: {known}"],
+                        ),
+                    )
+                    return
+                if target not in self._enabled_games:
+                    yield self._text_result(
+                        event,
+                        render_error(
+                            "作品不可用",
+                            f"{GAME_LABELS.get(target, target)} 未启用，"
+                            "请先在插件配置里打开。",
+                        ),
+                    )
+                    return
+                previous = self._current_game()
+                self._set_current_game(target)
+                yield self._text_result(
+                    event, render_switch_result(target, previous)
+                )
                 return
             if sub in {"monster", "skill"} and not name_args:
                 yield self._text_result(

@@ -317,44 +317,49 @@ def render_help() -> str:
         [
             "## 怪物猎人查询",
             "",
-            "全部查询都收在 `/mh` 指令组下，格式：`/mh <子命令> [名字] [作品]`",
+            "全部查询都收在 `/mh` 指令组下，格式：`/mh <子命令> <名字>`",
             "",
             "### 查询怪物（基础信息 / 肉质 / 弱点 合并成一条）",
-            "- `/mh 怪物 <名字> [作品]` — 依次给出：怪物名 → 属性弱点（最强两项）"
+            "- `/mh 怪物 <名字>` — 依次给出：怪物名 → 属性弱点（最强两项）"
             " → 肉质表 → 异常累积（状态异常）",
             "- 图片模式下卡片顶部还会居中显示该怪物的图鉴图标",
             "",
             "### 技能",
-            "- `/mh 技能 <名字> [作品]` — 技能各等级效果",
+            "- `/mh 技能 <名字>` — 技能各等级效果",
             "",
             "### 其他",
-            "- `/mh 作品` — 列出已启用的作品",
-            "- `/mh 更新 [作品]` — 管理员：在线刷新数据",
+            "- `/mh 作品` — 列出已启用的作品（查询时用的就是它）",
             "- `/mh 帮助` — 显示本帮助",
-            "",
-            "### 作品标识（可省略，省略时按「上次使用 → 默认作品」）",
-            "- `mhworld` / `world` / `世界` / `iceborne` — 怪物猎人:世界",
-            "- `mhrise` / `rise` / `崛起` / `sunbreak` — 怪物猎人:崛起",
-            "- `mhwilds` / `wilds` / `荒野` — 怪物猎人:荒野",
             "",
             "### 子命令英文别名",
             "`monster` / `meat` / `weak` / `skill` / `games` / `update` / `help`",
             "",
             "### 示例",
             "- `/mh 怪物 火龙`",
-            "- `/mh monster Rathian 荒野`",
-            "- `/mh 技能 攻击 mhrise`",
+            "- `/mh monster Rathian`",
+            "- `/mh 技能 攻击`",
         ]
     )
 
 
-def render_games(games: Sequence[str]) -> str:
+def render_games(games: Sequence[str], current: str | None = None) -> str:
+    """列出已启用的作品，并标出当前生效的那个。"""
     lines = ["## 已启用的作品", ""]
     if not games:
         lines.append("- （无：请管理员在插件配置中启用至少一个作品）")
         return "\n".join(lines)
     for g in games:
-        lines.append(f"- **{GAME_LABELS.get(g, g)}** — `{g}`")
+        mark = "（当前）" if g == current else ""
+        lines.append(f"- **{GAME_LABELS.get(g, g)}** — `{g}`{mark}")
+    return "\n".join(lines)
+
+
+def render_switch_result(target: str, previous: str) -> str:
+    """/mh 作品 <作品名> 的回执（仅管理员可用，见 main.py::_dispatch）。"""
+    to_label = GAME_LABELS.get(target, target)
+    lines = [f"已切换到 {to_label}。", "", "之后所有查询都会使用该作品的数据。"]
+    if previous and previous != target:
+        lines += ["", f"（原先：{GAME_LABELS.get(previous, previous)}）"]
     return "\n".join(lines)
 
 
@@ -406,5 +411,6 @@ __all__ = [
     "render_help",
     "render_monster_report",
     "render_skill",
+    "render_switch_result",
     "render_update_result",
 ]

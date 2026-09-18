@@ -139,15 +139,14 @@ def test_bare_group_renders_tree(run):
         # 老的 肉质 / 弱点 / 属性 都还是别名，返回同一份合并报告
         ("/mh 肉质 雌火龙", "mh_monster", ["雌火龙", "肉质表", "头部"]),
         ("/mh 肉 雌火龙", "mh_monster", ["雌火龙"]),
-        ("/mh meat 雌火龙 mhwilds", "mh_monster", ["雌火龙"]),
         ("/怪物猎人 肉质 雌火龙", "mh_monster", ["雌火龙"]),  # 指令组别名
         ("!mh 肉质 雌火龙", "mh_monster", ["雌火龙"]),  # 另一个唤醒前缀
         ("/mh 弱点 雌火龙", "mh_monster", ["异常累积"]),
         ("/mh 怪物 陆之女王", "mh_monster", ["雌火龙"]),  # 通过别名命中
         ("/mh 技能 攻击力强化", "mh_skill", ["攻击力 +3"]),
         ("/mh 作品", "mh_games", ["已启用的作品"]),
-        ("/mh 怪物", "mh_monster", ["缺少参数", "/mh 怪物 <名字> [作品]"]),
-        ("/mh 技能", "mh_skill", ["缺少参数", "/mh 技能 <名字> [作品]"]),
+        ("/mh 怪物", "mh_monster", ["缺少参数", "/mh 怪物 <名字>"]),
+        ("/mh 技能", "mh_skill", ["缺少参数", "/mh 技能 <名字>"]),
         ("/mh 怪物 不存在的怪", "mh_monster", ["未找到怪物"]),
     ],
 )
@@ -173,23 +172,25 @@ def test_unknown_subcommand_does_not_run_anything(run):
     assert result.tree is None
 
 
-def test_trailing_token_that_is_not_a_game_stays_in_the_name(run):
-    """末位 token 不是已知作品标识时,应被当作名字的一部分(名字允许含空格)。"""
+def test_trailing_token_is_part_of_the_name_now(run):
+    """v0.3.8 起命令不再接受 [作品] 后缀 —— 尾部 token 全是名字的一部分。"""
     result = run("/mh 肉质 雌火龙 火星")
     assert result.handlers == ["mh_monster"]
     assert "未找到怪物" in result.text
     assert "雌火龙 火星" in result.text
 
 
-def test_disabled_game_is_reported(monkeypatch, tmp_path):
+def test_disabled_default_game_falls_back(monkeypatch, tmp_path):
+    """配置里的作品被禁用时,自动退回第一个启用的作品,而不是报错。"""
     install_fake_loader(monkeypatch)
     plugin = make_plugin(
         state_dir=tmp_path / "plugin_data",
         config={"default_game": "mhwilds", "enable_wilds": False},
     )
-    result = dispatch(plugin, "/mh 肉质 雌火龙")
+    assert plugin._current_game() == "mhworld"  # GAMES 顺序里第一个启用的
+    result = dispatch(plugin, "/mh 怪物 雌火龙")
     assert result.handlers == ["mh_monster"]
-    assert "作品不可用" in result.text
+    assert "作品不可用" not in result.text
 
 
 # --------------------------------------------------------------------------
@@ -204,19 +205,68 @@ def test_update_blocked_for_non_admin(run):
     assert result.text == ""
 
 
-def test_last_game_is_remembered_per_user(plugin, run):
-    """合并报告的标题里不再有作品名，所以直接看解析出的 game / 用户缓存。"""
-    from ._astrbot_fake import _FakeEvent
+def test_switching_game_is_admin_only(plugin, run):
+    """/mh 作品 <作品名> 只有管理员能用，普通用户既不能切也看不到这个用法。"""
+    result = run("/mh 作品 荒野", sender_id="88888")
+    assert result.handlers == ["mh_games"]
+    assert "需要管理员权限" in result.text
+    assert plugin.config["default_game"] == "mhwilds"  # 没被改
 
-    def resolved(message, sender_id):
-        return plugin._split_args(_FakeEvent(message, sender_id), "monster")[0]
 
-    run("/mh 怪物 雌火龙 mhrise", sender_id="88888")  # 走完整 dispatch → 记住作品
-    assert plugin._user_game_cache.get("88888") == "mhrise"
-    # 同一用户下次省略作品 → 沿用上次的
-    assert resolved("/mh 怪物 雌火龙", "88888") == "mhrise"
-    # 别的用户不受影响
-    assert resolved("/mh 怪物 雌火龙", "99999") != "mhrise"
+def test_admin_can_switch_the_global_game(plugin, run):
+    assert plugin.config["default_game"] == "mhwilds"
+    result = run("/mh 作品 崛起", sender_id="88888", as_admin=True)
+    assert result.handlers == ["mh_games"]
+    assert "已切换到 怪物猎人:崛起" in result.text
+    assert plugin.config["default_game"] == "mhrise"
+    assert getattr(plugin.config, "saved", False), "切换必须写回配置（重启不丢）"
+    # 切换之后所有命令都走新作品
+    assert plugin._current_game() == "mhrise"
+    # 普通命令不再接受 [作品] 后缀，切换对所有人立即生效
+    r2 = run("/mh 怪物 雌火龙", sender_id="77777")
+    assert r2.handlers == ["mh_monster"]
+
+
+def test_switched_game_survives_a_restart(monkeypatch, tmp_path):
+    """default_game 写回了配置，重新实例化插件（≈重启）后仍是它。"""
+    install_fake_loader(monkeypatch)
+    plugin = make_plugin(state_dir=tmp_path / "plugin_data")
+    dispatch(plugin, "/mh 作品 世界", sender_id="88888", as_admin=True)
+    assert plugin.config["default_game"] == "mhworld"
+
+    rebooted = make_plugin(state_dir=tmp_path / "plugin_data",
+                           config=dict(plugin.config))
+    assert rebooted._current_game() == "mhworld"
+
+
+def test_switch_to_an_unknown_or_disabled_game_is_rejected(plugin, run):
+    result = run("/mh 作品 火星", sender_id="88888", as_admin=True)
+    assert "未知作品" in result.text
+    assert "不可用" not in result.text.split("未知作品")[1][:6]
+
+    plugin.config["enable_rise"] = False
+    plugin._init_indexes()
+    result = run("/mh 作品 崛起", sender_id="88888", as_admin=True)
+    assert "作品不可用" in result.text
+    assert plugin.config["default_game"] == "mhwilds"
+
+
+def test_games_listing_marks_the_current_one(plugin, run):
+    result = run("/mh 作品", sender_id="88888")
+    assert result.handlers == ["mh_games"]
+    assert "（当前）" in result.text
+    assert "mhwilds" in result.text and "荒野" in result.text
+    # 文本降级会把 markdown 的加粗去掉，所以只断言内容不断言格式
+
+
+def test_commands_ignore_a_trailing_game_token(monkeypatch, tmp_path):
+    """[作品] 后缀已取消：末位 token 一律是名字的一部分。"""
+    install_fake_loader(monkeypatch)
+    plugin = make_plugin(state_dir=tmp_path / "plugin_data")
+    result = dispatch(plugin, "/mh 怪物 雌火龙 mhrise")
+    assert result.handlers == ["mh_monster"]
+    assert "未找到怪物" in result.text
+    assert "雌火龙 mhrise" in result.text
 
 
 # --------------------------------------------------------------------------

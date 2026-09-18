@@ -288,11 +288,11 @@ def test_blank_names_are_treated_as_missing():
 
 def test_render_help_describes_the_merged_command():
     txt = render_help()
-    assert "/mh 怪物 <名字> [作品]" in txt
+    assert "/mh 怪物 <名字>" in txt
     assert "属性弱点" in txt and "肉质表" in txt
     # 已删除的功能不能再出现在帮助里
-    for gone in ("怪物列表", "技能列表", "/mh 素材", "/mh 肉质", "/mh 弱点"):
-        assert gone not in txt, f"{gone} 已删除，帮助里不该还有"
+    for gone in ("怪物列表", "技能列表", "/mh 素材", "/mh 肉质", "/mh 弱点", "[作品]"):
+        assert gone not in txt, f"{gone} 已删除/取消，帮助里不该还有"
 
 
 def test_render_skill_uses_list_style():
