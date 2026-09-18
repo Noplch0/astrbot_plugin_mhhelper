@@ -25,6 +25,12 @@
     "default": false,
     "description": "怪物查询结果附带图鉴图标(部分 IM 适配器支持不一)"
   },
+  "output_mode": {
+    "type": "string",
+    "default": "auto",
+    "options": ["auto", "text", "markdown", "image"],
+    "description": "查询结果的输出方式。auto=按平台自动选(QQ 全系转图片、Telegram/飞书等发 markdown)；text=空格对齐纯文本；markdown=发送 markdown 原文(仅会渲染 md 的客户端好看)；image=用 AstrBot 文转图渲染成图片卡片。渲染失败会自动回退纯文本。"
+  },
   "proxy": {
     "type": "string",
     "default": "",

@@ -27,6 +27,15 @@ sub-commands with their descriptions (taken from each handler's docstring).
 
 用户直接发送裸 `/mh`（不带子命令）时，AstrBot 会自动渲染出本指令组的树形
 结构（含子指令描述），因此无需再额外注册一个「帮助」根命令。
+
+输出格式由配置项 `output_mode` 决定（见 core/render.py）：
+
+* `auto`（默认）—— 按平台自动选：QQ 全系走 `image`，Telegram/飞书等走 `markdown`
+* `markdown` —— 直接发 markdown 文本
+* `image` —— 用 AstrBot 的「文转图」把结果渲染成图片卡片
+* `text` —— 退化成空格对齐的纯文本
+
+格式化层（core/formatter.py）统一产出 markdown，上面几种只是「怎么送出去」。
 """
 from __future__ import annotations
 
@@ -73,12 +82,18 @@ from core.formatter import (  # noqa: E402
     render_weak,
 )
 from core.monster_index import get_monster_index  # noqa: E402
+from core.render import (  # noqa: E402
+    CARD_TEMPLATE,
+    markdown_to_html,
+    markdown_to_plaintext,
+    resolve_mode,
+)
 from core.skill_index import get_skill_index  # noqa: E402
 
 log = logging.getLogger("astrbot-mhhelper")
 
 PLUGIN_NAME = "astrbot_plugin_mhhelper"
-PLUGIN_VERSION = "0.2.0"
+PLUGIN_VERSION = "0.3.0"
 
 #: 指令组名与别名 —— 面板里显示的顶层条目就是它。
 GROUP_NAME = "mh"
@@ -170,6 +185,7 @@ class MHHelperPlugin(Star):
             "enable_rise": True,
             "enable_wilds": True,
             "with_icon": False,
+            "output_mode": "auto",
             "proxy": "",
             "max_rows_per_message": 30,
             "allow_runtime_update": True,
@@ -265,6 +281,63 @@ class MHHelperPlugin(Star):
         game = game_hint or self._user_default_game(event)
         return game, parts
 
+    # ------------------- output delivery -------------------
+    # 格式化层统一产出 markdown，这里按平台决定怎么把它送到用户面前：
+    #   markdown → 原样发 md（Telegram / 飞书 / Discord 等会原生渲染）
+    #   image    → 用 AstrBot 的「文转图」渲染成图片卡片（QQ 个人号唯一可选）
+    #   text     → 退化成空格对齐的纯文本
+    # 任何一步失败都 gracefully 回退到纯文本，绝不让格式化把查询搞挂。
+
+    @staticmethod
+    def _platform_name(event: AstrMessageEvent) -> str:
+        for attr in ("get_platform_name", "get_platform_id"):
+            getter = getattr(event, attr, None)
+            if callable(getter):
+                try:
+                    value = getter()
+                except Exception:  # noqa: BLE001
+                    value = None
+                if value:
+                    return str(value)
+        # 退路：unified_msg_origin 形如 "aiocqhttp:GroupMessage:123456"
+        origin = getattr(event, "unified_msg_origin", "") or ""
+        return str(origin).split(":", 1)[0]
+
+    def _text_result(self, event: AstrMessageEvent, md: str):
+        """Deliver as plain text — markdown is degraded to aligned columns."""
+        return event.plain_result(markdown_to_plaintext(md))
+
+    async def _image_result(self, event: AstrMessageEvent, md: str):
+        """Render markdown to an image via AstrBot's 文转图; None if unusable."""
+        render = getattr(self, "html_render", None)
+        if not callable(render):
+            return None
+        try:
+            url = await render(CARD_TEMPLATE, {"content": markdown_to_html(md)})
+        except Exception as exc:  # noqa: BLE001
+            log.warning("[%s] 文转图失败，回退纯文本: %s", PLUGIN_NAME, exc)
+            return None
+        if not url:
+            return None
+        try:
+            return event.image_result(url)
+        except Exception as exc:  # noqa: BLE001
+            log.warning("[%s] image_result 失败: %s", PLUGIN_NAME, exc)
+            return None
+
+    async def _emit(self, event: AstrMessageEvent, md: str):
+        """Deliver formatter markdown according to the configured output mode."""
+        mode = resolve_mode(
+            self.config.get("output_mode", "auto"), self._platform_name(event)
+        )
+        if mode == "markdown":
+            return event.plain_result(md)
+        if mode == "image":
+            result = await self._image_result(event, md)
+            if result is not None:
+                return result
+        return self._text_result(event, md)
+
     # ------------------- shared dispatch -------------------
 
     async def _dispatch(self, event: AstrMessageEvent, sub: str):
@@ -272,20 +345,22 @@ class MHHelperPlugin(Star):
         game, name_args = self._split_args(event, sub)
 
         if sub == "help":
-            yield event.plain_result(render_help())
+            yield await self._emit(event, render_help())
             return
 
         if game not in GAMES:
-            yield event.plain_result(
-                render_error("未知作品", f"未识别的作品标识: {game}", list(GAME_LABELS))
+            yield self._text_result(
+                event,
+                render_error("未知作品", f"未识别的作品标识: {game}", list(GAME_LABELS)),
             )
             return
         if game not in self._enabled_games:
-            yield event.plain_result(
+            yield self._text_result(
+                event,
                 render_error(
                     "作品不可用",
                     f"{GAME_LABELS.get(game, game)} 已在插件配置中禁用。",
-                )
+                ),
             )
             return
         self._remember_game(event, game)
@@ -294,83 +369,85 @@ class MHHelperPlugin(Star):
 
         try:
             if sub == "games":
-                yield event.plain_result(render_games(self._monster_idx.list_games()))
+                yield await self._emit(event, render_games(self._monster_idx.list_games()))
                 return
             if sub == "monsters":
                 monsters = self._monster_idx.list_monsters(game)
-                yield event.plain_result(render_monster_list(game, monsters, max_rows))
+                yield await self._emit(event, render_monster_list(game, monsters, max_rows))
                 return
             if sub == "skills":
                 skills = self._skill_idx.list_skills(game)
-                yield event.plain_result(render_skill_list(game, skills, max_rows))
+                yield await self._emit(event, render_skill_list(game, skills, max_rows))
                 return
             if sub in {"monster", "meat", "weak", "rewards", "skill"}:
                 if not name_args:
-                    yield event.plain_result(
-                        render_error(
-                            "缺少参数",
-                            f"用法: /mh {USAGE[sub]}",
-                        )
+                    yield self._text_result(
+                        event,
+                        render_error("缺少参数", f"用法: /mh {USAGE[sub]}"),
                     )
                     return
             if sub == "monster":
                 _, monster, resolved_game = self._monster_idx.lookup(" ".join(name_args), game)
-                yield event.plain_result(render_monster_info(monster, resolved_game))
+                yield await self._emit(event, render_monster_info(monster, resolved_game))
                 return
             if sub == "meat":
                 _, monster, resolved_game = self._monster_idx.lookup(" ".join(name_args), game)
-                yield event.plain_result(render_meat(monster, resolved_game, max_rows))
+                yield await self._emit(event, render_meat(monster, resolved_game, max_rows))
                 return
             if sub == "weak":
                 _, monster, resolved_game = self._monster_idx.lookup(" ".join(name_args), game)
-                yield event.plain_result(render_weak(monster, resolved_game))
+                yield await self._emit(event, render_weak(monster, resolved_game))
                 return
             if sub == "rewards":
                 _, monster, resolved_game = self._monster_idx.lookup(" ".join(name_args), game)
-                yield event.plain_result(render_rewards(monster, resolved_game, max_rows))
+                yield await self._emit(event, render_rewards(monster, resolved_game, max_rows))
                 return
             if sub == "skill":
                 _, skill, resolved_game = self._skill_idx.lookup(" ".join(name_args), game)
-                yield event.plain_result(render_skill(skill, resolved_game))
+                yield await self._emit(event, render_skill(skill, resolved_game))
                 return
             if sub == "update":
                 async for r in self._cmd_update(event, game):
                     yield r
                 return
-            yield event.plain_result(render_help())
+            yield await self._emit(event, render_help())
         except MonsterNotFound as exc:
-            yield event.plain_result(
+            yield self._text_result(
+                event,
                 render_error(
                     "未找到怪物",
                     f"在 {GAME_LABELS.get(game, game)} 中找不到: {exc.query}",
                     exc.suggestions,
-                )
+                ),
             )
         except SkillNotFound as exc:
-            yield event.plain_result(
+            yield self._text_result(
+                event,
                 render_error(
                     "未找到技能",
                     f"在 {GAME_LABELS.get(game, game)} 中找不到: {exc.query}",
                     exc.suggestions,
-                )
+                ),
             )
         except DataNotLoaded as exc:
-            yield event.plain_result(
+            yield self._text_result(
+                event,
                 render_error(
                     "数据未加载",
                     f"该作品的数据未就绪。请联系管理员执行 /mh 更新 {exc.game} 或重新安装插件。",
-                )
+                ),
             )
         except (InvalidGame, GameDisabled) as exc:
-            yield event.plain_result(render_error("作品不可用", str(exc)))
+            yield self._text_result(event, render_error("作品不可用", str(exc)))
         except Exception as exc:  # noqa: BLE001
             log.exception("Handler error: %s", exc)
-            yield event.plain_result(render_error("内部错误", str(exc)))
+            yield self._text_result(event, render_error("内部错误", str(exc)))
 
     async def _cmd_update(self, event: AstrMessageEvent, game: str):
         if not self.config.get("allow_runtime_update", True):
-            yield event.plain_result(
-                render_error("已禁用", "管理员已禁用在线刷新。请让管理员重新安装插件。")
+            yield self._text_result(
+                event,
+                render_error("已禁用", "管理员已禁用在线刷新。请让管理员重新安装插件。"),
             )
             return
         yield event.plain_result(f"⏳ 正在从 kiranico 拉取 {GAME_LABELS.get(game, game)} 数据…")
@@ -378,10 +455,10 @@ class MHHelperPlugin(Star):
             from scraper.common import SCRAPERS
             from scraper.run_update import refresh_game
         except ImportError as e:
-            yield event.plain_result(render_error("抓取模块不可用", str(e)))
+            yield self._text_result(event, render_error("抓取模块不可用", str(e)))
             return
         if game not in SCRAPERS:
-            yield event.plain_result(render_error("未知作品", game))
+            yield self._text_result(event, render_error("未知作品", game))
             return
         t0 = time.time()
         monsters, skills = await refresh_game(
@@ -392,7 +469,7 @@ class MHHelperPlugin(Star):
             only=None,
         )
         self._init_indexes()
-        yield event.plain_result(render_update_result(game, monsters, skills, time.time() - t0))
+        yield await self._emit(event, render_update_result(game, monsters, skills, time.time() - t0))
 
     # ------------------- command group -------------------
     # 「指令管理」面板会把下面这一整块收拢成一个可展开的 `mh` 行；

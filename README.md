@@ -77,6 +77,28 @@ AstrBot 会自动 git clone → 把仓库根拷贝到 `data/plugins/astrbot_plug
 
 ---
 
+## 输出格式（表格怎么显示）
+
+肉质表这类宽表格如果直接当纯文本发出去，在手机 QQ 里会错位得没法看。
+v0.3.0 起格式化层统一产出 **markdown**，再由配置项 `output_mode` 决定怎么送出去：
+
+| `output_mode` | 行为 | 适合 |
+|---|---|---|
+| `auto`（默认） | 按平台自动选：QQ 全系 → 图片；Telegram / 飞书 / Discord 等 → markdown | 绝大多数人 |
+| `image` | 用 AstrBot 自带的**文转图**把结果渲染成一张图片卡片 | 想让表格最好看 |
+| `markdown` | 直接发 markdown 原文 | 确认客户端会渲染 md |
+| `text` | 退化成空格对齐的纯文本 | 兜底 / 不想要图片 |
+
+> **为什么 QQ 要转图片？** QQ **个人号**（NapCat / aiocqhttp）只支持文字 / 图片 / 语音，
+> 聊天框**不渲染 markdown**；直接发 `| 部位 | 斩 |` 会原样显示竖线，比现在还难看。
+> 所以 QQ 上唯一能让表格好看的方案是把结果渲染成图片。QQ **官方机器人** 平台侧支持
+> 自定义 markdown，但 AstrBot 适配器目前对外只暴露文字 / 图片。
+
+`image` 模式调用 AstrBot 的 `Star.html_render()`。如果宿主机没装好文转图
+（缺 Playwright / 渲染服务不可用），插件会自动**回退成纯文本**，不会让查询失败。
+
+---
+
 ## 维护者:更新数据
 
 游戏更新后(尤其是 MHWilds 持续更新),刷新本仓库的 `data/`:
@@ -129,9 +151,10 @@ git push
 | `default_game` | `mhwilds` | 未指定 game 时的默认作品 |
 | `enable_world` / `enable_rise` / `enable_wilds` | `true` | 启用对应作品 |
 | `with_icon` | `false` | 是否在结果附带怪物图鉴图标 |
+| `output_mode` | `auto` | 结果输出方式：`auto` / `text` / `markdown` / `image`，见上一节 |
 | `proxy` | `""` | 抓取 kiranico 时使用的代理 URL |
-| `max_rows_per_message` | `30` | 单条消息最多行数,超出后截断 |
-| `allow_runtime_update` | `true` | 是否允许 `/mh update` 在线刷新 |
+| `max_rows_per_message` | `30` | 单条消息最多行数，超出后截断 |
+| `allow_runtime_update` | `true` | 是否允许 `/mh 更新` 在线刷新 |
 
 ---
 
@@ -163,7 +186,8 @@ astrbot_plugin_mhhelper/
 │   ├── data_loader.py
 │   ├── monster_index.py
 │   ├── skill_index.py
-│   ├── formatter.py
+│   ├── formatter.py         ← 数据 → markdown(标题 / 列表 / GFM 表格)
+│   ├── render.py            ← markdown → HTML 卡片 / 纯文本 + 输出模式决策
 │   └── errors.py
 ├── scraper/                 ← 抓取工具链(维护者用)
 │   ├── base.py
@@ -183,11 +207,14 @@ astrbot_plugin_mhhelper/
 │       └── mhwilds.json
 ├── scripts/
 │   ├── bootstrap_data.py    ← 维护者全量刷新数据
-│   └── _import_test.py      ← 本地冒烟测试(被 .gitignore 排除,不入库)
+│   ├── _import_test.py      ← 本地冒烟测试(被 .gitignore 排除,不入库)
+│   └── _card_preview.py     ← 打印 markdown / 纯文本并生成卡片 HTML 预览(同样不入库)
 ├── tests/
 │   ├── fixtures/            ← 离线样本 JSON
 │   ├── _astrbot_fake.py     ← AstrBot 注册/过滤器层的最小仿真
-│   ├── test_command_group.py← 指令组结构 + 路由回归测试
+│   ├── test_command_group.py← 指令组结构 + 路由 + 输出模式回归测试
+│   ├── test_formatter.py    ← markdown 契约
+│   ├── test_render.py       ← markdown 降级 / 模式决策
 │   └── test_*.py
 └── .github/workflows/data-refresh.yml
 ```
@@ -214,6 +241,12 @@ pytest -q
 python scripts/_import_test.py
 ```
 
+想看真实数据经过新格式化后的样子(markdown / 纯文本摘录,并生成一张卡片预览 HTML):
+
+```powershell
+python scripts/_card_preview.py
+```
+
 退出码非 0 表示有断言失败。
 
 ---
@@ -223,7 +256,8 @@ python scripts/_import_test.py
 - **MHWorld / MHRise 无中文**:kiranico 这两个子域不提供中文页面,怪物与技能名字显示为英文(可在代码中加 `aliases` 字段维护中文别名)。
 - **数据陈旧**:游戏更新时仓库内置数据会过时,通过 `/mh 更新` 或维护者重新 bootstrap 刷新。
 - **大表格截断**:肉质/报酬表超过 `max_rows_per_message` 会截断,显示部分。
-- **图片未发送**:为兼容多数 IM 适配器,默认不发送图标(`with_icon=false`)。
+- **文转图依赖 AstrBot**:`image` 模式需要宿主机的 AstrBot 文转图可用(Playwright 或渲染服务)。不可用时自动回退纯文本,表格会退化成空格对齐。
+- **图片模式不适合复制**:`image` 模式发的是图片,用户没法直接选中文字复制;需要复制时把 `output_mode` 调成 `text` 或 `markdown`。
 
 ---
 

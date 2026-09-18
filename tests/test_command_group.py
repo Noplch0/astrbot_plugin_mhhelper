@@ -209,6 +209,92 @@ def test_last_game_is_remembered_per_user(run):
 
 
 # --------------------------------------------------------------------------
+# 输出格式 (output_mode)
+# --------------------------------------------------------------------------
+
+
+def test_auto_mode_degrades_to_plain_text_without_renderer(run):
+    """QQ 平台下 auto 会选 image，但测试替身没有 html_render，应回退纯文本。"""
+    result = run("/mh 肉质 雌火龙")
+    assert "肉质表" in result.text
+    assert "头部" in result.text
+    # 已降级：没有 markdown 的竖线 / 分隔行
+    assert "|" not in result.text
+    assert ":---" not in result.text
+
+
+def test_markdown_mode_sends_raw_markdown(monkeypatch, tmp_path):
+    install_fake_loader(monkeypatch)
+    plugin = make_plugin(
+        state_dir=tmp_path / "plugin_data", config={"output_mode": "markdown"}
+    )
+    result = dispatch(plugin, "/mh 肉质 雌火龙")
+    assert "| 部位 |" in result.text
+    assert ":---" in result.text
+
+
+def test_text_mode_degrades_even_on_markdown_platform(monkeypatch, tmp_path):
+    install_fake_loader(monkeypatch)
+    plugin = make_plugin(state_dir=tmp_path / "plugin_data", config={"output_mode": "text"})
+    result = dispatch(plugin, "/mh 肉质 雌火龙", platform="telegram")
+    assert "部位" in result.text
+    assert "|" not in result.text
+
+
+def test_auto_mode_uses_markdown_on_telegram(monkeypatch, tmp_path):
+    install_fake_loader(monkeypatch)
+    plugin = make_plugin(state_dir=tmp_path / "plugin_data", config={"output_mode": "auto"})
+    result = dispatch(plugin, "/mh 肉质 雌火龙", platform="telegram")
+    assert "| 部位 |" in result.text
+
+
+def test_image_mode_renders_card_via_html_render(monkeypatch, tmp_path):
+    install_fake_loader(monkeypatch)
+    plugin = make_plugin(state_dir=tmp_path / "plugin_data", config={"output_mode": "image"})
+    seen: dict = {}
+
+    async def fake_render(tmpl, data, *args, **kwargs):
+        seen["tmpl"] = tmpl
+        seen["data"] = data
+        return "https://example.com/card.png"
+
+    plugin.html_render = fake_render
+    result = dispatch(plugin, "/mh 肉质 雌火龙")
+    assert result.text.startswith("[image] https://example.com/card.png")
+    assert "<table>" in seen["data"]["content"]
+    assert "<th" in seen["data"]["content"]
+    assert "{{ content | safe }}" in seen["tmpl"]
+
+
+def test_image_mode_falls_back_when_renderer_raises(monkeypatch, tmp_path):
+    install_fake_loader(monkeypatch)
+    plugin = make_plugin(state_dir=tmp_path / "plugin_data", config={"output_mode": "image"})
+
+    async def boom(*args, **kwargs):
+        raise RuntimeError("playwright not installed")
+
+    plugin.html_render = boom
+    result = dispatch(plugin, "/mh 肉质 雌火龙")
+    assert "肉质表" in result.text
+    assert "|" not in result.text
+
+
+def test_errors_stay_plain_text_even_in_image_mode(monkeypatch, tmp_path):
+    install_fake_loader(monkeypatch)
+    plugin = make_plugin(state_dir=tmp_path / "plugin_data", config={"output_mode": "image"})
+    calls: list = []
+
+    async def fake_render(tmpl, data, *args, **kwargs):  # pragma: no cover - must not run
+        calls.append(data)
+        return "https://example.com/card.png"
+
+    plugin.html_render = fake_render
+    result = dispatch(plugin, "/mh 怪物 zzz不存在")
+    assert "未找到怪物" in result.text
+    assert calls == [], "错误提示不应该触发文转图"
+
+
+# --------------------------------------------------------------------------
 # 参数剥离
 # --------------------------------------------------------------------------
 

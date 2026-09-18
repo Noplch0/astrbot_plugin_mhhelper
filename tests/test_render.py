@@ -1,0 +1,162 @@
+"""Unit tests for core.render — the markdown degradation + mode policy layer."""
+from __future__ import annotations
+
+import unicodedata
+
+import pytest
+
+from core.formatter import md_table
+from core.render import (
+    CARD_TEMPLATE,
+    MODES,
+    markdown_to_html,
+    markdown_to_plaintext,
+    resolve_mode,
+)
+
+
+def _display_width(text: str) -> int:
+    """CJK-aware width, so padded plain-text rows can be compared."""
+    return sum(2 if unicodedata.east_asian_width(c) in ("W", "F") else 1 for c in text)
+
+
+MD = "\n".join(
+    [
+        "## 🐉 雌火龙 (Rathian)",
+        "",
+        "- **种类**：飞龙种",
+        "- **基础 HP**：4500",
+        "",
+        "| 部位 | 状态 | 斩 |",
+        "| :--- | :--- | ---: |",
+        "| 头部 | 通常 | 70 |",
+        "| 躯干 | 通常 | 35 |",
+    ]
+)
+
+
+# --------------------------------------------------------------------------
+# 模式决策
+# --------------------------------------------------------------------------
+
+
+def test_modes_tuple():
+    assert MODES == ("auto", "text", "markdown", "image")
+
+
+@pytest.mark.parametrize("mode", ["text", "markdown", "image"])
+def test_explicit_mode_is_passed_through(mode):
+    """显式指定的模式不受平台影响。"""
+    assert resolve_mode(mode, "aiocqhttp") == mode
+    assert resolve_mode(mode, "telegram") == mode
+
+
+@pytest.mark.parametrize(
+    "platform", ["aiocqhttp", "qq_official", "wecom", "DingTalk", "kook", "bilibili"]
+)
+def test_auto_picks_image_for_qq_like_platforms(platform):
+    assert resolve_mode("auto", platform) == "image"
+
+
+@pytest.mark.parametrize("platform", ["telegram", "lark", "Discord", "Slack", "webchat"])
+def test_auto_picks_markdown_for_markdown_platforms(platform):
+    assert resolve_mode("auto", platform) == "markdown"
+
+
+def test_auto_unknown_platform_is_text():
+    assert resolve_mode("auto", "some_brand_new_adapter") == "text"
+    assert resolve_mode("auto", "") == "text"
+    assert resolve_mode("auto", None) == "text"
+
+
+def test_unknown_mode_falls_back_to_auto():
+    assert resolve_mode("bogus", "telegram") == "markdown"
+    assert resolve_mode("", "aiocqhttp") == "image"
+    assert resolve_mode(None, None) == "text"
+
+
+# --------------------------------------------------------------------------
+# markdown → 纯文本
+# --------------------------------------------------------------------------
+
+
+def test_plaintext_strips_markdown_markers():
+    txt = markdown_to_plaintext(MD)
+    assert "##" not in txt
+    assert "**" not in txt
+    assert "|" not in txt
+    assert ":---" not in txt
+    assert "🐉 雌火龙 (Rathian)" in txt
+
+
+def test_plaintext_bullets_keep_content():
+    txt = markdown_to_plaintext(MD)
+    assert "  • 种类：飞龙种" in txt
+    assert "  • 基础 HP：4500" in txt
+
+
+def test_plaintext_table_is_rebuilt_as_aligned_columns():
+    txt = markdown_to_plaintext(MD)
+    rows = [l for l in txt.splitlines() if l.strip()]
+    assert rows[-2].startswith("头部")
+    assert rows[-1].startswith("躯干")
+    assert rows[-1].rstrip().endswith("35")
+    # 表头 + 数据行的显示宽度一致（CJK 按双宽计算）
+    widths = {_display_width(l) for l in rows[-3:]}
+    assert len(widths) == 1, rows[-3:]
+
+
+def test_plaintext_escaped_pipe_survives():
+    md = md_table(["说明"], [["a|b"]])
+    assert "a|b" in markdown_to_plaintext(md)
+
+
+# --------------------------------------------------------------------------
+# markdown → HTML（图片卡片）
+# --------------------------------------------------------------------------
+
+
+def test_html_table_structure_and_alignment():
+    out = markdown_to_html(MD)
+    assert "<table>" in out
+    assert '<th class="left">部位</th>' in out
+    assert '<th class="right">斩</th>' in out
+    assert '<td class="left">头部</td>' in out
+    assert '<td class="right">70</td>' in out
+    assert out.count("<tr>") == 3  # thead + 2 body rows
+
+
+def test_html_headings_bullets_and_bold():
+    out = markdown_to_html(MD)
+    assert "<h3>🐉 雌火龙 (Rathian)</h3>" in out
+    assert "<ul>" in out
+    assert "<li><strong>种类</strong>：飞龙种</li>" in out
+
+
+def test_html_inline_code():
+    out = markdown_to_html("- `/mh 肉质 火龙`")
+    assert "<code>/mh 肉质 火龙</code>" in out
+
+
+def test_html_escapes_raw_markup():
+    out = markdown_to_html("| a |\n| :--- |\n| <script>alert(1)</script> |")
+    assert "<script>" not in out
+    assert "&lt;script&gt;" in out
+
+
+def test_html_escaped_pipe_is_one_cell():
+    md = md_table(["部位", "说明"], [["头部", "a|b"]])
+    out = markdown_to_html(md)
+    assert "a\\|b" in md
+    assert '<td class="left">a|b</td>' in out
+
+
+def test_md_table_right_aligns_numeric_headers():
+    md = md_table(["部位", "伤害"], [["头部", 70]])
+    assert "---:" in md.splitlines()[1]
+
+
+def test_card_template_content_slot_and_styles():
+    assert "{{ content | safe }}" in CARD_TEMPLATE
+    assert "<style>" in CARD_TEMPLATE
+    assert "table" in CARD_TEMPLATE

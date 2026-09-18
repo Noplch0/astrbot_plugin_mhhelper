@@ -236,15 +236,23 @@ class _Filter:
 
 
 class _FakeEvent:
-    def __init__(self, message_str: str, sender_id: str = "10001"):
+    def __init__(self, message_str: str, sender_id: str = "10001", platform: str = "aiocqhttp"):
         self.message_str = message_str
         self._sender_id = sender_id
+        self.platform = platform
+        self.unified_msg_origin = f"{platform}:GroupMessage:{sender_id}"
 
     def get_sender_id(self) -> str:
         return self._sender_id
 
+    def get_platform_name(self) -> str:
+        return self.platform
+
     def plain_result(self, text: str) -> str:
         return text
+
+    def image_result(self, url: str) -> str:
+        return f"[image] {url}"
 
 
 class _Star:
@@ -358,6 +366,7 @@ def dispatch(
     message: str,
     sender_id: str = "10001",
     as_admin: bool = False,
+    platform: str = "aiocqhttp",
 ) -> Dispatch:
     """Route `message` the way AstrBot would, then run the matched handler.
 
@@ -365,6 +374,10 @@ def dispatch(
     case AstrBot raises "参数不足" and renders the group tree instead of
     executing anything. ``blocked`` is True when the matched handler needs
     ADMIN permission and the caller is not an admin.
+
+    ``platform`` feeds ``event.get_platform_name()``, which drives the plugin's
+    ``output_mode="auto"`` choice (aiocqhttp → image, telegram → markdown, …).
+    The fake plugin has no ``html_render``, so image mode degrades to plain text.
     """
     msg = _strip_wake(message)
     hits: list[Handler] = []
@@ -386,7 +399,7 @@ def dispatch(
     blocked = bool(hits) and hits[0].is_admin_only and not as_admin
     text = ""
     if hits and not blocked:
-        event = _FakeEvent(message, sender_id)
+        event = _FakeEvent(message, sender_id, platform)
         text = "\n".join(asyncio.run(_collect(hits[0], plugin, event)))
     return Dispatch(
         tree=None,
