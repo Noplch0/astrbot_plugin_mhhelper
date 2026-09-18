@@ -10,17 +10,16 @@ badge counts the sub-commands, and expanding it lists the second-level
 sub-commands with their descriptions (taken from each handler's docstring).
 
     /mh 帮助              查看完整帮助            (help)
-    /mh 怪物列表 [作品]     列出该作大型怪物         (monsters)
-    /mh 怪物 <名字> [作品]  怪物基础信息            (monster)
-    /mh 肉质 <名字> [作品]  肉质表                  (meat)
-    /mh 弱点 <名字> [作品]  属性弱点与状态异常       (weak)
-    /mh 素材 <名字> [作品]  剥取 / 破坏 / 目标报酬   (rewards)
-    /mh 技能列表 [作品]     列出该作技能            (skills)
+    /mh 怪物 <名字> [作品]  属性弱点 / 肉质表 / 状态异常 (monster)
     /mh 技能 <名字> [作品]  技能各等级效果          (skill)
     /mh 作品              列出已启用作品            (games)
     /mh 更新 [作品]         管理员：在线刷新数据      (update)
 
-括号里是等价别名：`/mh meat Rathian` == `/mh 肉质 Rathian`。
+`基础信息 / 肉质 / 弱点` 已合并成 `怪物` 一条，按「怪物名 → 属性弱点（最强两项）
+→ 肉质表 → 状态异常累积值」的顺序输出；图片模式下卡片顶部还会居中显示怪物图标。
+
+括号里是等价别名：`/mh meat Rathian` == `/mh 怪物 Rathian`（`肉质`/`弱点`/`属性`
+等老名字都保留为别名，习惯输入照旧可用，返回的都是同一份合并报告）。
 
 `作品` 可省略；省略时按「该用户上次使用 → 配置 default_game」解析。
 作品标识支持：mhworld / world / 世界、mhrise / rise / 崛起、mhwilds / wilds / 荒野。
@@ -163,14 +162,9 @@ from core.formatter import (  # noqa: E402
     render_error,
     render_games,
     render_help,
-    render_meat,
-    render_monster_info,
-    render_monster_list,
-    render_rewards,
+    render_monster_report,
     render_skill,
-    render_skill_list,
     render_update_result,
-    render_weak,
 )
 from core.monster_index import get_monster_index  # noqa: E402
 from core.render import (  # noqa: E402
@@ -186,7 +180,7 @@ from core.skill_index import get_skill_index  # noqa: E402
 log = logging.getLogger("astrbot-mhhelper")
 
 PLUGIN_NAME = "astrbot_plugin_mhhelper"
-PLUGIN_VERSION = "0.3.5"
+PLUGIN_VERSION = "0.3.6"
 
 #: 运行期状态：每个用户上次查询的作品。
 STATE_FILENAME = "user_last_game.json"
@@ -223,7 +217,7 @@ GAME_ALIASES: dict[str, str] = {
 }
 
 #: 只接受「作品」一个参数的子命令（没有「名字」参数）。
-_GAME_ONLY_SUBS: frozenset[str] = frozenset({"monsters", "skills", "games", "update"})
+_GAME_ONLY_SUBS: frozenset[str] = frozenset({"games", "update"})
 
 #: 作品 → 控制其可用性的配置项。
 _ENABLE_CONFIG_KEY: dict[str, str] = {
@@ -235,9 +229,6 @@ _ENABLE_CONFIG_KEY: dict[str, str] = {
 #: 缺少「名字」参数时提示的用法片段，键为 _dispatch 的内部子命令标识。
 USAGE: dict[str, str] = {
     "monster": "怪物 <名字> [作品]",
-    "meat": "肉质 <名字> [作品]",
-    "weak": "弱点 <名字> [作品]",
-    "rewards": "素材 <名字> [作品]",
     "skill": "技能 <名字> [作品]",
 }
 
@@ -610,36 +601,21 @@ class MHHelperPlugin(Star):
             if sub == "games":
                 yield await self._emit(event, render_games(self._monster_idx.list_games()))
                 return
-            if sub == "monsters":
-                monsters = self._monster_idx.list_monsters(game)
-                yield await self._emit(event, render_monster_list(game, monsters, max_rows))
+            if sub in {"monster", "skill"} and not name_args:
+                yield self._text_result(
+                    event,
+                    render_error("缺少参数", f"用法: /mh {USAGE[sub]}"),
+                )
                 return
-            if sub == "skills":
-                skills = self._skill_idx.list_skills(game)
-                yield await self._emit(event, render_skill_list(game, skills, max_rows))
-                return
-            if sub in {"monster", "meat", "weak", "rewards", "skill"}:
-                if not name_args:
-                    yield self._text_result(
-                        event,
-                        render_error("缺少参数", f"用法: /mh {USAGE[sub]}"),
-                    )
-                    return
             if sub == "monster":
                 _, monster, resolved_game = self._monster_idx.lookup(" ".join(name_args), game)
-                yield await self._emit(event, render_monster_info(monster, resolved_game), monster)
-                return
-            if sub == "meat":
-                _, monster, resolved_game = self._monster_idx.lookup(" ".join(name_args), game)
-                yield await self._emit(event, render_meat(monster, resolved_game, max_rows), monster)
-                return
-            if sub == "weak":
-                _, monster, resolved_game = self._monster_idx.lookup(" ".join(name_args), game)
-                yield await self._emit(event, render_weak(monster, resolved_game), monster)
-                return
-            if sub == "rewards":
-                _, monster, resolved_game = self._monster_idx.lookup(" ".join(name_args), game)
-                yield await self._emit(event, render_rewards(monster, resolved_game, max_rows), monster)
+                # 基础信息 / 肉质 / 弱点合并成一份报告；怪物也一并交给投递层，
+                # 图片模式下卡片顶部的图标就来自它（文本模式用不到）。
+                yield await self._emit(
+                    event,
+                    render_monster_report(monster, resolved_game, max_rows),
+                    monster,
+                )
                 return
             if sub == "skill":
                 _, skill, resolved_game = self._skill_idx.lookup(" ".join(name_args), game)
@@ -716,7 +692,7 @@ class MHHelperPlugin(Star):
 
     @filter.command_group(GROUP_NAME, alias=GROUP_ALIASES)
     def mh(self):
-        """怪物猎人信息查询：肉质 / 弱点 / 素材 / 技能 / 怪物 / 作品"""
+        """怪物猎人查询：怪物（肉质 / 弱点 / 异常）/ 技能 / 作品"""
 
     @mh.command("帮助", alias={"help", "用法"})
     async def mh_help(self, event: AstrMessageEvent):
@@ -724,40 +700,15 @@ class MHHelperPlugin(Star):
         async for r in self._dispatch(event, "help"):
             yield r
 
-    @mh.command("怪物列表", alias={"monsters", "怪物表", "list"})
-    async def mh_monsters(self, event: AstrMessageEvent):
-        """列出该作品的全部大型怪物（用法：/mh 怪物列表 [作品]）"""
-        async for r in self._dispatch(event, "monsters"):
-            yield r
-
-    @mh.command("怪物", alias={"monster", "info"})
+    # 基础信息 / 肉质 / 弱点 合并成这一条 —— 老的 肉质 / 弱点 名字保留为别名，
+    # 习惯性输入仍然可用，返回的都是同一份合并报告。
+    @mh.command(
+        "怪物",
+        alias={"monster", "info", "肉质", "肉", "meat", "弱点", "属性", "weak"},
+    )
     async def mh_monster(self, event: AstrMessageEvent):
-        """查看怪物基础信息：种类 / HR 点数 / 基础 HP（用法：/mh 怪物 <名字> [作品]）"""
+        """查询怪物：属性弱点（最强两项）/ 肉质表 / 状态异常累积值（用法：/mh 怪物 <名字> [作品]）"""
         async for r in self._dispatch(event, "monster"):
-            yield r
-
-    @mh.command("肉质", alias={"meat", "肉"})
-    async def mh_meat(self, event: AstrMessageEvent):
-        """查看怪物各部位肉质表：斩 / 打 / 弹 / 火水雷冰龙（用法：/mh 肉质 <名字> [作品]）"""
-        async for r in self._dispatch(event, "meat"):
-            yield r
-
-    @mh.command("弱点", alias={"weak", "属性"})
-    async def mh_weak(self, event: AstrMessageEvent):
-        """查看属性弱点概览与状态异常累积值（用法：/mh 弱点 <名字> [作品]）"""
-        async for r in self._dispatch(event, "weak"):
-            yield r
-
-    @mh.command("素材", alias={"rewards", "报酬", "掉落"})
-    async def mh_rewards(self, event: AstrMessageEvent):
-        """查看剥取 / 部位破坏 / 目标报酬素材（用法：/mh 素材 <名字> [作品]）"""
-        async for r in self._dispatch(event, "rewards"):
-            yield r
-
-    @mh.command("技能列表", alias={"skills", "技能表"})
-    async def mh_skills(self, event: AstrMessageEvent):
-        """列出该作品的全部技能（用法：/mh 技能列表 [作品]）"""
-        async for r in self._dispatch(event, "skills"):
             yield r
 
     @mh.command("技能", alias={"skill"})

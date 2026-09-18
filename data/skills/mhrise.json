@@ -5,7 +5,7 @@
     {
       "id": "366824395",
       "name_en": "Attack Boost",
-      "name_zh": "",
+      "name_zh": "攻击",
       "aliases": [],
       "levels": [
         {
@@ -41,7 +41,7 @@
     {
       "id": "381074408",
       "name_en": "Agitator",
-      "name_zh": "",
+      "name_zh": "挑战者",
       "aliases": [],
       "levels": [
         {
@@ -69,7 +69,7 @@
     {
       "id": "395307913",
       "name_en": "Peak Performance",
-      "name_zh": "",
+      "name_zh": "无伤",
       "aliases": [],
       "levels": [
         {
@@ -89,7 +89,7 @@
     {
       "id": "274815918",
       "name_en": "Resentment",
-      "name_zh": "",
+      "name_zh": "怨恨",
       "aliases": [],
       "levels": [
         {
@@ -117,7 +117,7 @@
     {
       "id": "289049423",
       "name_en": "Resuscitate",
-      "name_zh": "",
+      "name_zh": "死里逃生",
       "aliases": [],
       "levels": [
         {
@@ -137,7 +137,7 @@
     {
       "id": "303299436",
       "name_en": "Critical Eye",
-      "name_zh": "",
+      "name_zh": "看破",
       "aliases": [],
       "levels": [
         {
@@ -173,7 +173,7 @@
     {
       "id": "485829389",
       "name_en": "Critical Boost",
-      "name_zh": "",
+      "name_zh": "超会心",
       "aliases": [],
       "levels": [
         {
@@ -193,7 +193,7 @@
     {
       "id": "500079394",
       "name_en": "Weakness Exploit",
-      "name_zh": "",
+      "name_zh": "弱点特效",
       "aliases": [],
       "levels": [
         {
@@ -213,7 +213,7 @@
     {
       "id": "514312899",
       "name_en": "Latent Power",
-      "name_zh": "",
+      "name_zh": "力量解放",
       "aliases": [],
       "levels": [
         {
@@ -241,7 +241,7 @@
     {
       "id": "528038624",
       "name_en": "Maximum Might",
-      "name_zh": "",
+      "name_zh": "精神抖擞",
       "aliases": [],
       "levels": [
         {
@@ -261,7 +261,7 @@
     {
       "id": "408054401",
       "name_en": "Critical Element",
-      "name_zh": "",
+      "name_zh": "会心击【属性】",
       "aliases": [],
       "levels": [
         {
@@ -281,7 +281,7 @@
     {
       "id": "422304422",
       "name_en": "Master's Touch",
-      "name_zh": "",
+      "name_zh": "达人艺",
       "aliases": [],
       "levels": [
         {
@@ -301,7 +301,7 @@
     {
       "id": "437062215",
       "name_en": "Fire Attack",
-      "name_zh": "",
+      "name_zh": "火属性攻击强化",
       "aliases": [],
       "levels": [
         {
@@ -329,7 +329,7 @@
     {
       "id": "82213476",
       "name_en": "Water Attack",
-      "name_zh": "",
+      "name_zh": "水属性攻击强化",
       "aliases": [],
       "levels": [
         {
@@ -357,7 +357,7 @@
     {
       "id": "96446981",
       "name_en": "Ice Attack",
-      "name_zh": "",
+      "name_zh": "冰属性攻击强化",
       "aliases": [],
       "levels": [
         {
@@ -385,7 +385,7 @@
     {
       "id": "110172730",
       "name_en": "Thunder Attack",
-      "name_zh": "",
+      "name_zh": "雷属性攻击强化",
       "aliases": [],
       "levels": [
         {
@@ -413,7 +413,7 @@
     {
       "id": "124406235",
       "name_en": "Dragon Attack",
-      "name_zh": "",
+      "name_zh": "龙属性攻击强化",
       "aliases": [],
       "levels": [
         {
@@ -441,7 +441,7 @@
     {
       "id": "4438520",
       "name_en": "Poison Attack",
-      "name_zh": "",
+      "name_zh": "毒属性强化",
       "aliases": [],
       "levels": [
         {
@@ -461,7 +461,7 @@
     {
       "id": "19196313",
       "name_en": "Paralysis Attack",
-      "name_zh": "",
+      "name_zh": "麻痹属性强化",
       "aliases": [],
       "levels": [
         {
@@ -481,7 +481,7 @@
     {
       "id": "67000766",
       "name_en": "Sleep Attack",
-      "name_zh": "",
+      "name_zh": "睡眠属性强化",
       "aliases": [],
       "levels": [
         {
@@ -501,7 +501,7 @@
     {
       "id": "215451999",
       "name_en": "Blast Attack",
-      "name_zh": "",
+      "name_zh": "爆破属性强化",
       "aliases": [],
       "levels": [
         {
@@ -521,7 +521,7 @@
     {
       "id": "229177724",
       "name_en": "Handicraft",
-      "name_zh": "",
+      "name_zh": "匠",
       "aliases": [],
       "levels": [
         {
@@ -549,7 +549,7 @@
     {
       "id": "243411229",
       "name_en": "Razor Sharp",
-      "name_zh": "",
+      "name_zh": "利刃",
       "aliases": [],
       "levels": [
         {
@@ -569,7 +569,7 @@
     {
       "id": "257661234",
       "name_en": "Spare Shot",
-      "name_zh": "",
+      "name_zh": "弹丸节约",
       "aliases": [],
       "levels": [
         {
@@ -589,7 +589,7 @@
     {
       "id": "138201299",
       "name_en": "Protective Polish",
-      "name_zh": "",
+      "name_zh": "刚刃打磨",
       "aliases": [],
       "levels": [
         {
@@ -609,7 +609,7 @@
     {
       "id": "152451312",
       "name_en": "Mind's Eye",
-      "name_zh": "",
+      "name_zh": "心眼",
       "aliases": [],
       "levels": [
         {
@@ -629,7 +629,7 @@
     {
       "id": "200239249",
       "name_en": "Ballistics",
-      "name_zh": "",
+      "name_zh": "弹道强化",
       "aliases": [],
       "levels": [
         {
@@ -649,7 +649,7 @@
     {
       "id": "885053622",
       "name_en": "Bludgeoner",
-      "name_zh": "",
+      "name_zh": "钝器能手",
       "aliases": [],
       "levels": [
         {
@@ -669,7 +669,7 @@
     {
       "id": "899287127",
       "name_en": "Bow Charge Plus",
-      "name_zh": "",
+      "name_zh": "解放弓的蓄力阶段",
       "aliases": [],
       "levels": [
         {
@@ -681,7 +681,7 @@
     {
       "id": "913537140",
       "name_en": "Focus",
-      "name_zh": "",
+      "name_zh": "集中",
       "aliases": [],
       "levels": [
         {
@@ -701,7 +701,7 @@
     {
       "id": "928294933",
       "name_en": "Power Prolonger",
-      "name_zh": "",
+      "name_zh": "强化持续",
       "aliases": [],
       "levels": [
         {
@@ -721,7 +721,7 @@
     {
       "id": "808327178",
       "name_en": "Marathon Runner",
-      "name_zh": "",
+      "name_zh": "跑者",
       "aliases": [],
       "levels": [
         {
@@ -741,7 +741,7 @@
     {
       "id": "822560811",
       "name_en": "Constitution",
-      "name_zh": "",
+      "name_zh": "体术",
       "aliases": [],
       "levels": [
         {
@@ -769,7 +769,7 @@
     {
       "id": "869842888",
       "name_en": "Stamina Surge",
-      "name_zh": "",
+      "name_zh": "耐力急速回复",
       "aliases": [],
       "levels": [
         {
@@ -789,7 +789,7 @@
     {
       "id": "1018294249",
       "name_en": "Guard",
-      "name_zh": "",
+      "name_zh": "防御性能",
       "aliases": [],
       "levels": [
         {
@@ -817,7 +817,7 @@
     {
       "id": "1032544142",
       "name_en": "Guard Up",
-      "name_zh": "",
+      "name_zh": "防御强化",
       "aliases": [],
       "levels": [
         {
@@ -837,7 +837,7 @@
     {
       "id": "1047302063",
       "name_en": "Offensive Guard",
-      "name_zh": "",
+      "name_zh": "攻击守势",
       "aliases": [],
       "levels": [
         {
@@ -857,7 +857,7 @@
     {
       "id": "1061551948",
       "name_en": "Critical Draw",
-      "name_zh": "",
+      "name_zh": "拔刀术【技】",
       "aliases": [],
       "levels": [
         {
@@ -877,7 +877,7 @@
     {
       "id": "941567853",
       "name_en": "Punishing Draw",
-      "name_zh": "",
+      "name_zh": "拔刀术【力】",
       "aliases": [],
       "levels": [
         {
@@ -897,7 +897,7 @@
     {
       "id": "988847874",
       "name_en": "Quick Sheathe",
-      "name_zh": "",
+      "name_zh": "纳刀术",
       "aliases": [],
       "levels": [
         {
@@ -917,7 +917,7 @@
     {
       "id": "1003081507",
       "name_en": "Slugger",
-      "name_zh": "",
+      "name_zh": "击晕术",
       "aliases": [],
       "levels": [
         {
@@ -937,7 +937,7 @@
     {
       "id": "614678208",
       "name_en": "Stamina Thief",
-      "name_zh": "",
+      "name_zh": "夺取耐力",
       "aliases": [],
       "levels": [
         {
@@ -957,7 +957,7 @@
     {
       "id": "629436129",
       "name_en": "Affinity Sliding",
-      "name_zh": "",
+      "name_zh": "滑走强化",
       "aliases": [],
       "levels": [
         {
@@ -969,7 +969,7 @@
     {
       "id": "643686022",
       "name_en": "Horn Maestro",
-      "name_zh": "",
+      "name_zh": "吹笛名人",
       "aliases": [],
       "levels": [
         {
@@ -981,7 +981,7 @@
     {
       "id": "657919655",
       "name_en": "Artillery",
-      "name_zh": "",
+      "name_zh": "炮术",
       "aliases": [],
       "levels": [
         {
@@ -1001,7 +1001,7 @@
     {
       "id": "537427524",
       "name_en": "Load Shells",
-      "name_zh": "",
+      "name_zh": "炮弹装填",
       "aliases": [],
       "levels": [
         {
@@ -1017,7 +1017,7 @@
     {
       "id": "585215589",
       "name_en": "Special Ammo Boost",
-      "name_zh": "",
+      "name_zh": "特殊射击强化",
       "aliases": [],
       "levels": [
         {
@@ -1033,7 +1033,7 @@
     {
       "id": "599465498",
       "name_en": "Normal/Rapid Up",
-      "name_zh": "",
+      "name_zh": "通常弹・连射箭强化",
       "aliases": [],
       "levels": [
         {
@@ -1053,7 +1053,7 @@
     {
       "id": "748441147",
       "name_en": "Pierce Up",
-      "name_zh": "",
+      "name_zh": "贯穿弹・贯穿箭强化",
       "aliases": [],
       "levels": [
         {
@@ -1073,7 +1073,7 @@
     {
       "id": "762691032",
       "name_en": "Spread Up",
-      "name_zh": "",
+      "name_zh": "散弹・扩散箭强化",
       "aliases": [],
       "levels": [
         {
@@ -1093,7 +1093,7 @@
     {
       "id": "776924665",
       "name_en": "Ammo Up",
-      "name_zh": "",
+      "name_zh": "装填扩充",
       "aliases": [],
       "levels": [
         {
@@ -1113,7 +1113,7 @@
     {
       "id": "790650270",
       "name_en": "Reload Speed",
-      "name_zh": "",
+      "name_zh": "装填速度",
       "aliases": [],
       "levels": [
         {
@@ -1133,7 +1133,7 @@
     {
       "id": "704220607",
       "name_en": "Recoil Down",
-      "name_zh": "",
+      "name_zh": "减轻后坐力",
       "aliases": [],
       "levels": [
         {
@@ -1153,7 +1153,7 @@
     {
       "id": "718470492",
       "name_en": "Steadiness",
-      "name_zh": "",
+      "name_zh": "抑制偏移",
       "aliases": [],
       "levels": [
         {
@@ -1173,7 +1173,7 @@
     {
       "id": "733228413",
       "name_en": "Rapid Fire Up",
-      "name_zh": "",
+      "name_zh": "速射强化",
       "aliases": [],
       "levels": [
         {
@@ -1193,7 +1193,7 @@
     {
       "id": "1418566930",
       "name_en": "Defense Boost",
-      "name_zh": "",
+      "name_zh": "防御",
       "aliases": [],
       "levels": [
         {
@@ -1229,7 +1229,7 @@
     {
       "id": "1432800563",
       "name_en": "Divine Blessing",
-      "name_zh": "",
+      "name_zh": "精灵加护",
       "aliases": [],
       "levels": [
         {
@@ -1249,7 +1249,7 @@
     {
       "id": "1446526160",
       "name_en": "Recovery Up",
-      "name_zh": "",
+      "name_zh": "体力回复量提升",
       "aliases": [],
       "levels": [
         {
@@ -1269,7 +1269,7 @@
     {
       "id": "1460759793",
       "name_en": "Recovery Speed",
-      "name_zh": "",
+      "name_zh": "回复速度",
       "aliases": [],
       "levels": [
         {
@@ -1289,7 +1289,7 @@
     {
       "id": "1374346390",
       "name_en": "Speed Eating",
-      "name_zh": "",
+      "name_zh": "快吃",
       "aliases": [],
       "levels": [
         {
@@ -1309,7 +1309,7 @@
     {
       "id": "1389104311",
       "name_en": "Earplugs",
-      "name_zh": "",
+      "name_zh": "耳塞",
       "aliases": [],
       "levels": [
         {
@@ -1337,7 +1337,7 @@
     {
       "id": "1403354196",
       "name_en": "Windproof",
-      "name_zh": "",
+      "name_zh": "风压耐性",
       "aliases": [],
       "levels": [
         {
@@ -1357,7 +1357,7 @@
     {
       "id": "1551805557",
       "name_en": "Tremor Resistance",
-      "name_zh": "",
+      "name_zh": "耐震",
       "aliases": [],
       "levels": [
         {
@@ -1377,7 +1377,7 @@
     {
       "id": "1565531242",
       "name_en": "Bubbly Dance",
-      "name_zh": "",
+      "name_zh": "泡沫之舞",
       "aliases": [],
       "levels": [
         {
@@ -1397,7 +1397,7 @@
     {
       "id": "1579764747",
       "name_en": "Evade Window",
-      "name_zh": "",
+      "name_zh": "回避性能",
       "aliases": [],
       "levels": [
         {
@@ -1425,7 +1425,7 @@
     {
       "id": "1594014760",
       "name_en": "Evade Extender",
-      "name_zh": "",
+      "name_zh": "回避距离提升",
       "aliases": [],
       "levels": [
         {
@@ -1445,7 +1445,7 @@
     {
       "id": "1507582921",
       "name_en": "Fire Resistance",
-      "name_zh": "",
+      "name_zh": "火耐性",
       "aliases": [],
       "levels": [
         {
@@ -1465,7 +1465,7 @@
     {
       "id": "1522357230",
       "name_en": "Water Resistance",
-      "name_zh": "",
+      "name_zh": "水耐性",
       "aliases": [],
       "levels": [
         {
@@ -1485,7 +1485,7 @@
     {
       "id": "1536590735",
       "name_en": "Ice Resistance",
-      "name_zh": "",
+      "name_zh": "冰耐性",
       "aliases": [],
       "levels": [
         {
@@ -1505,7 +1505,7 @@
     {
       "id": "1148187564",
       "name_en": "Thunder Resistance",
-      "name_zh": "",
+      "name_zh": "雷耐性",
       "aliases": [],
       "levels": [
         {
@@ -1525,7 +1525,7 @@
     {
       "id": "1161896781",
       "name_en": "Dragon Resistance",
-      "name_zh": "",
+      "name_zh": "龙耐性",
       "aliases": [],
       "levels": [
         {
@@ -1545,7 +1545,7 @@
     {
       "id": "1176146786",
       "name_en": "Blight Resistance",
-      "name_zh": "",
+      "name_zh": "属性异常状态的耐性",
       "aliases": [],
       "levels": [
         {
@@ -1565,7 +1565,7 @@
     {
       "id": "1089716995",
       "name_en": "Poison Resistance",
-      "name_zh": "",
+      "name_zh": "毒耐性",
       "aliases": [],
       "levels": [
         {
@@ -1585,7 +1585,7 @@
     {
       "id": "1104491296",
       "name_en": "Paralysis Resistance",
-      "name_zh": "",
+      "name_zh": "麻痹耐性",
       "aliases": [],
       "levels": [
         {
@@ -1605,7 +1605,7 @@
     {
       "id": "1118724801",
       "name_en": "Sleep Resistance",
-      "name_zh": "",
+      "name_zh": "睡眠耐性",
       "aliases": [],
       "levels": [
         {
@@ -1625,7 +1625,7 @@
     {
       "id": "1132974822",
       "name_en": "Stun Resistance",
-      "name_zh": "",
+      "name_zh": "昏厥耐性",
       "aliases": [],
       "levels": [
         {
@@ -1645,7 +1645,7 @@
     {
       "id": "1280901767",
       "name_en": "Muck Resistance",
-      "name_zh": "",
+      "name_zh": "泥雪耐性",
       "aliases": [],
       "levels": [
         {
@@ -1661,7 +1661,7 @@
     {
       "id": "1295151780",
       "name_en": "Blast Resistance",
-      "name_zh": "",
+      "name_zh": "爆破异常状态的耐性",
       "aliases": [],
       "levels": [
         {
@@ -1681,7 +1681,7 @@
     {
       "id": "1309385285",
       "name_en": "Botanist",
-      "name_zh": "",
+      "name_zh": "植生学",
       "aliases": [],
       "levels": [
         {
@@ -1705,7 +1705,7 @@
     {
       "id": "1223496314",
       "name_en": "Geologist",
-      "name_zh": "",
+      "name_zh": "地质学",
       "aliases": [],
       "levels": [
         {
@@ -1725,7 +1725,7 @@
     {
       "id": "1237729819",
       "name_en": "Partbreaker",
-      "name_zh": "",
+      "name_zh": "破坏王",
       "aliases": [],
       "levels": [
         {
@@ -1745,7 +1745,7 @@
     {
       "id": "1251979832",
       "name_en": "Capture Master",
-      "name_zh": "",
+      "name_zh": "捕获名人",
       "aliases": [],
       "levels": [
         {
@@ -1757,7 +1757,7 @@
     {
       "id": "1265689049",
       "name_en": "Carving Master",
-      "name_zh": "",
+      "name_zh": "剥取名人",
       "aliases": [],
       "levels": [
         {
@@ -1769,7 +1769,7 @@
     {
       "id": "1951027710",
       "name_en": "Good Luck",
-      "name_zh": "",
+      "name_zh": "幸运",
       "aliases": [],
       "levels": [
         {
@@ -1789,7 +1789,7 @@
     {
       "id": "1965261215",
       "name_en": "Speed Sharpening",
-      "name_zh": "",
+      "name_zh": "砥石使用高速化",
       "aliases": [],
       "levels": [
         {
@@ -1809,7 +1809,7 @@
     {
       "id": "1980035516",
       "name_en": "Bombardier",
-      "name_zh": "",
+      "name_zh": "炸弹客",
       "aliases": [],
       "levels": [
         {
@@ -1829,7 +1829,7 @@
     {
       "id": "1893605725",
       "name_en": "Mushroomancer",
-      "name_zh": "",
+      "name_zh": "最爱蘑菇",
       "aliases": [],
       "levels": [
         {
@@ -1849,7 +1849,7 @@
     {
       "id": "1907855730",
       "name_en": "Item Prolonger",
-      "name_zh": "",
+      "name_zh": "道具使用强化",
       "aliases": [],
       "levels": [
         {
@@ -1869,7 +1869,7 @@
     {
       "id": "1921564947",
       "name_en": "Wide-Range",
-      "name_zh": "",
+      "name_zh": "广域化",
       "aliases": [],
       "levels": [
         {
@@ -1897,7 +1897,7 @@
     {
       "id": "1935814960",
       "name_en": "Free Meal",
-      "name_zh": "",
+      "name_zh": "满足感",
       "aliases": [],
       "levels": [
         {
@@ -1917,7 +1917,7 @@
     {
       "id": "2084266193",
       "name_en": "Heroics",
-      "name_zh": "",
+      "name_zh": "火场怪力",
       "aliases": [],
       "levels": [
         {
@@ -1945,7 +1945,7 @@
     {
       "id": "2099040502",
       "name_en": "Fortify",
-      "name_zh": "",
+      "name_zh": "不屈",
       "aliases": [],
       "levels": [
         {
@@ -1957,7 +1957,7 @@
     {
       "id": "2146828439",
       "name_en": "Flinch Free",
-      "name_zh": "",
+      "name_zh": "减轻胆怯",
       "aliases": [],
       "levels": [
         {
@@ -1977,7 +1977,7 @@
     {
       "id": "2026860724",
       "name_en": "Jump Master",
-      "name_zh": "",
+      "name_zh": "跳跃铁人",
       "aliases": [],
       "levels": [
         {
@@ -1989,7 +1989,7 @@
     {
       "id": "2040569941",
       "name_en": "Carving Pro",
-      "name_zh": "",
+      "name_zh": "剥取铁人",
       "aliases": [],
       "levels": [
         {
@@ -2001,7 +2001,7 @@
     {
       "id": "2054819914",
       "name_en": "Hunger Resistance",
-      "name_zh": "",
+      "name_zh": "饥饿耐性",
       "aliases": [],
       "levels": [
         {
@@ -2021,7 +2021,7 @@
     {
       "id": "2069053547",
       "name_en": "Leap of Faith",
-      "name_zh": "",
+      "name_zh": "飞身跃入",
       "aliases": [],
       "levels": [
         {
@@ -2033,7 +2033,7 @@
     {
       "id": "1681174536",
       "name_en": "Diversion",
-      "name_zh": "",
+      "name_zh": "佯动",
       "aliases": [],
       "levels": [
         {
@@ -2045,7 +2045,7 @@
     {
       "id": "1695408169",
       "name_en": "Master Mounter",
-      "name_zh": "",
+      "name_zh": "骑乘名人",
       "aliases": [],
       "levels": [
         {
@@ -2057,7 +2057,7 @@
     {
       "id": "1743214542",
       "name_en": "Chameleos Blessing",
-      "name_zh": "",
+      "name_zh": "霞皮的恩惠",
       "aliases": [],
       "levels": [
         {
@@ -2081,7 +2081,7 @@
     {
       "id": "1622706159",
       "name_en": "Kushala Blessing",
-      "name_zh": "",
+      "name_zh": "钢壳的恩惠",
       "aliases": [],
       "levels": [
         {
@@ -2105,7 +2105,7 @@
     {
       "id": "1636956044",
       "name_en": "Teostra Blessing",
-      "name_zh": "",
+      "name_zh": "炎鳞的恩惠",
       "aliases": [],
       "levels": [
         {
@@ -2129,7 +2129,7 @@
     {
       "id": "1651189677",
       "name_en": "Dragonheart",
-      "name_zh": "",
+      "name_zh": "龙气活性",
       "aliases": [],
       "levels": [
         {
@@ -2157,7 +2157,7 @@
     {
       "id": "1665963842",
       "name_en": "Wirebug Whisperer",
-      "name_zh": "",
+      "name_zh": "翔虫使",
       "aliases": [],
       "levels": [
         {
@@ -2177,7 +2177,7 @@
     {
       "id": "1814415203",
       "name_en": "Wall Runner",
-      "name_zh": "",
+      "name_zh": "墙面移动",
       "aliases": [],
       "levels": [
         {
@@ -2197,7 +2197,7 @@
     {
       "id": "1862219520",
       "name_en": "Counterstrike",
-      "name_zh": "",
+      "name_zh": "逆袭",
       "aliases": [],
       "levels": [
         {
@@ -2217,7 +2217,7 @@
     {
       "id": "1875928865",
       "name_en": "Rapid Morph",
-      "name_zh": "",
+      "name_zh": "高速变形",
       "aliases": [],
       "levels": [
         {
@@ -2237,7 +2237,7 @@
     {
       "id": "1755961030",
       "name_en": "Hellfire Cloak",
-      "name_zh": "",
+      "name_zh": "鬼火缠",
       "aliases": [],
       "levels": [
         {
@@ -2261,7 +2261,7 @@
     {
       "id": "1770194663",
       "name_en": "Wind Alignment",
-      "name_zh": "",
+      "name_zh": "风纹一致",
       "aliases": [],
       "levels": [
         {
@@ -2289,7 +2289,7 @@
     {
       "id": "1784968836",
       "name_en": "Thunder Alignment",
-      "name_zh": "",
+      "name_zh": "雷纹一致",
       "aliases": [],
       "levels": [
         {
@@ -2317,7 +2317,7 @@
     {
       "id": "1799202469",
       "name_en": "Stormsoul",
-      "name_zh": "",
+      "name_zh": "风雷合一",
       "aliases": [],
       "levels": [
         {
@@ -2345,7 +2345,7 @@
     {
       "id": "337057370",
       "name_en": "Blood Rite",
-      "name_zh": "",
+      "name_zh": "气血",
       "aliases": [],
       "levels": [
         {
@@ -2365,7 +2365,7 @@
     {
       "id": "384321147",
       "name_en": "Dereliction",
-      "name_zh": "",
+      "name_zh": "伏魔耗命",
       "aliases": [],
       "levels": [
         {
@@ -2385,7 +2385,7 @@
     {
       "id": "398571032",
       "name_en": "Furious",
-      "name_zh": "",
+      "name_zh": "激昂",
       "aliases": [],
       "levels": [
         {
@@ -2405,7 +2405,7 @@
     {
       "id": "278586937",
       "name_en": "Mail of Hellfire",
-      "name_zh": "",
+      "name_zh": "业铠【修罗】",
       "aliases": [],
       "levels": [
         {
@@ -2425,7 +2425,7 @@
     {
       "id": "293361118",
       "name_en": "Coalescence",
-      "name_zh": "",
+      "name_zh": "因祸得福",
       "aliases": [],
       "levels": [
         {
@@ -2445,7 +2445,7 @@
     {
       "id": "307594751",
       "name_en": "Bloodlust",
-      "name_zh": "",
+      "name_zh": "狂龙症【蚀】",
       "aliases": [],
       "levels": [
         {
@@ -2465,7 +2465,7 @@
     {
       "id": "321844636",
       "name_en": "Defiance",
-      "name_zh": "",
+      "name_zh": "坚如磐石",
       "aliases": [],
       "levels": [
         {
@@ -2493,7 +2493,7 @@
     {
       "id": "469771709",
       "name_en": "Sneak Attack",
-      "name_zh": "",
+      "name_zh": "偷袭",
       "aliases": [],
       "levels": [
         {
@@ -2513,7 +2513,7 @@
     {
       "id": "517576018",
       "name_en": "Adrenaline Rush",
-      "name_zh": "",
+      "name_zh": "巧击",
       "aliases": [],
       "levels": [
         {
@@ -2533,7 +2533,7 @@
     {
       "id": "412366096",
       "name_en": "Redirection",
-      "name_zh": "",
+      "name_zh": "合气",
       "aliases": [],
       "levels": [
         {
@@ -2549,7 +2549,7 @@
     {
       "id": "426599729",
       "name_en": "Spiribird's Call",
-      "name_zh": "",
+      "name_zh": "提供",
       "aliases": [],
       "levels": [
         {
@@ -2561,7 +2561,7 @@
     {
       "id": "440849622",
       "name_en": "Charge Master",
-      "name_zh": "",
+      "name_zh": "蓄力大师",
       "aliases": [],
       "levels": [
         {
@@ -2581,7 +2581,7 @@
     {
       "id": "454558967",
       "name_en": "Foray",
-      "name_zh": "",
+      "name_zh": "攻势",
       "aliases": [],
       "levels": [
         {
@@ -2601,7 +2601,7 @@
     {
       "id": "99710100",
       "name_en": "Tune-Up",
-      "name_zh": "",
+      "name_zh": "零件改造",
       "aliases": [],
       "levels": [
         {
@@ -2617,7 +2617,7 @@
     {
       "id": "113943733",
       "name_en": "Grinder (S)",
-      "name_zh": "",
+      "name_zh": "打磨术【锐】",
       "aliases": [],
       "levels": [
         {
@@ -2637,7 +2637,7 @@
     {
       "id": "128717994",
       "name_en": "Bladescale Hone",
-      "name_zh": "",
+      "name_zh": "刃鳞打磨",
       "aliases": [],
       "levels": [
         {
@@ -2657,7 +2657,7 @@
     {
       "id": "8733771",
       "name_en": "Wall Runner (Boost)",
-      "name_zh": "",
+      "name_zh": "走壁移动【翔】",
       "aliases": [],
       "levels": [
         {
@@ -2669,7 +2669,7 @@
     {
       "id": "232963023",
       "name_en": "Quick Breath",
-      "name_zh": "",
+      "name_zh": "迅之气息",
       "aliases": [],
       "levels": [
         {
@@ -2681,7 +2681,7 @@
     {
       "id": "22983784",
       "name_en": "Element Exploit",
-      "name_zh": "",
+      "name_zh": "弱点特效【属性】",
       "aliases": [],
       "levels": [
         {
@@ -2701,7 +2701,7 @@
     {
       "id": "37217289",
       "name_en": "Burst",
-      "name_zh": "",
+      "name_zh": "连击",
       "aliases": [],
       "levels": [
         {
@@ -2721,7 +2721,7 @@
     {
       "id": "50943022",
       "name_en": "Guts",
-      "name_zh": "",
+      "name_zh": "毅力",
       "aliases": [],
       "levels": [
         {
@@ -2741,7 +2741,7 @@
     {
       "id": "247196652",
       "name_en": "Status Trigger",
-      "name_zh": "",
+      "name_zh": "状态异常必定累积",
       "aliases": [],
       "levels": [
         {
@@ -2761,7 +2761,7 @@
     {
       "id": "261970829",
       "name_en": "Intrepid Heart",
-      "name_zh": "",
+      "name_zh": "刚心",
       "aliases": [],
       "levels": [
         {
@@ -2777,7 +2777,7 @@
     {
       "id": "141986722",
       "name_en": "Buildup Boost",
-      "name_zh": "",
+      "name_zh": "累积时攻击强化",
       "aliases": [],
       "levels": [
         {
@@ -2797,7 +2797,7 @@
     {
       "id": "531809651",
       "name_en": "Embolden",
-      "name_zh": "",
+      "name_zh": "嘲讽防御",
       "aliases": [],
       "levels": [
         {
@@ -2817,7 +2817,7 @@
     {
       "id": "169945952",
       "name_en": "Wind Mantle",
-      "name_zh": "",
+      "name_zh": "风绕",
       "aliases": [],
       "levels": [
         {
@@ -2837,7 +2837,7 @@
     {
       "id": "888838913",
       "name_en": "Powder Mantle",
-      "name_zh": "",
+      "name_zh": "粉尘绕",
       "aliases": [],
       "levels": [
         {
@@ -2857,7 +2857,7 @@
     {
       "id": "156236611",
       "name_en": "Berserk",
-      "name_zh": "",
+      "name_zh": "狂化",
       "aliases": [],
       "levels": [
         {
@@ -2873,7 +2873,7 @@
     {
       "id": "840071771",
       "name_en": "Strife",
-      "name_zh": "",
+      "name_zh": "奋斗",
       "aliases": [],
       "levels": [
         {
@@ -2893,7 +2893,7 @@
     {
       "id": "903072550",
       "name_en": "Frostcraft",
-      "name_zh": "",
+      "name_zh": "寒气炼成",
       "aliases": [],
       "levels": [
         {
@@ -2913,7 +2913,7 @@
     {
       "id": "917846727",
       "name_en": "Dragon Conversion",
-      "name_zh": "",
+      "name_zh": "龙气转换",
       "aliases": [],
       "levels": [
         {
@@ -2933,7 +2933,7 @@
     {
       "id": "932080356",
       "name_en": "Heaven-Sent",
-      "name_zh": "",
+      "name_zh": "天衣无缝",
       "aliases": [],
       "levels": [
         {
@@ -2953,7 +2953,7 @@
     {
       "id": "812112517",
       "name_en": "Frenzied Bloodlust",
-      "name_zh": "",
+      "name_zh": "狂龙症【翔】",
       "aliases": [],
       "levels": [
         {
@@ -2973,7 +2973,7 @@
     {
       "id": "825821882",
       "name_en": "Blood Awakening",
-      "name_zh": "",
+      "name_zh": "气血觉醒",
       "aliases": [],
       "levels": [
         {
@@ -2993,7 +2993,7 @@
     {
       "id": "1022077560",
       "name_en": "Shock Absorber",
-      "name_zh": "",
+      "name_zh": "缓冲",
       "aliases": [],
       "levels": [
         {
@@ -3005,7 +3005,7 @@
     {
       "id": "1036851737",
       "name_en": "Inspiration",
-      "name_zh": "",
+      "name_zh": "激励",
       "aliases": [],
       "levels": [
         {

@@ -28,21 +28,16 @@ AstrBot 会自动 git clone → 把仓库根拷贝到 `data/plugins/astrbot_plug
 /mh <子命令> [名字] [作品]
 ```
 
-**怪物**
+**怪物**（基础信息 / 肉质 / 弱点 已合并成这一条）
 
 | 命令 | 说明 |
 |---|---|
-| `/mh 怪物列表 [作品]` | 列出该作大型怪物 |
-| `/mh 怪物 <名字> [作品]` | 怪物基础信息(种类 / HR 点数 / HP) |
-| `/mh 肉质 <名字> [作品]` | 肉质表(斩 / 打 / 弹 / 火水雷冰龙 / 麻) |
-| `/mh 弱点 <名字> [作品]` | 属性弱点与状态异常累积 |
-| `/mh 素材 <名字> [作品]` | 剥取 / 破坏 / 目标报酬 |
+| `/mh 怪物 <名字> [作品]` | 一条消息给出：怪物名 → 属性弱点（最强两项）→ 肉质表 → 状态异常累积值 |
 
 **技能**
 
 | 命令 | 说明 |
 |---|---|
-| `/mh 技能列表 [作品]` | 列出该作技能 |
 | `/mh 技能 <名字> [作品]` | 技能各等级效果 |
 
 **其他**
@@ -53,9 +48,11 @@ AstrBot 会自动 git clone → 把仓库根拷贝到 `data/plugins/astrbot_plug
 | `/mh 更新 [作品]` | 管理员: 在线刷新数据 |
 | `/mh 帮助` | 显示完整帮助 |
 
-每个子命令都注册了英文 / 简写别名: `help` `monsters` `monster` `meat` `weak`
-`rewards` `skills` `skill` `games` `update`,以及 `肉` `属性` `报酬` `掉落` `刷新` 等中文简写。
-`/mh meat Rathian` 等价于 `/mh 肉质 Rathian`。
+`怪物` 的旧名字 `肉质` / `弱点` / `属性` / `meat` / `weak` 都保留为**别名**，
+返回的是同一份合并报告，习惯输入照旧可用。其余别名：`help` `monster` `info`
+`skill` `games` `update`，以及 `肉` `刷新` 等中文简写。
+
+> v0.3.6 删掉了 `怪物列表` / `技能列表` / `素材` 三条子命令。
 
 `作品` 可省略;省略时按"该用户上次使用 → 配置默认作品"解析。作品标识支持:
 `mhworld / world / 世界 / iceborne`、`mhrise / rise / 崛起 / sunbreak`、`mhwilds / wilds / 荒野`。
@@ -114,6 +111,10 @@ v0.3.0 起格式化层统一产出 **markdown**，再由配置项 `output_mode` 
 > 图鉴图标，下面的怪物名也居中。图标只出现在图片里 —— `text` / `markdown` 输出
 > **完全不变**。图标取自 kiranico（见「数据来源与归属」），URL 随数据一起提交，
 > 加载失败时（图挂了 / 端点取不到）会直接隐藏，卡片退化成「只有居中的怪物名」。
+
+> **文本版与图片版结构一致**：`/mh 怪物` 的合并报告在两种模式下顺序完全相同 ——
+> 怪物名（图片版另加居中图标）→ 属性弱点（最强两项）→ 肉质表 → 状态异常累积值
+> （横向表格）。文本版只是把同一份 markdown 降级成空格对齐的纯文本。
 >
 > 老版本 AstrBot 的 `html_render` 没有 `options` 形参，插件会捕获 `TypeError` 后
 > **改用默认参数重试一次**，所以不会因为传参而丢掉图片模式。
@@ -255,17 +256,20 @@ git push
 - `mhrise.kiranico.com`(MHRise / Sunbreak,英语页面,**无中文**)
 - `mhwilds.kiranico.com`(MHWilds,**含中文**)
 
-**怪物图标**同样来自这三个站点的列表页（每只怪一张小图，采集规则见
-`scraper/icons.py`），URL 随 `data/monsters/*.json` 一起提交，所以**查询时不需要联网**；
-真正去取图的是 AstrBot 的文转图端点。三个站点的列表页结构各不相同，各自的地址是：
+**怪物图标**与**中文名**同样来自这三个站点的 zh 列表页（采集规则见
+`scraper/listing.py`），随 `data/monsters/*.json`、`data/skills/*.json` 一起提交，
+所以**查询时不需要联网**；真正去取图的是 AstrBot 的文转图端点。三个站点的列表页
+结构各不相同，各自的地址是：
 
-| 作品 | 列表页 |
-|---|---|
-| 荒野 | `https://mhwilds.kiranico.com/zh/data/monsters` |
-| 崛起 | `https://mhrise.kiranico.com/zh/data/monsters?view=lg` |
-| 世界 | `https://mhworld.kiranico.com/zh/monsters` |
+| 作品 | 列表页（怪物） | 列表页（技能） |
+|---|---|---|
+| 荒野 | `https://mhwilds.kiranico.com/zh/data/monsters` | —（页面即中文） |
+| 崛起 | `https://mhrise.kiranico.com/zh/data/monsters?view=lg` | `https://mhrise.kiranico.com/zh/data/skills` |
+| 世界 | `https://mhworld.kiranico.com/zh/monsters` | `https://mhworld.kiranico.com/zh/skilltrees` |
 
-MHWorld 和 MHRise 的怪物 / 技能名字在 kiranico 上仅提供英文/日文,本插件默认显示英文名(可在插件内手动添加中文别名)。MHWilds 的中文直接来自 kiranico。
+MHWorld 和 MHRise 的**详情页**只有英文，但上面这些 zh 列表页有完整中文名，所以本插件
+对三作都显示中文名（括号里附英文原名）。数据里若某条只有英文名，显示时会退回英文名；
+**绝不会把内部 id（如 `1301934382` / `KpViL`）当作名字显示**。
 
 数据版权归 kiranico.com 所有,本仓库仅做聚合与便捷查询。
 
@@ -292,7 +296,7 @@ astrbot_plugin_mhhelper/
 │   ├── base.py
 │   ├── kiranico.py
 │   ├── common.py            ← 三作的抓取器
-│   ├── icons.py             ← 三站列表页的怪物图标解析(纯正则,测试可离线跑)
+│   ├── listing.py           ← 三站列表页的图标 / 中文名解析(纯正则,测试可离线跑)
 │   ├── normalize.py
 │   └── run_update.py
 ├── data/                    ← 全量静态 JSON(随仓库提交，与 AstrBot 的 data/ 无关)
@@ -317,7 +321,7 @@ astrbot_plugin_mhhelper/
 │   ├── test_render.py       ← markdown 降级 / 模式决策 / light_table 导入兼容
 │   ├── test_state_dir.py    ← 运行期状态目录解析 + 旧数据迁移
 │   ├── test_import_bootstrap.py ← 子模块淘汰规则（插件更新后仍用旧代码的根因）
-│   ├── test_icons.py        ← 三站图标解析规则（含各站的反例）
+│   ├── test_listing.py      ← 三站图标 / 中文名解析规则（含各站的反例）
 │   └── test_*.py
 └── .github/workflows/data-refresh.yml
 ```

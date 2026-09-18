@@ -36,17 +36,11 @@ CARD_RENDER_OPTIONS = MOD.CARD_RENDER_OPTIONS
 #: (子命令, 别名, 处理函数名) —— 顺序即面板/树形结构中的展示顺序。
 EXPECTED_SUBCOMMANDS = [
     ("帮助", {"help", "用法"}, "mh_help"),
-    ("怪物列表", {"monsters", "怪物表", "list"}, "mh_monsters"),
-    ("怪物", {"monster", "info"}, "mh_monster"),
-    ("肉质", {"meat", "肉"}, "mh_meat"),
-    ("弱点", {"weak", "属性"}, "mh_weak"),
-    ("素材", {"rewards", "报酬", "掉落"}, "mh_rewards"),
-    ("技能列表", {"skills", "技能表"}, "mh_skills"),
+    ("怪物", {"monster", "info", "肉质", "肉", "meat", "弱点", "属性", "weak"}, "mh_monster"),
     ("技能", {"skill"}, "mh_skill"),
     ("作品", {"games", "game"}, "mh_games"),
     ("更新", {"update", "刷新"}, "mh_update"),
 ]
-
 
 @pytest.fixture()
 def plugin(monkeypatch, tmp_path):
@@ -139,22 +133,21 @@ def test_bare_group_renders_tree(run):
 @pytest.mark.parametrize(
     ("message", "handler", "needles"),
     [
-        ("/mh 帮助", "mh_help", ["/mh 肉质"]),
-        ("/mh 怪物列表", "mh_monsters", ["大型怪物"]),
-        ("/mh 怪物列表 mhrise", "mh_monsters", ["怪物猎人:崛起"]),
-        ("/mh 怪物 雌火龙", "mh_monster", ["雌火龙", "飞龙种", "怪物猎人:荒野"]),
-        ("/mh 怪物 Rathian", "mh_monster", ["雌火龙"]),
-        ("/mh 肉质 雌火龙", "mh_meat", ["雌火龙", "肉质表", "头部"]),
-        ("/mh 肉质 陆之女王", "mh_meat", ["雌火龙"]),  # 通过别名命中
-        ("/mh meat 雌火龙 mhwilds", "mh_meat", ["雌火龙"]),
-        ("/怪物猎人 肉质 雌火龙", "mh_meat", ["雌火龙"]),  # 指令组别名
-        ("!mh 肉质 雌火龙", "mh_meat", ["雌火龙"]),  # 另一个唤醒前缀
-        ("/mh 弱点 雌火龙", "mh_weak", ["状态异常累积值"]),
-        ("/mh 素材 雌火龙", "mh_rewards", ["剥取", "测试鳞"]),
-        ("/mh 技能列表", "mh_skills", ["技能"]),
+        ("/mh 帮助", "mh_help", ["/mh 怪物 <名字>"]),
+        ("/mh 怪物 雌火龙", "mh_monster", ["雌火龙", "属性弱点", "肉质表", "状态异常累积值"]),
+        ("/mh 怪物 Rathian", "mh_monster", ["雌火龙"]),  # 英文名也能查到
+        # 老的 肉质 / 弱点 / 属性 都还是别名，返回同一份合并报告
+        ("/mh 肉质 雌火龙", "mh_monster", ["雌火龙", "肉质表", "头部"]),
+        ("/mh 肉 雌火龙", "mh_monster", ["雌火龙"]),
+        ("/mh meat 雌火龙 mhwilds", "mh_monster", ["雌火龙"]),
+        ("/怪物猎人 肉质 雌火龙", "mh_monster", ["雌火龙"]),  # 指令组别名
+        ("!mh 肉质 雌火龙", "mh_monster", ["雌火龙"]),  # 另一个唤醒前缀
+        ("/mh 弱点 雌火龙", "mh_monster", ["状态异常累积值"]),
+        ("/mh 怪物 陆之女王", "mh_monster", ["雌火龙"]),  # 通过别名命中
         ("/mh 技能 攻击力强化", "mh_skill", ["攻击力 +3"]),
         ("/mh 作品", "mh_games", ["已启用的作品"]),
-        ("/mh 肉质", "mh_meat", ["缺少参数", "/mh 肉质 <名字> [作品]"]),
+        ("/mh 怪物", "mh_monster", ["缺少参数", "/mh 怪物 <名字> [作品]"]),
+        ("/mh 技能", "mh_skill", ["缺少参数", "/mh 技能 <名字> [作品]"]),
         ("/mh 怪物 不存在的怪", "mh_monster", ["未找到怪物"]),
     ],
 )
@@ -163,6 +156,14 @@ def test_routing(run, message, handler, needles):
     assert result.handlers == [handler], message
     for needle in needles:
         assert needle in result.text, f"{message!r} 输出缺少 {needle!r}"
+
+
+@pytest.mark.parametrize("message", ["/mh 怪物列表", "/mh 技能列表", "/mh 素材 雌火龙"])
+def test_removed_subcommands_match_nothing(run, message):
+    """怪物列表 / 技能列表 / 素材 已在 v0.3.6 删除。"""
+    result = run(message)
+    assert result.handlers == []
+    assert result.tree is None
 
 
 def test_unknown_subcommand_does_not_run_anything(run):
@@ -175,7 +176,7 @@ def test_unknown_subcommand_does_not_run_anything(run):
 def test_trailing_token_that_is_not_a_game_stays_in_the_name(run):
     """末位 token 不是已知作品标识时,应被当作名字的一部分(名字允许含空格)。"""
     result = run("/mh 肉质 雌火龙 火星")
-    assert result.handlers == ["mh_meat"]
+    assert result.handlers == ["mh_monster"]
     assert "未找到怪物" in result.text
     assert "雌火龙 火星" in result.text
 
@@ -187,7 +188,7 @@ def test_disabled_game_is_reported(monkeypatch, tmp_path):
         config={"default_game": "mhwilds", "enable_wilds": False},
     )
     result = dispatch(plugin, "/mh 肉质 雌火龙")
-    assert result.handlers == ["mh_meat"]
+    assert result.handlers == ["mh_monster"]
     assert "作品不可用" in result.text
 
 
@@ -203,13 +204,19 @@ def test_update_blocked_for_non_admin(run):
     assert result.text == ""
 
 
-def test_last_game_is_remembered_per_user(run):
-    run("/mh 怪物列表 mhrise", sender_id="88888")
-    again = run("/mh 怪物列表", sender_id="88888")
-    assert "怪物猎人:崛起" in again.text
-    # 其他用户不受影响
-    other = run("/mh 怪物列表", sender_id="99999")
-    assert "怪物猎人:崛起" not in other.text
+def test_last_game_is_remembered_per_user(plugin, run):
+    """合并报告的标题里不再有作品名，所以直接看解析出的 game / 用户缓存。"""
+    from ._astrbot_fake import _FakeEvent
+
+    def resolved(message, sender_id):
+        return plugin._split_args(_FakeEvent(message, sender_id), "monster")[0]
+
+    run("/mh 怪物 雌火龙 mhrise", sender_id="88888")  # 走完整 dispatch → 记住作品
+    assert plugin._user_game_cache.get("88888") == "mhrise"
+    # 同一用户下次省略作品 → 沿用上次的
+    assert resolved("/mh 怪物 雌火龙", "88888") == "mhrise"
+    # 别的用户不受影响
+    assert resolved("/mh 怪物 雌火龙", "99999") != "mhrise"
 
 
 # --------------------------------------------------------------------------
@@ -431,7 +438,7 @@ def test_errors_stay_plain_text_even_in_image_mode(monkeypatch, tmp_path):
         ("/mh   肉质    雌火龙   ", ["雌火龙"]),
         ("/mh 怪物 火 龙", ["火", "龙"]),
         ("/mh 作品", []),
-        ("/怪物猎人 技能列表 mhrise", ["mhrise"]),
+        ("/怪物猎人 技能 mhrise", ["mhrise"]),
     ],
 )
 def test_arg_tokens(message, expected):

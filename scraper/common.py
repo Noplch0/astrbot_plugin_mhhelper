@@ -17,7 +17,7 @@ import httpx
 from bs4 import BeautifulSoup
 
 from .base import fetch, make_client
-from .icons import parse_icons
+from .listing import monster_icons, monster_names, skill_names
 from .kiranico import (
     find_ailment_table,
     find_meat_table,
@@ -31,6 +31,18 @@ from .kiranico import (
 log = logging.getLogger("astrbot-mhhelper.scraper")
 
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
+
+
+def _index_extras(game: str, text: str, kind: str) -> tuple[dict[str, str], dict[str, str]]:
+    """列表页上能拿到的额外信息：怪物是「图标 + 中文名」，技能只有中文名。
+
+    详情页没有图标，崛起/世界的详情页也没有中文名 —— 只能从列表页带过来，
+    所以 ``list_monsters`` / ``list_skills`` 必须把这两个字段挂到 item 上，
+    再由 run_update 写进数据。规则见 scraper/listing.py。
+    """
+    if kind == "monsters":
+        return monster_icons(game, text), monster_names(game, text)
+    return {}, skill_names(game, text)
 
 
 # ----------------------------------------------------------------------
@@ -56,8 +68,8 @@ class MHWildsScraper:
         soup = BeautifulSoup(text, "lxml")
         seen: set[str] = set()
         items: list[dict[str, str]] = []
-        # 图标只出现在列表页，详情页没有 —— 在这里抓，随 item 传给 run_update。
-        found_icons = parse_icons(self.GAME, text) if kind == "monsters" else {}
+        # 图标与中文名只在列表页上，随 item 传给 run_update。
+        found_icons, found_names = _index_extras(self.GAME, text, kind)
         # Each monster link points to /zh/data/monsters/{slug}
         pattern = re.compile(rf"/{self.LOCALE}/data/{kind}/([a-z0-9-]+)")
         for a in soup.find_all("a", href=pattern):
@@ -69,6 +81,7 @@ class MHWildsScraper:
             items.append({
                 "id": slug,
                 "name": label,
+                "name_zh": found_names.get(slug, "") or label,
                 "url": f"{self.BASE}/{self.LOCALE}/data/{kind}/{slug}",
                 "icon": found_icons.get(slug, ""),
             })
@@ -167,24 +180,25 @@ class MHRiseScraper:
     GAME = "mhrise"
 
     async def list_monsters(self, client: httpx.AsyncClient) -> list[dict[str, str]]:
-        text = await fetch(client, f"{self.BASE}/data/monsters?view=lg")
+        # 用 zh 列表页：图标和中文名都只在这里（详情页是英文的）。
+        text = await fetch(client, f"{self.BASE}/zh/data/monsters?view=lg")
         return self._parse_monster_index(text)
 
     async def list_skills(self, client: httpx.AsyncClient) -> list[dict[str, str]]:
-        text = await fetch(client, f"{self.BASE}/data/skills")
+        text = await fetch(client, f"{self.BASE}/zh/data/skills")
         return self._parse_skill_index(text)
 
     def _parse_monster_index(self, text: str) -> list[dict[str, str]]:
         soup = BeautifulSoup(text, "lxml")
-        found_icons = parse_icons(self.GAME, text)
+        found_icons, found_names = _index_extras(self.GAME, text, "monsters")
         items: list[dict[str, str]] = []
         for a in soup.find_all("a", href=re.compile(r"/data/monsters/\d+")):
             href = a.get("href", "")
             mid = re.search(r"/data/monsters/(\d+)", href).group(1)
-            label = a.get_text(strip=True)
             items.append({
                 "id": mid,
-                "name": label,
+                "name": found_names.get(mid, ""),
+                "name_zh": found_names.get(mid, ""),
                 "url": f"{self.BASE}/data/monsters/{mid}",
                 "icon": found_icons.get(mid, ""),
             })
@@ -200,12 +214,17 @@ class MHRiseScraper:
 
     def _parse_skill_index(self, text: str) -> list[dict[str, str]]:
         soup = BeautifulSoup(text, "lxml")
+        _, found_names = _index_extras(self.GAME, text, "skills")
         items: list[dict[str, str]] = []
         for a in soup.find_all("a", href=re.compile(r"/data/skills/\d+")):
             href = a.get("href", "")
             sid = re.search(r"/data/skills/(\d+)", href).group(1)
-            label = a.get_text(strip=True)
-            items.append({"id": sid, "name": label, "url": f"{self.BASE}/data/skills/{sid}"})
+            items.append({
+                "id": sid,
+                "name": found_names.get(sid, ""),
+                "name_zh": found_names.get(sid, ""),
+                "url": f"{self.BASE}/data/skills/{sid}",
+            })
         seen = set()
         out = []
         for it in items:
@@ -346,27 +365,27 @@ class MHWorldScraper:
     GAME = "mhworld"
 
     async def list_monsters(self, client: httpx.AsyncClient) -> list[dict[str, str]]:
-        text = await fetch(client, f"{self.BASE}/en/monsters")
+        # zh 列表页才带中文名与图标（详情页仍走 /en，那里有英文名与完整表格）。
+        text = await fetch(client, f"{self.BASE}/zh/monsters")
         return self._parse_monster_index(text)
 
     async def list_skills(self, client: httpx.AsyncClient) -> list[dict[str, str]]:
-        text = await fetch(client, f"{self.BASE}/en/skilltrees")
+        text = await fetch(client, f"{self.BASE}/zh/skilltrees")
         return self._parse_skill_index(text)
 
     def _parse_monster_index(self, text: str) -> list[dict[str, str]]:
         soup = BeautifulSoup(text, "lxml")
-        found_icons = parse_icons(self.GAME, text)
+        found_icons, found_names = _index_extras(self.GAME, text, "monsters")
         items: list[dict[str, str]] = []
-        for a in soup.find_all("a", href=re.compile(r"/en/monsters/([A-Za-z0-9]+)/([a-z0-9-]+)")):
-            href = a.get("href", "")
-            m = re.search(r"/en/monsters/([A-Za-z0-9]+)/([a-z0-9-]+)", href)
-            mid = m.group(1)
-            slug = m.group(2)
-            label = a.get_text(strip=True)
+        link = re.compile(r"/(?:en|zh)/monsters/([A-Za-z0-9]+)/([a-z0-9-]+)")
+        for a in soup.find_all("a", href=link):
+            m = link.search(a.get("href", ""))
+            mid, slug = m.group(1), m.group(2)
             items.append({
                 "id": mid,
                 "slug": slug,
-                "name": label,
+                "name": found_names.get(mid, ""),
+                "name_zh": found_names.get(mid, ""),
                 "url": f"{self.BASE}/en/monsters/{mid}/{slug}",
                 "icon": found_icons.get(mid, ""),
             })
@@ -381,14 +400,19 @@ class MHWorldScraper:
 
     def _parse_skill_index(self, text: str) -> list[dict[str, str]]:
         soup = BeautifulSoup(text, "lxml")
+        _, found_names = _index_extras(self.GAME, text, "skills")
         items: list[dict[str, str]] = []
-        for a in soup.find_all("a", href=re.compile(r"/en/skilltrees/([A-Za-z0-9]+)/([a-z0-9-]+)")):
-            href = a.get("href", "")
-            m = re.search(r"/en/skilltrees/([A-Za-z0-9]+)/([a-z0-9-]+)", href)
-            sid = m.group(1)
-            slug = m.group(2)
-            label = a.get_text(strip=True)
-            items.append({"id": sid, "slug": slug, "name": label, "url": f"{self.BASE}/en/skilltrees/{sid}/{slug}"})
+        link = re.compile(r"/(?:en|zh)/skilltrees/([A-Za-z0-9]+)/([a-z0-9-]+)")
+        for a in soup.find_all("a", href=link):
+            m = link.search(a.get("href", ""))
+            sid, slug = m.group(1), m.group(2)
+            items.append({
+                "id": sid,
+                "slug": slug,
+                "name": found_names.get(sid, ""),
+                "name_zh": found_names.get(sid, ""),
+                "url": f"{self.BASE}/en/skilltrees/{sid}/{slug}",
+            })
         seen = set()
         out = []
         for it in items:

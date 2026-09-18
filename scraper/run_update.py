@@ -48,9 +48,11 @@ async def refresh_game(
                         return None
                     if isinstance(m, dict):
                         m.setdefault("name_en", item.get("name") or "")
-                        # 图标只存在于列表页（详情页没有），从 index item 带过来；
-                        # 解析不到就留空，插件会跳过图标（而不是画一个破图）。
+                        # 图标与中文名只存在于列表页（详情页没有，崛起/世界的详情页
+                        # 更是纯英文），从 index item 带过来；解析不到就留空，
+                        # 插件会跳过图标、并退回英文名而不是显示内部 id。
                         m["icon"] = item.get("icon") or m.get("icon") or ""
+                        m["name_zh"] = m.get("name_zh") or item.get("name_zh") or ""
                     await asyncio.sleep(delay)
                     return m
 
@@ -77,6 +79,8 @@ async def refresh_game(
                         return None
                     if isinstance(s, dict):
                         s.setdefault("name_en", item.get("name") or "")
+                        # 崛起/世界的技能详情页也是英文的，中文名只能从列表页带。
+                        s["name_zh"] = s.get("name_zh") or item.get("name_zh") or ""
                     await asyncio.sleep(delay)
                     return s
 
