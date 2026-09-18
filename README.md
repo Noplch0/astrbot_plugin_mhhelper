@@ -104,6 +104,9 @@ v0.3.0 起格式化层统一产出 **markdown**，再由配置项 `output_mode` 
 >
 > - 卡片用 `width: max-content; min-width: 100%`（宽表格能撑开卡片、短内容也铺满画布），
 >   `min-height: calc(100vh - 50px)` 纵向填满视口，内容短时纵向居中；
+> - **`body` 也要 `width: max-content; min-width: 100%`**：卡片被宽表格撑开时 body 必须
+>   跟着一起长，否则卡片会向右溢出把右边距吃掉（表现为"左侧留白比右侧长"，且只在
+>   表格较宽的怪物上出现）；
 > - 正文字号 **24px**（AstrBot 官方 `base.html` 的基准是 25px，之前只有 15px）；
 > - 通过 `options={"quality": 92}` 覆盖默认的 40。
 >

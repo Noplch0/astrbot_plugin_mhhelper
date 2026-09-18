@@ -180,6 +180,13 @@ def test_card_template_content_slot_and_styles():
 _CARD_CSS = re.sub(r"/\*.*?\*/", "", CARD_TEMPLATE, flags=re.S)
 
 
+def _rule(css: str, selector: str) -> str:
+    """Return the declaration block of ``selector`` from a stylesheet string."""
+    match = re.search(re.escape(selector) + r"\s*\{(.*?)\}", css, re.S)
+    assert match, f"no CSS rule for {selector!r}"
+    return match.group(1)
+
+
 def test_card_is_not_shrink_wrapped():
     """收缩包裹会让内容缩在左上角 —— 这是被投诉的那个 bug。"""
     assert "inline-block" not in _CARD_CSS
@@ -201,6 +208,23 @@ def test_card_font_is_large_enough_for_a_phone():
 def test_card_centers_vertically_without_clipping_overflow():
     """内容短时纵向居中；内容超出时必须退回顶部，不能把表头裁掉。"""
     assert "justify-content: safe center" in _CARD_CSS
+
+
+def test_body_grows_with_the_card_so_both_margins_survive():
+    """宽表格撑开卡片时，body 必须跟着一起长。
+
+    否则卡片比 body 的内边距框还宽，会向右溢出、把右边距吃掉 —— 表现就是
+    「左侧留白比右侧长」，而且只在表格较宽的怪物上出现（窄表格时卡片正好等于
+    可用宽度，看起来是对称的）。
+
+    实测（800px 视口，可用宽 720）：
+      锁刃龙 表格 710px → 卡片 780px，body 仍 776px → 左 28 / 右 0
+      煌雷龙 表格 650px → 卡片 720px，body 776px     → 左 28 / 右 28
+    """
+    for name in ("body", ".card"):
+        decls = _rule(_CARD_CSS, name)
+        assert "width: max-content" in decls, f"{name} 应该按内容撑开"
+        assert "min-width: 100%" in decls, f"{name} 至少要有画布那么宽"
 
 
 def test_card_render_options_raise_the_jpeg_quality():

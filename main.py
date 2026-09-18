@@ -185,7 +185,7 @@ from core.skill_index import get_skill_index  # noqa: E402
 log = logging.getLogger("astrbot-mhhelper")
 
 PLUGIN_NAME = "astrbot_plugin_mhhelper"
-PLUGIN_VERSION = "0.3.3"
+PLUGIN_VERSION = "0.3.4"
 
 #: 运行期状态：每个用户上次查询的作品。
 STATE_FILENAME = "user_last_game.json"

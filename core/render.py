@@ -306,7 +306,11 @@ CARD_TEMPLATE = """<!DOCTYPE html>
   *, *::before, *::after { box-sizing: border-box; }
   html { background: #eef1f6; }
   body {
-    min-width: 320px;
+    /* 关键：卡片会被宽表格撑开，body 必须跟着一起长。否则卡片比 body 的内边距
+       框还宽时会向右溢出，右侧那 28px 外边距被吃掉 —— 表现出来就是"左侧留白比
+       右侧长"，而且只在表格较宽的怪物上出现（窄表格时卡片正好等于可用宽，对称）。 */
+    width: max-content;
+    min-width: 100%;
     margin: 0;
     padding: 22px 28px 28px;
     background: #eef1f6;
