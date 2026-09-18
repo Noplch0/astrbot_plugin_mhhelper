@@ -1,6 +1,7 @@
 """Unit tests for core.render — the markdown degradation + mode policy layer."""
 from __future__ import annotations
 
+import re
 import unicodedata
 from pathlib import Path
 
@@ -8,6 +9,7 @@ import pytest
 
 from core.formatter import md_table
 from core.render import (
+    CARD_RENDER_OPTIONS,
     CARD_TEMPLATE,
     MODES,
     markdown_to_html,
@@ -163,6 +165,50 @@ def test_card_template_content_slot_and_styles():
     assert "{{ content | safe }}" in CARD_TEMPLATE
     assert "<style>" in CARD_TEMPLATE
     assert "table" in CARD_TEMPLATE
+
+
+# --------------------------------------------------------------------------
+# 图片卡片模板：必须铺满画布、字号够大（v0.3.3）
+# --------------------------------------------------------------------------
+# 实测反馈是「图片太模糊且信息集中在左上角」。原因是模板用了收缩包裹的卡片
+# （卡片只有 ~345px，画布 ~800px，右边一大片空白），字号又只有 15px（被 QQ
+# 缩放后糊成一团）。官方 base.html 的基准是 font-size:25px +
+# main { width: min(100%, 920px) }，所以这里把这两条钉死。
+#
+# 断言前先剥掉 CSS 注释 —— 模板里会在注释中说明"以前用的是收缩包裹"，那不该
+# 影响样式断言。
+_CARD_CSS = re.sub(r"/\*.*?\*/", "", CARD_TEMPLATE, flags=re.S)
+
+
+def test_card_is_not_shrink_wrapped():
+    """收缩包裹会让内容缩在左上角 —— 这是被投诉的那个 bug。"""
+    assert "inline-block" not in _CARD_CSS
+
+
+def test_card_fills_the_canvas():
+    assert "width: max-content" in _CARD_CSS  # 宽表格能撑开卡片
+    assert "min-width: 100%" in _CARD_CSS  # 短内容也铺满画布宽度
+    assert "min-height: calc(100vh - 50px)" in _CARD_CSS  # 纵向填满默认视口
+
+
+def test_card_font_is_large_enough_for_a_phone():
+    """15px 被缩放后不可读；官方模板用 25px，我们至少 22px。"""
+    match = re.search(r"\n\s*font-size:\s*(\d+)px", _CARD_CSS)
+    assert match, "body 应该有明确的 px 字号"
+    assert int(match.group(1)) >= 22
+
+
+def test_card_centers_vertically_without_clipping_overflow():
+    """内容短时纵向居中；内容超出时必须退回顶部，不能把表头裁掉。"""
+    assert "justify-content: safe center" in _CARD_CSS
+
+
+def test_card_render_options_raise_the_jpeg_quality():
+    """AstrBot 默认 {"full_page":True,"type":"jpeg","quality":40}，40 会发糊。"""
+    assert CARD_RENDER_OPTIONS["quality"] > 40
+    assert set(CARD_RENDER_OPTIONS) == {"quality"}, (
+        "只覆盖 quality：其余键沿用 AstrBot 默认值，避免端点不认新键"
+    )
 
 
 # --------------------------------------------------------------------------

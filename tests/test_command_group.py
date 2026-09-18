@@ -29,6 +29,10 @@ from ._setup import install_fake_loader
 install()
 MOD = load_plugin()
 
+#: 文转图的渲染参数。取 `main.py` 实际用的那个对象 —— 它的导入引导会重建
+#: `core.*` 模块，在这里另 import 一份会拿到另一个副本。
+CARD_RENDER_OPTIONS = MOD.CARD_RENDER_OPTIONS
+
 #: (子命令, 别名, 处理函数名) —— 顺序即面板/树形结构中的展示顺序。
 EXPECTED_SUBCOMMANDS = [
     ("帮助", {"help", "用法"}, "mh_help"),
@@ -264,6 +268,59 @@ def test_image_mode_renders_card_via_html_render(monkeypatch, tmp_path):
     assert "<table>" in seen["data"]["content"]
     assert "<th" in seen["data"]["content"]
     assert "{{ content | safe }}" in seen["tmpl"]
+
+
+def test_image_mode_passes_high_quality_render_options(monkeypatch, tmp_path):
+    """AstrBot 默认 JPEG quality=40，文字发糊 —— 必须显式覆盖。"""
+    install_fake_loader(monkeypatch)
+    plugin = make_plugin(state_dir=tmp_path / "plugin_data", config={"output_mode": "image"})
+    seen: dict = {}
+
+    async def fake_render(tmpl, data, *args, **kwargs):
+        seen["options"] = kwargs.get("options")
+        return "https://example.com/card.png"
+
+    plugin.html_render = fake_render
+    result = dispatch(plugin, "/mh 肉质 雌火龙")
+    assert result.text.startswith("[image] ")
+    assert seen["options"] == CARD_RENDER_OPTIONS
+    assert seen["options"]["quality"] > 40
+
+
+def test_image_mode_retries_without_options_when_signature_rejects_them(
+    monkeypatch, tmp_path
+):
+    """老版本 AstrBot 的 html_render 没有 options 形参 —— 不能因此丢掉图片。"""
+    install_fake_loader(monkeypatch)
+    plugin = make_plugin(state_dir=tmp_path / "plugin_data", config={"output_mode": "image"})
+    calls: list = []
+
+    async def legacy_render(tmpl, data):  # 没有 **kwargs
+        calls.append(("legacy", len(data["content"])))
+        return "https://example.com/legacy.png"
+
+    plugin.html_render = legacy_render
+    result = dispatch(plugin, "/mh 肉质 雌火龙")
+    assert result.text == "[image] https://example.com/legacy.png"
+    assert len(calls) == 1
+
+
+def test_image_mode_retries_defaults_when_options_are_rejected(monkeypatch, tmp_path):
+    """端点拒绝高质量参数时，应该用默认参数再试一次，而不是退回纯文本。"""
+    install_fake_loader(monkeypatch)
+    plugin = make_plugin(state_dir=tmp_path / "plugin_data", config={"output_mode": "image"})
+    attempts: list = []
+
+    async def picky_render(tmpl, data, *args, **kwargs):
+        attempts.append(kwargs.get("options"))
+        if kwargs.get("options"):
+            raise RuntimeError("unsupported option: quality")
+        return "https://example.com/default.png"
+
+    plugin.html_render = picky_render
+    result = dispatch(plugin, "/mh 肉质 雌火龙")
+    assert result.text == "[image] https://example.com/default.png"
+    assert attempts == [CARD_RENDER_OPTIONS, None]
 
 
 def test_image_mode_falls_back_when_renderer_raises(monkeypatch, tmp_path):

@@ -97,6 +97,19 @@ v0.3.0 起格式化层统一产出 **markdown**，再由配置项 `output_mode` 
 `image` 模式调用 AstrBot 的 `Star.html_render()`。如果宿主机没装好文转图
 （缺 Playwright / 渲染服务不可用），插件会自动**回退成纯文本**，不会让查询失败。
 
+> **图片为什么清晰、而且铺满整张？** AstrBot 的文转图默认「按 `full_page` 截整页」，
+> 视口约 **800×615**，而且默认是 **JPEG `quality=40`** —— 所以卡片模板必须铺满画布、
+> 字号也得够大，否则截图里内容会缩在左上角而且发糊（v0.3.2 及以前就是这样）。
+> v0.3.3 起：
+>
+> - 卡片用 `width: max-content; min-width: 100%`（宽表格能撑开卡片、短内容也铺满画布），
+>   `min-height: calc(100vh - 50px)` 纵向填满视口，内容短时纵向居中；
+> - 正文字号 **24px**（AstrBot 官方 `base.html` 的基准是 25px，之前只有 15px）；
+> - 通过 `options={"quality": 92}` 覆盖默认的 40。
+>
+> 老版本 AstrBot 的 `html_render` 没有 `options` 形参，插件会捕获 `TypeError` 后
+> **改用默认参数重试一次**，所以不会因为传参而丢掉图片模式。
+
 ---
 
 ## 运行期数据放在哪

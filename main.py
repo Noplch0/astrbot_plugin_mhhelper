@@ -174,6 +174,7 @@ from core.formatter import (  # noqa: E402
 )
 from core.monster_index import get_monster_index  # noqa: E402
 from core.render import (  # noqa: E402
+    CARD_RENDER_OPTIONS,
     CARD_TEMPLATE,
     markdown_to_html,
     markdown_to_plaintext,
@@ -184,7 +185,7 @@ from core.skill_index import get_skill_index  # noqa: E402
 log = logging.getLogger("astrbot-mhhelper")
 
 PLUGIN_NAME = "astrbot_plugin_mhhelper"
-PLUGIN_VERSION = "0.3.2"
+PLUGIN_VERSION = "0.3.3"
 
 #: 运行期状态：每个用户上次查询的作品。
 STATE_FILENAME = "user_last_game.json"
@@ -506,11 +507,7 @@ class MHHelperPlugin(Star):
         render = getattr(self, "html_render", None)
         if not callable(render):
             return None
-        try:
-            url = await render(CARD_TEMPLATE, {"content": markdown_to_html(md)})
-        except Exception as exc:  # noqa: BLE001
-            log.warning("[%s] 文转图失败，回退纯文本: %s", PLUGIN_NAME, exc)
-            return None
+        url = await self._render_card(render, markdown_to_html(md))
         if not url:
             return None
         try:
@@ -518,6 +515,37 @@ class MHHelperPlugin(Star):
         except Exception as exc:  # noqa: BLE001
             log.warning("[%s] image_result 失败: %s", PLUGIN_NAME, exc)
             return None
+
+    async def _render_card(self, render, html_body: str) -> str | None:
+        """渲染卡片；先带高质量参数，失败再用 AstrBot 默认参数重试一次。
+
+        AstrBot 默认是 JPEG ``quality=40``（``NetworkRenderStrategy`` 里写死的），
+        文字会发糊，所以先用 :data:`CARD_RENDER_OPTIONS` 覆盖。两种失败要区分对待：
+
+        * 老版本 AstrBot 的 ``html_render`` 没有 ``options`` 形参 → ``TypeError``，
+          必须退到"不传 options"再试，否则会白白丢掉图片模式；
+        * 参数被 t2i 端点拒绝 / 网络抖动 → 也用默认参数再试一次。
+
+        两次都不成才返回 ``None``，由调用方回退纯文本。
+        """
+        for options in (CARD_RENDER_OPTIONS, None):
+            try:
+                if options is None:
+                    url = await render(CARD_TEMPLATE, {"content": html_body})
+                else:
+                    url = await render(
+                        CARD_TEMPLATE, {"content": html_body}, options=options
+                    )
+            except TypeError as exc:
+                log.info("[%s] 文转图不接受 options，改用默认参数: %s", PLUGIN_NAME, exc)
+                continue
+            except Exception as exc:  # noqa: BLE001
+                log.warning("[%s] 文转图失败（options=%s），重试默认参数: %s",
+                            PLUGIN_NAME, options, exc)
+                continue
+            if url:
+                return str(url)
+        return None
 
     async def _emit(self, event: AstrMessageEvent, md: str):
         """Deliver formatter markdown according to the configured output mode."""

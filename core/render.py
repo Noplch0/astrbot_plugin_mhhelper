@@ -292,49 +292,78 @@ CARD_TEMPLATE = """<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <style>
-  html, body { margin:0; padding:0; background:#eef1f6; }
+  /* AstrBot 的文转图（NetworkRenderStrategy.render_custom_template）默认按
+     full_page 截整页、视口约 800px 宽、JPEG quality=40，官方 base.html 的基准
+     字号是 25px。所以卡片模板有两条硬要求：
+
+       1. 必须铺满画布宽度 —— 用 display:inline-block（收缩包裹）会让内容缩在
+          左上角，右边一大片空白；
+       2. 字号必须够大 —— 15px 的文字被 QQ 缩放后基本糊成一团。
+
+     `width: max-content` 让宽表格能撑开卡片（表头 nowrap 不会被裁），
+     `min-width: 100%` 保证短内容也铺满画布；`min-height` 让卡片纵向填满视口，
+     否则默认视口高度会在下方留一大条空白。 */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { background: #eef1f6; }
   body {
-    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",
-                "Noto Sans CJK SC",system-ui,-apple-system,sans-serif;
-    font-size:15px; line-height:1.65; color:#1f2430;
+    min-width: 320px;
+    margin: 0;
+    padding: 22px 28px 28px;
+    background: #eef1f6;
+    color: #1f2430;
+    font-family: "MiSans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+                 "Noto Sans CJK SC", system-ui, -apple-system, sans-serif;
+    font-size: 24px;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+    overflow-wrap: break-word;
   }
   .card {
-    box-sizing:border-box;
-    display:inline-block;
-    margin:14px;
-    padding:18px 22px 20px;
-    min-width:320px;
-    max-width:920px;
-    background:#ffffff;
-    border:1px solid #e6eaf2;
-    border-radius:14px;
-    box-shadow:0 6px 22px rgba(31,36,48,.13);
+    box-sizing: border-box;
+    width: max-content;
+    min-width: 100%;
+    min-height: calc(100vh - 50px);
+    margin: 0;
+    padding: 28px 34px 32px;
+    background: #ffffff;
+    border: 1px solid #e3e8f1;
+    border-radius: 16px;
+    box-shadow: 0 6px 24px rgba(31, 36, 48, .10);
+    /* 内容短时纵向居中（safe 关键字保证溢出时退回顶部，不会被裁掉）。 */
+    display: flex;
+    flex-direction: column;
+    justify-content: safe center;
   }
-  h2, h3 { margin:.6em 0 .45em; line-height:1.3; }
-  h2 { font-size:19px; }
-  h3 { font-size:16px; color:#2f3b52; }
-  h2:first-child, h3:first-child, p:first-child, ul:first-child, table:first-child {
-    margin-top:0;
-  }
-  p { margin:.35em 0; }
-  ul { margin:.35em 0; padding-left:1.35em; }
-  li { margin:.14em 0; }
-  hr { border:0; border-top:1px solid #e6eaf2; margin:.85em 0; }
+  h2, h3, h4 { margin: .6em 0 .45em; line-height: 1.3; font-weight: 700; }
+  h2 { font-size: 1.5em; }
+  h3 { font-size: 1.28em; color: #2f3b52; }
+  h4 { font-size: 1.1em; color: #3a4761; }
+  h2:first-child, h3:first-child, h4:first-child,
+  p:first-child, ul:first-child, table:first-child { margin-top: 0; }
+  p { margin: .35em 0; }
+  ul { margin: .4em 0; padding-left: 1.35em; }
+  li { margin: .18em 0; }
+  hr { border: 0; border-top: 1px solid #e3e8f1; margin: .9em 0; }
   code {
-    font-family:"JetBrains Mono","Cascadia Code",Consolas,monospace;
-    font-size:.86em; background:#eef1f7; color:#b04a00;
-    padding:1px 5px; border-radius:5px;
+    font-family: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+    font-size: .88em;
+    background: #eef2f8;
+    color: #b04a00;
+    padding: 2px 7px;
+    border-radius: 6px;
   }
   table {
-    border-collapse:collapse; margin:.5em 0 0; font-size:14px;
-    font-variant-numeric:tabular-nums;
+    border-collapse: collapse;
+    margin: .6em 0 0;
+    font-size: .875em;
+    font-variant-numeric: tabular-nums;
   }
-  th, td { border:1px solid #dde3ee; padding:5px 10px; white-space:nowrap; }
-  th { background:#2f3b52; color:#ffffff; font-weight:600; }
-  tbody tr:nth-child(even) td { background:#f6f8fc; }
-  .left { text-align:left; }
-  .right { text-align:right; }
-  .center { text-align:center; }
+  th, td { border: 1px solid #dde3ee; padding: 7px 14px; white-space: nowrap; }
+  th { background: #2f3b52; color: #ffffff; font-weight: 600; }
+  tbody tr:nth-child(even) td { background: #f6f8fc; }
+  .left { text-align: left; }
+  .right { text-align: right; }
+  .center { text-align: center; }
 </style>
 </head>
 <body>
@@ -343,8 +372,18 @@ CARD_TEMPLATE = """<!DOCTYPE html>
 </html>
 """
 
+#: 传给 AstrBot 文转图的渲染选项。默认值是 ``{"full_page": True, "type": "jpeg",
+#: "quality": 40}``（见 ``NetworkRenderStrategy``）—— JPEG 40 的文字明显发糊，
+#: 这里只把质量提上去。
+#:
+#: ``Star.html_render(tmpl, data, return_url=True, options=...)`` 会把 options
+#: 合并进默认值，所以这个字典是"覆盖"而不是"替换"。老版本 AstrBot 的
+#: ``html_render`` 没有 ``options`` 形参，调用点会 TypeError 后不带 options 重试。
+CARD_RENDER_OPTIONS: dict[str, object] = {"quality": 92}
+
 
 __all__ = [
+    "CARD_RENDER_OPTIONS",
     "CARD_TEMPLATE",
     "MODES",
     "light_table",
