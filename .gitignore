@@ -66,9 +66,10 @@ Thumbs.db
 # ============================================================
 # AstrBot plugin runtime state
 # ============================================================
-# main.py persists the per-user "last game used" map into plugin_data/ inside
-# the plugin directory at runtime (see MHHelperPlugin._plugin_state_dir).
-# That is user data, never source.
+# State now lives in AstrBot's own data/plugin_data/<plugin name>/ (see
+# MHHelperPlugin._plugin_state_dir), but a plugin_data/ can still appear here:
+# as the last-resort fallback, or left over from an install upgraded from
+# v0.3.0. Either way it is user data, never source.
 plugin_data/
 data/icons/
 

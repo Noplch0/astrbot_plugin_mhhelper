@@ -93,7 +93,16 @@ from core.skill_index import get_skill_index  # noqa: E402
 log = logging.getLogger("astrbot-mhhelper")
 
 PLUGIN_NAME = "astrbot_plugin_mhhelper"
-PLUGIN_VERSION = "0.3.0"
+PLUGIN_VERSION = "0.3.1"
+
+#: 运行期状态：每个用户上次查询的作品。
+STATE_FILENAME = "user_last_game.json"
+
+#: 旧版（<= v0.3.0）把状态写在插件目录下的这个文件夹里。新版按官方规范
+#: 改写到 AstrBot 的 `data/plugin_data/<插件名>/`，并在首次保存时把旧文件
+#: 迁移过去后再删除（见 `_drop_legacy_state`）。这里的常量仍要保留：既是
+#: 迁移来源，也是官方目录完全不可用时的最后退路。
+LEGACY_STATE_DIRNAME = "plugin_data"
 
 #: 指令组名与别名 —— 面板里显示的顶层条目就是它。
 GROUP_NAME = "mh"
@@ -157,8 +166,9 @@ class MHHelperPlugin(Star):
     def __init__(self, context, config: AstrBotConfig | None = None):
         super().__init__(context)
         self.config = config or self._default_config()
+        #: 插件自身目录 —— 只在「官方数据目录不可用」时才用来落盘（见 _plugin_state_dir）。
         self._data_root = Path(__file__).resolve().parent
-        self._state_path = self._plugin_state_dir() / "user_last_game.json"
+        self._state_path = self._plugin_state_dir() / STATE_FILENAME
         self._user_game_cache: dict[str, str] = self._load_user_state()
         self._init_indexes()
 
@@ -171,12 +181,122 @@ class MHHelperPlugin(Star):
     async def terminate(self) -> None:
         self._save_user_state()
 
-    # ------------------- internal helpers -------------------
+    # ------------------- persistent state -------------------
+    # AstrBot 官方规范：持久化数据必须放在 AstrBot 的 `data/` 目录下
+    # （即 `data/plugin_data/<插件名>/`），**不能**放在插件自身目录里 ——
+    # 插件目录在更新 / 重装时会被整体替换，放在里面的数据会一起丢。
+    # https://docs.astrbot.app/dev/star/guides/storage.html
+    #
+    # 解析顺序：官方 API → 从插件路径反推 → 退回插件目录（保命用，会告警）。
+
+    @staticmethod
+    def _plugin_id() -> str:
+        """插件名，用作 `data/plugin_data/` 下的子目录名。"""
+        return PLUGIN_NAME
+
+    def _official_state_dir(self) -> Path | None:
+        """``Path(get_astrbot_data_path()) / "plugin_data" / <插件名>``。
+
+        官方 API（AstrBot >= 4.9.2 提供 ``self.name``；``astrbot_path`` 更早
+        就有）。不可用时返回 ``None``，交给下一级解析。
+        """
+        try:
+            from astrbot.core.utils.astrbot_path import get_astrbot_data_path
+
+            root = Path(get_astrbot_data_path())
+        except Exception:  # noqa: BLE001 - 老版本 AstrBot 没有这个模块
+            return None
+        return root / "plugin_data" / self._plugin_id()
+
+    def _derived_state_dir(self) -> Path | None:
+        """退路：插件装在 ``<root>/data/plugins/<插件名>``，据此反推官方目录。
+
+        只在上面那个官方 API 不可用时（很老的 AstrBot）才会用到。目录结构
+        不符合预期时返回 ``None``，避免在莫名其妙的路径下建目录。
+        """
+        plugins = self._data_root.parent
+        data = plugins.parent
+        if plugins.name != "plugins" or data.name != "data":
+            return None
+        return data / "plugin_data" / self._plugin_id()
+
+    def _legacy_state_path(self) -> Path:
+        """旧版位置：插件目录下的 ``plugin_data/user_last_game.json``。"""
+        return self._data_root / LEGACY_STATE_DIRNAME / STATE_FILENAME
 
     def _plugin_state_dir(self) -> Path:
-        candidate = self._data_root / "plugin_data"
-        candidate.mkdir(parents=True, exist_ok=True)
-        return candidate
+        """解析状态目录；逐级降级，保证插件在任何部署形态下都能启动。"""
+        for resolver in (self._official_state_dir, self._derived_state_dir):
+            try:
+                candidate = resolver()
+            except Exception:  # noqa: BLE001
+                candidate = None
+            if candidate is None:
+                continue
+            try:
+                candidate.mkdir(parents=True, exist_ok=True)
+            except OSError as exc:
+                log.warning("[%s] 无法创建数据目录 %s: %s", PLUGIN_NAME, candidate, exc)
+                continue
+            return candidate
+        # 最后退路：官方目录实在不可用时退回插件目录。宁可位置不标准，
+        # 也好过因为盘写不进去而让整个插件加载失败。
+        fallback = self._data_root / LEGACY_STATE_DIRNAME
+        fallback.mkdir(parents=True, exist_ok=True)
+        log.warning(
+            "[%s] 官方数据目录不可用，状态将写在插件目录内（更新插件会丢）: %s",
+            PLUGIN_NAME,
+            fallback,
+        )
+        return fallback
+
+    def _state_candidates(self) -> list[Path]:
+        """按优先级列出可能存有状态的文件，用于迁移期读取旧数据。"""
+        paths = [self._state_path]
+        legacy = self._legacy_state_path()
+        if legacy != self._state_path:
+            paths.append(legacy)
+        return paths
+
+    def _load_user_state(self) -> dict[str, str]:
+        for path in self._state_candidates():
+            if not path.is_file():
+                continue
+            try:
+                data = json.loads(path.read_text(encoding="utf-8"))
+            except Exception as exc:  # noqa: BLE001
+                log.warning("[%s] 状态文件无法解析，已忽略 %s: %s", PLUGIN_NAME, path, exc)
+                continue
+            if isinstance(data, dict):
+                return {str(k): str(v) for k, v in data.items()}
+        return {}
+
+    def _save_user_state(self) -> None:
+        try:
+            self._state_path.write_text(
+                json.dumps(self._user_game_cache, ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
+        except Exception as exc:  # noqa: BLE001
+            log.warning("Failed to save user state: %s", exc)
+            return
+        self._drop_legacy_state()
+
+    def _drop_legacy_state(self) -> None:
+        """迁移成功后删掉插件目录里的旧状态文件，避免两份数据互相打架。
+
+        只有在确实写到别的位置（即 ``_state_path`` 不是旧路径）时才清理。
+        """
+        legacy = self._legacy_state_path()
+        if legacy == self._state_path or not legacy.is_file():
+            return
+        try:
+            legacy.unlink()
+            legacy.parent.rmdir()  # 目录空了就一并收拾干净
+        except OSError:
+            pass  # 里面还有别的东西，留着即可
+
+    # ------------------- internal helpers -------------------
 
     def _default_config(self) -> dict[str, Any]:
         return {
@@ -209,23 +329,6 @@ class MHHelperPlugin(Star):
                 self._skill_idx.reload(g)
             except DataNotLoaded:
                 log.warning("[%s] data missing for %s", PLUGIN_NAME, g)
-
-    def _load_user_state(self) -> dict[str, str]:
-        if self._state_path.is_file():
-            try:
-                return json.loads(self._state_path.read_text(encoding="utf-8"))
-            except Exception:
-                return {}
-        return {}
-
-    def _save_user_state(self) -> None:
-        try:
-            self._state_path.write_text(
-                json.dumps(self._user_game_cache, ensure_ascii=False, indent=2),
-                encoding="utf-8",
-            )
-        except Exception as exc:
-            log.warning("Failed to save user state: %s", exc)
 
     def _user_default_game(self, event: AstrMessageEvent) -> str:
         uid = self._event_user_id(event)

@@ -318,12 +318,26 @@ def load_plugin():
 
 
 def make_plugin(state_dir: Path | None = None, config: dict | None = None):
-    """Instantiate the plugin, keeping its runtime state out of the repo."""
+    """Instantiate the plugin, keeping its runtime state out of the repo.
+
+    ``state_dir`` redirects the state directory. The redirect is applied to the
+    *class* only for the duration of ``__init__`` (which resolves
+    ``_state_path`` once) and then restored — patching the class permanently
+    would leak the redirect into every later test, and into every later test
+    *module*, since ``load_plugin()`` caches a single module object.
+    """
     mod = load_plugin()
-    if state_dir is not None:
-        state_dir.mkdir(parents=True, exist_ok=True)
-        mod.MHHelperPlugin._plugin_state_dir = lambda self: state_dir
-    return mod.MHHelperPlugin(None, config)
+    cls = mod.MHHelperPlugin
+    if state_dir is None:
+        return cls(None, config)
+
+    state_dir.mkdir(parents=True, exist_ok=True)
+    original = cls._plugin_state_dir
+    cls._plugin_state_dir = lambda self: state_dir
+    try:
+        return cls(None, config)
+    finally:
+        cls._plugin_state_dir = original
 
 
 def root_groups() -> list[CommandGroupFilter]:

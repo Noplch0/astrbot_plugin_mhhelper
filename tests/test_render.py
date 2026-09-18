@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import unicodedata
+from pathlib import Path
 
 import pytest
 
@@ -13,6 +14,8 @@ from core.render import (
     markdown_to_plaintext,
     resolve_mode,
 )
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 def _display_width(text: str) -> int:
@@ -160,3 +163,36 @@ def test_card_template_content_slot_and_styles():
     assert "{{ content | safe }}" in CARD_TEMPLATE
     assert "<style>" in CARD_TEMPLATE
     assert "table" in CARD_TEMPLATE
+
+
+# --------------------------------------------------------------------------
+# light_table 导入兼容性（v0.3.1）
+# --------------------------------------------------------------------------
+
+
+def test_light_table_is_reexported_from_render():
+    from core import formatter, render
+
+    assert callable(render.light_table)
+    assert render.light_table is formatter.light_table
+
+
+def test_plaintext_table_path_uses_light_table():
+    """text 模式仍然依赖 light_table，所以它必须一直可导入。"""
+    md = md_table(["部位", "伤害"], [["头部", 70]])
+    txt = markdown_to_plaintext(md)
+    assert "部位" in txt and "70" in txt
+    assert "|" not in txt
+
+
+def test_render_keeps_a_legacy_fallback_for_light_table():
+    """旧 formatter（< v0.3.0）只导出私有名 `_light_table`。
+
+    AstrBot 更新插件时若只替换了部分文件（旧 formatter + 新 render），
+    以前会在加载期直接抛
+    ``cannot import name 'light_table' from 'core.formatter'`` 把整个插件
+    打挂。这里锁住那条兼容分支，防止它被无意删掉。
+    """
+    src = (REPO_ROOT / "core" / "render.py").read_text(encoding="utf-8")
+    assert "from .formatter import light_table" in src
+    assert "from .formatter import _light_table as light_table" in src

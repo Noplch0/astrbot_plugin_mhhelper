@@ -32,7 +32,16 @@ from __future__ import annotations
 import html
 import re
 
-from .formatter import light_table
+# ``light_table`` became public in v0.3.0 (it was ``_light_table`` before).
+# AstrBot replaces a plugin's files during an update, but a *partial* update —
+# old ``formatter.py`` next to this new ``render.py`` — used to take the whole
+# plugin down at import time with
+# ``cannot import name 'light_table' from 'core.formatter'``.
+# Resolving both names keeps that mixed state loadable instead of fatal.
+try:  # pragma: no cover - which branch runs depends on the deployed formatter
+    from .formatter import light_table
+except ImportError:  # pragma: no cover - legacy formatter (< v0.3.0)
+    from .formatter import _light_table as light_table  # type: ignore[attr-defined]
 
 # ----------------------------------------------------------------------
 # Output modes
@@ -338,6 +347,7 @@ CARD_TEMPLATE = """<!DOCTYPE html>
 __all__ = [
     "CARD_TEMPLATE",
     "MODES",
+    "light_table",
     "markdown_to_html",
     "markdown_to_plaintext",
     "mode_hint",

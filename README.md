@@ -99,6 +99,41 @@ v0.3.0 起格式化层统一产出 **markdown**，再由配置项 `output_mode` 
 
 ---
 
+## 运行期数据放在哪
+
+插件唯一的运行期状态是「每个用户上次查询的作品」。按 AstrBot 官方规范，它写在
+**AstrBot 自己的数据目录**里，而不是插件目录内：
+
+```
+<AstrBot>/data/plugin_data/astrbot_plugin_mhhelper/user_last_game.json
+```
+
+取路径用的是官方 API（[插件存储规范](https://docs.astrbot.app/dev/star/guides/storage.html)）：
+
+```python
+from pathlib import Path
+from astrbot.core.utils.astrbot_path import get_astrbot_data_path
+
+Path(get_astrbot_data_path()) / "plugin_data" / "astrbot_plugin_mhhelper"
+```
+
+> **为什么不能写在插件目录里？** AstrBot 更新 / 重装插件时会整体替换插件目录，
+> 写在那儿的用户数据会跟着一起没。v0.3.1 起把状态挪到了 AstrBot 的 `data/` 下。
+> （注意区分：仓库根目录也有个 `data/`，那是随仓库提交的**静态游戏数据**，两者无关。）
+
+三级降级，保证任何部署形态下插件都能启动：
+
+| 顺序 | 解析方式 | 何时生效 |
+|---|---|---|
+| 1 | `get_astrbot_data_path() / "plugin_data" / <插件名>` | 官方 API 可用（正常情况） |
+| 2 | 从插件路径反推：插件在 `<root>/data/plugins/<插件名>` → `<root>/data/plugin_data/<插件名>` | AstrBot 版本较老、没有该 API |
+| 3 | 退回插件目录下的 `plugin_data/`（同时打 WARNING） | 上面都不行，只求插件别挂 |
+
+从 v0.3.0 升上来时，插件目录里那份旧 `plugin_data/user_last_game.json` 会被自动
+读取、写到新位置，然后删掉旧文件（空目录一并清理），用户无感。
+
+---
+
 ## 维护者:更新数据
 
 游戏更新后(尤其是 MHWilds 持续更新),刷新本仓库的 `data/`:
@@ -195,7 +230,7 @@ astrbot_plugin_mhhelper/
 │   ├── common.py            ← 三作的抓取器
 │   ├── normalize.py
 │   └── run_update.py
-├── data/                    ← 全量静态 JSON(随仓库提交)
+├── data/                    ← 全量静态 JSON(随仓库提交，与 AstrBot 的 data/ 无关)
 │   ├── meta.json
 │   ├── monsters/
 │   │   ├── mhworld.json
@@ -214,7 +249,8 @@ astrbot_plugin_mhhelper/
 │   ├── _astrbot_fake.py     ← AstrBot 注册/过滤器层的最小仿真
 │   ├── test_command_group.py← 指令组结构 + 路由 + 输出模式回归测试
 │   ├── test_formatter.py    ← markdown 契约
-│   ├── test_render.py       ← markdown 降级 / 模式决策
+│   ├── test_render.py       ← markdown 降级 / 模式决策 / light_table 导入兼容
+│   ├── test_state_dir.py    ← 运行期状态目录解析 + 旧数据迁移
 │   └── test_*.py
 └── .github/workflows/data-refresh.yml
 ```
@@ -234,6 +270,12 @@ pytest -q
 需求的回归测试:它借助 `tests/_astrbot_fake.py`(按 AstrBot 真实语义实现的
 指令组注册 / 过滤器 / 唤醒前缀仿真)加载 `main.py`,断言顶层指令数量、子指令
 名称与别名表、树形结构、每条子指令的路由与参数解析。
+
+`tests/test_state_dir.py` 锁住运行期状态的存放位置:官方 API 优先级、路径反推
+降级、最后退路，以及旧 `plugin_data/user_last_game.json` 的读取与迁移。
+`tests/test_render.py` 另外锁住了 `light_table` 的双名导入兼容 —— 它防的是
+「旧 `formatter.py` + 新 `render.py`」这种混装安装导致整个插件加载失败
+（`cannot import name 'light_table' from 'core.formatter'`）。
 
 另有一个可读性更好的本地冒烟脚本,会直接打印出指令树和逐条路由结果:
 
@@ -258,6 +300,10 @@ python scripts/_card_preview.py
 - **大表格截断**:肉质/报酬表超过 `max_rows_per_message` 会截断,显示部分。
 - **文转图依赖 AstrBot**:`image` 模式需要宿主机的 AstrBot 文转图可用(Playwright 或渲染服务)。不可用时自动回退纯文本,表格会退化成空格对齐。
 - **图片模式不适合复制**:`image` 模式发的是图片,用户没法直接选中文字复制;需要复制时把 `output_mode` 调成 `text` 或 `markdown`。
+- **升级后请让 AstrBot 完整替换插件目录**:若插件目录里新旧文件混装(例如只覆盖了
+  一部分文件),会报 `cannot import name 'light_table' from 'core.formatter'` 这类
+  加载错误。v0.3.1 已对该混装场景做了兼容,但升级后仍建议在插件页点一次「重载插件」,
+  或在插件管理里卸载后重新安装。
 
 ---
 
