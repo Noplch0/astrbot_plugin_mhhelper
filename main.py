@@ -10,7 +10,7 @@ badge counts the sub-commands, and expanding it lists the second-level
 sub-commands with their descriptions (taken from each handler's docstring).
 
     /mh 帮助         查看完整帮助                        (help)
-    /mh 怪物 <名字>   属性弱点 / 肉质表 / 异常累积          (monster)
+    /mh 怪物 <名字>   弱点属性 / 肉质表 / 异常累积          (monster)
     /mh 技能 <名字>   技能各等级效果                      (skill)
     /mh 作品         列出已启用作品（标注当前作品）         (games)
     /mh 更新         管理员：在线刷新当前作品的数据        (update)
@@ -181,7 +181,7 @@ from core.skill_index import get_skill_index  # noqa: E402
 log = logging.getLogger("astrbot-mhhelper")
 
 PLUGIN_NAME = "astrbot_plugin_mhhelper"
-PLUGIN_VERSION = "0.3.8"
+PLUGIN_VERSION = "0.3.9"
 
 #: 指令组名与别名 —— 面板里显示的顶层条目就是它。
 GROUP_NAME = "mh"
@@ -619,7 +619,7 @@ class MHHelperPlugin(Star):
         alias={"monster", "info", "肉质", "肉", "meat", "弱点", "属性", "weak"},
     )
     async def mh_monster(self, event: AstrMessageEvent):
-        """查询怪物：属性弱点 / 肉质表 / 异常累积（用法：/mh 怪物 <名字>）"""
+        """查询怪物：弱点属性 / 肉质表 / 异常累积（用法：/mh 怪物 <名字>）"""
         async for r in self._dispatch(event, "monster"):
             yield r
 

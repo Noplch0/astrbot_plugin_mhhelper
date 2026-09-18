@@ -134,7 +134,7 @@ def test_bare_group_renders_tree(run):
     ("message", "handler", "needles"),
     [
         ("/mh 帮助", "mh_help", ["/mh 怪物 <名字>"]),
-        ("/mh 怪物 雌火龙", "mh_monster", ["雌火龙", "属性弱点", "肉质表", "异常累积"]),
+        ("/mh 怪物 雌火龙", "mh_monster", ["雌火龙", "弱点属性", "肉质表", "异常累积"]),
         ("/mh 怪物 Rathian", "mh_monster", ["雌火龙"]),  # 英文名也能查到
         # 老的 肉质 / 弱点 / 属性 都还是别名，返回同一份合并报告
         ("/mh 肉质 雌火龙", "mh_monster", ["雌火龙", "肉质表", "头部"]),

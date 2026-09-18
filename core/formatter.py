@@ -200,24 +200,33 @@ def _display_name(item: Mapping[str, Any], fallback: str = "?") -> str:
     return str(item.get("id") or fallback)
 
 
-#: 属性弱点的稳定排序顺序（数值相同时按这个先后）。
+#: 属性弱点的稳定排序顺序（平均分相同时按这个先后）。
 _ELEMENT_ORDER: tuple[str, ...] = ("火", "水", "雷", "冰", "龙")
 
-#: `/mh 怪物` 的属性弱点只列最强的几项。
+#: 属性弱点取**每个属性吸收最高的前 N 行**求平均。
+_WEAKNESS_TOP_ROWS = 5
+
+#: `/mh 怪物` 的属性弱点只列平均分最高的几项。
 _WEAKNESS_TOP_N = 2
 
 
-def _element_weakness(monster: Mapping[str, Any]) -> list[tuple[str, int]]:
-    """属性弱点 = 各部位最大值，按数值降序（同值按 火水雷冰龙）。
+def _element_weakness(monster: Mapping[str, Any]) -> list[tuple[str, float]]:
+    """属性弱点 = 每个属性「吸收数值前 5 的平均值」，按平均分降序。
 
-    只保留 >0 的：全 0 的属性不叫弱点，列出来只是占位。
-    注意 kiranico 肉质表最后一列写着「麻」，但那个数值其实是**晕厥**，
-    所以属性只认 :data:`_ELEMENT_COLUMNS`。
+    例：某怪各部位的雷吸收为 ``10,15,15,15,15,20,5,5,5`` →
+    取前 5（20,15,15,15,15）的平均 **16** 作为雷的得分。
+
+    * 所有行（所有部位 / 状态）都参与；不足 :data:`_WEAKNESS_TOP_ROWS` 行时
+      按实际行数取平均。
+    * 只保留平均分 > 0 的：全 0 的属性不叫弱点，列出来只是占位。
+    * 平均分可能是小数 —— 排序用它，**展示**时再取整（见 _weakness_section）。
+    * 注意 kiranico 肉质表最后一列写着「麻」，但那个数值其实是**晕厥**，
+      所以属性只认 :data:`_ELEMENT_COLUMNS`。
     """
     meat = monster.get("meat") or {}
     headers = list(meat.get("headers") or [])
     rows = list(meat.get("rows") or [])
-    best: list[tuple[str, int]] = []
+    scored: list[tuple[str, float]] = []
     for index, header in enumerate(headers):
         if header not in _ELEMENT_COLUMNS:
             continue
@@ -227,21 +236,24 @@ def _element_weakness(monster: Mapping[str, Any]) -> list[tuple[str, int]]:
             cells = list(row.get("values") or [])
             if 0 <= idx < len(cells):
                 values.append(int(cells[idx] or 0))
-        if values:
-            best.append((header, max(values)))
-    positives = [(k, v) for k, v in best if v > 0]
-    return sorted(positives, key=lambda kv: (-kv[1], _ELEMENT_ORDER.index(kv[0])))
+        if not values:
+            continue
+        top = sorted(values, reverse=True)[:_WEAKNESS_TOP_ROWS]
+        average = sum(top) / len(top)
+        if average > 0:
+            scored.append((header, average))
+    return sorted(scored, key=lambda kv: (-kv[1], _ELEMENT_ORDER.index(kv[0])))
 
 
 def _weakness_section(monster: Mapping[str, Any]) -> list[str]:
-    """属性弱点：只列最强的 :data:`_WEAKNESS_TOP_N` 项，并带上具体数值。"""
-    lines = ["### 属性弱点"]
+    """弱点属性：按前 5 高吸收的平均分排序，只列最强的 :data:`_WEAKNESS_TOP_N` 项。"""
+    lines = ["### 弱点属性"]
     best = _element_weakness(monster)
     if not best:
         lines.append("- 无属性弱点（各属性在所有部位都是 0）")
         return lines
-    for attribute, value in best[:_WEAKNESS_TOP_N]:
-        lines.append(f"- **{attribute}**：{value}")
+    for attribute, average in best[:_WEAKNESS_TOP_N]:
+        lines.append(f"- {attribute}(高吸收部位平均吸收{round(average)})")
     return lines
 
 

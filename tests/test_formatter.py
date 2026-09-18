@@ -84,13 +84,13 @@ def test_name_without_chinese_falls_back_to_english():
 
 
 # --------------------------------------------------------------------------
-# 分节顺序：属性弱点 → 肉质表 → 状态异常
+# 分节顺序：弱点属性 → 肉质表 → 异常累积
 # --------------------------------------------------------------------------
 
 
 def test_sections_appear_in_the_required_order():
     md = _report(SAMPLE_MONSTER)
-    weak = md.index("### 属性弱点")
+    weak = md.index("### 弱点属性")
     meat = md.index("### 肉质表")
     ail = md.index("### 异常累积")
     assert weak < meat < ail
@@ -98,40 +98,66 @@ def test_sections_appear_in_the_required_order():
 
 def test_every_section_is_a_heading():
     md = _report(SAMPLE_MONSTER)
-    for heading in ("### 属性弱点", "### 肉质表", "### 异常累积"):
+    for heading in ("### 弱点属性", "### 肉质表", "### 异常累积"):
         assert heading in md
 
 
 # --------------------------------------------------------------------------
-# 属性弱点：只留最强两项
+# 弱点属性：按「每属性吸收前 5 的平均值」排序，只留前二
 # --------------------------------------------------------------------------
+
+
+def test_element_weakness_averages_the_top_five_rows():
+    """用户给的例子：雷吸收 10,15,15,15,15,20,5,5,5 →
+    取前 5（20,15,15,15,15）的平均 16 作为雷的得分。"""
+    monster = {
+        "name_zh": "X",
+        "meat": {"headers": MEAT_HEADERS,
+                 "rows": [{"part": f"p{i}", "state": "通常",
+                           # 火恒 10；雷=10,15,15,15,15,20,5,5,5
+                           "values": [1, 1, 1, 10, 0, v, 0, 0, 0]}
+                          for i, v in enumerate([10, 15, 15, 15, 15, 20, 5, 5, 5])]},
+    }
+    assert _element_weakness(monster) == [("雷", 16.0), ("火", 10.0)]
 
 
 def test_element_weakness_keeps_only_the_top_two():
     md = _report(SAMPLE_MONSTER)
-    section = md.split("### 属性弱点")[1].split("### 肉质表")[0]
+    section = md.split("### 弱点属性")[1].split("### 肉质表")[0]
     bullets = [l for l in section.splitlines() if l.startswith("- ")]
-    # 各部位最大值：火12 水15 雷20 冰15 龙30 → 龙30 / 雷20
-    assert bullets == ["- **龙**：30", "- **雷**：20"]
+    # 每属性「前 5 高吸收」的平均（只有 2 行，就按 2 行平均）：
+    # 火(0+12)/2=6  水(15+5)/2=10  雷(20+20)/2=20  冰(15+3)/2=9  龙(30+0)/2=15
+    assert bullets == [
+        "- 雷(高吸收部位平均吸收20)",
+        "- 龙(高吸收部位平均吸收15)",
+    ]
 
 
-def test_element_weakness_matches_the_users_example():
-    """用户给的例子：煌雷龙只展示数值最大的冰(25)、水(20)。"""
+def test_weakness_section_format_matches_the_requested_shape():
     monster = {
-        "name_zh": "煌雷龙",
-        "meat": {
-            "headers": MEAT_HEADERS,
-            "rows": [
-                # 火5 水20 雷0 冰25 龙5
-                {"part": "头部", "state": "通常", "values": [60, 65, 50, 5, 20, 0, 25, 5, 100]},
-            ],
-        },
+        "name_zh": "X",
+        "meat": {"headers": MEAT_HEADERS,
+                 "rows": [{"part": "头", "state": "通常",
+                           "values": [1, 1, 1, 0, 20, 0, 25, 5, 0]}]},
     }
     section = "\n".join(_weakness_section(monster))
-    assert "- **冰**：25" in section
-    assert "- **水**：20" in section
-    assert "- **火**：5" not in section
-    assert "- **龙**：5" not in section
+    assert section.splitlines() == [
+        "### 弱点属性",
+        "- 冰(高吸收部位平均吸收25)",
+        "- 水(高吸收部位平均吸收20)",
+    ]
+
+
+def test_fewer_than_five_rows_average_over_what_exists():
+    monster = {
+        "name_zh": "X",
+        "meat": {"headers": MEAT_HEADERS,
+                 "rows": [{"part": "头", "state": "通常", "values": [1, 1, 1, 4, 20, 0, 30, 5, 0]},
+                          {"part": "尾", "state": "通常", "values": [1, 1, 1, 0, 10, 0, 10, 0, 0]}]},
+    }
+    # 冰 (30+10)/2=20；水 (20+10)/2=15（不足 5 行就按实际行数平均）
+    # 排序取前二：冰 (30+10)/2=20；水 (20+10)/2=15（不足 5 行按实际行数平均）
+    assert _element_weakness(monster)[:2] == [("冰", 20.0), ("水", 15.0)]
 
 
 def test_zero_elements_are_not_weaknesses():
@@ -140,7 +166,8 @@ def test_zero_elements_are_not_weaknesses():
         "meat": {"headers": MEAT_HEADERS,
                  "rows": [{"part": "头", "state": "通常", "values": [1, 1, 1, 0, 0, 0, 8, 0, 0]}]},
     }
-    assert _element_weakness(monster) == [("冰", 8)]
+    # 冰：前 5 = [8,0,0,0,0]（只有 1 行，平均 8）
+    assert _element_weakness(monster) == [("冰", 8.0)]
 
 
 def test_all_zero_elements_say_so():
