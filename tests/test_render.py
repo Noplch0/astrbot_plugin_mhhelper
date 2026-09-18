@@ -12,8 +12,10 @@ from core.render import (
     CARD_RENDER_OPTIONS,
     CARD_TEMPLATE,
     MODES,
+    card_hero,
     markdown_to_html,
     markdown_to_plaintext,
+    monster_icon,
     resolve_mode,
 )
 
@@ -233,6 +235,70 @@ def test_card_render_options_raise_the_jpeg_quality():
     assert set(CARD_RENDER_OPTIONS) == {"quality"}, (
         "只覆盖 quality：其余键沿用 AstrBot 默认值，避免端点不认新键"
     )
+
+
+# --------------------------------------------------------------------------
+# 卡片顶部的怪物图标（只有 image 模式用得到）
+# --------------------------------------------------------------------------
+
+
+def test_card_template_has_a_hero_slot():
+    assert "{{ hero | safe }}" in CARD_TEMPLATE
+    assert 'class="hero"' in CARD_TEMPLATE
+
+
+def test_hero_collapses_when_there_is_no_icon():
+    """没有图标时必须彻底不占位，而不是留一条空白。"""
+    assert ".hero:empty" in _CARD_CSS
+
+
+def test_first_line_of_the_body_is_centered():
+    """怪物名和图标都要居中 —— 首行标题居中是靠这条规则。"""
+    assert "text-align: center" in _rule(_CARD_CSS, ".body > :first-child")
+
+
+def test_hero_icon_is_rendered_at_a_sane_size():
+    """源图 256–512px，缩到 100–160px 显示，既不糊也不喧宾夺主。"""
+    size = re.search(r"width:\s*(\d+)px", _rule(_CARD_CSS, ".hero img"))
+    assert size, ".hero img 应该有明确的宽度"
+    assert 100 <= int(size.group(1)) <= 160
+
+
+def test_monster_icon_accepts_http_and_https():
+    assert monster_icon({"icon": "https://a.example/x.png"}) == "https://a.example/x.png"
+    assert monster_icon({"icon": "http://a.example/x.png"}) == "http://a.example/x.png"
+
+
+def test_monster_icon_rejects_missing_or_bogus_values():
+    assert monster_icon(None) == ""
+    assert monster_icon({}) == ""
+    assert monster_icon({"icon": ""}) == ""
+    assert monster_icon({"icon": None}) == ""
+    # 不是 URL 的东西不能塞进 img src
+    assert monster_icon({"icon": "EM0001.webp"}) == ""
+    assert monster_icon({"icon": "javascript:alert(1)"}) == ""
+
+
+def test_card_hero_is_empty_without_an_icon():
+    assert card_hero(None) == ""
+    assert card_hero({}) == ""
+    assert card_hero({"icon": ""}) == ""
+    assert card_hero({"icon": "not-a-url"}) == ""
+
+
+def test_card_hero_emits_a_centered_img_with_a_fallback():
+    hero = card_hero({"icon": "https://a.example/x.png"})
+    assert hero.startswith("<img")
+    assert 'src="https://a.example/x.png"' in hero
+    # 图挂了就摘掉 img，卡片退化成「只有居中的名字」，不留破图
+    assert "onerror" in hero
+    assert 'alt=""' in hero
+
+
+def test_card_hero_escapes_the_url():
+    hero = card_hero({"icon": 'https://a.example/x.png?a=1&b="2"'})
+    assert "&amp;" in hero
+    assert "&quot;" in hero
 
 
 # --------------------------------------------------------------------------

@@ -48,6 +48,9 @@ async def refresh_game(
                         return None
                     if isinstance(m, dict):
                         m.setdefault("name_en", item.get("name") or "")
+                        # 图标只存在于列表页（详情页没有），从 index item 带过来；
+                        # 解析不到就留空，插件会跳过图标（而不是画一个破图）。
+                        m["icon"] = item.get("icon") or m.get("icon") or ""
                     await asyncio.sleep(delay)
                     return m
 

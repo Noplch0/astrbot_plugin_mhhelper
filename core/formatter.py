@@ -30,6 +30,35 @@ from typing import Any, Iterable, Sequence
 from .data_loader import GAME_LABELS
 
 # ----------------------------------------------------------------------
+# Column / label vocabulary
+# ----------------------------------------------------------------------
+
+#: 肉质表里属于「属性」的列。注意**不含「麻」**：kiranico 那一列虽然写着「麻」，
+#: 数值实际是**晕厥**（同一个表里状态异常已经有独立的麻痹行了），所以它既不该
+#: 出现在属性弱点概览里，也不是属性。
+_ELEMENT_COLUMNS: frozenset[str] = frozenset({"火", "水", "雷", "冰", "龙"})
+
+#: 状态异常名的显示别名 —— 统一压成单字，横排更好扫读。
+#: 英文键来自世界的 kiranico 页（那一页混入了英文行）。
+_AILMENT_LABELS: dict[str, str] = {
+    "毒": "毒",
+    "睡眠": "眠",
+    "麻痹": "麻",
+    "爆破异常": "爆",
+    "昏厥": "晕",
+    "减气": "减气",
+    "Stamina": "减气",
+    "Mount": "骑乘",
+    "Captures": "捕获",
+    "Elderseal": "龙封",
+}
+
+
+def _ailment_label(key: str) -> str:
+    """单字展示状态异常；没登记过的键原样返回（宁可长一点也不要丢信息）。"""
+    return _AILMENT_LABELS.get(key, key)
+
+# ----------------------------------------------------------------------
 # CJK-aware width helpers (used by the plain-text degradation path)
 # ----------------------------------------------------------------------
 try:
@@ -303,7 +332,7 @@ def render_weak(monster: dict[str, Any], game: str) -> str:
     if ailments:
         lines.append("### 状态异常累积值")
         for k, v in ailments.items():
-            lines.append(f"- **{k}**：{v}")
+            lines.append(f"- **{_ailment_label(k)}**：{v}")
     else:
         lines.append("该作品暂无状态异常数据。")
 
@@ -314,7 +343,9 @@ def render_weak(monster: dict[str, Any], game: str) -> str:
     if headers and rows_raw:
         best: list[tuple[str, int]] = []
         for i, h in enumerate(headers):
-            if h not in ("火", "水", "雷", "冰", "龙", "麻"):
+            # kiranico 肉质表最后一列写的是「麻」，但那个数值其实是**晕厥**，
+            # 不是麻痹 —— 所以它不属于属性弱点，不能出现在这里。
+            if h not in _ELEMENT_COLUMNS:
                 continue
             idx = i - 2  # 跳过前置的「部位」「状态」两列
             vals = []

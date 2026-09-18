@@ -10,6 +10,7 @@
       "species": "飞龙种",
       "hr_point": 700,
       "base_hp": 4500,
+      "icon": "https://example.com/icons/ci-huo-long.webp",
       "meat": {
         "headers": ["部位", "状态", "斩", "打", "弹", "火", "水", "雷", "冰", "龙", "麻"],
         "rows": [
@@ -29,6 +30,7 @@
       "species": "古龙种",
       "hr_point": 1000,
       "base_hp": 9000,
+      "icon": "",
       "meat": {"headers": [], "rows": []},
       "ailments": {},
       "rewards": {}

@@ -31,6 +31,8 @@ from __future__ import annotations
 
 import html
 import re
+from collections.abc import Mapping
+from typing import Any
 
 # ``light_table`` became public in v0.3.0 (it was ``_light_table`` before).
 # AstrBot replaces a plugin's files during an update, but a *partial* update —
@@ -344,6 +346,13 @@ CARD_TEMPLATE = """<!DOCTYPE html>
   h4 { font-size: 1.1em; color: #3a4761; }
   h2:first-child, h3:first-child, h4:first-child,
   p:first-child, ul:first-child, table:first-child { margin-top: 0; }
+  /* 顶部居中区块：怪物图标。只有 image 模式才塞内容进来，
+     没有的时候 .hero:empty 让它彻底消失（不占位、不留白）。 */
+  .hero { display: flex; justify-content: center; margin-bottom: .1em; }
+  .hero:empty { display: none; }
+  .hero img { width: 120px; height: 120px; object-fit: contain; }
+  /* 正文首行是「怪物名 — 表格名」标题，居中与图标对齐。 */
+  .body > :first-child { text-align: center; margin-top: 0; }
   p { margin: .35em 0; }
   ul { margin: .4em 0; padding-left: 1.35em; }
   li { margin: .18em 0; }
@@ -371,10 +380,45 @@ CARD_TEMPLATE = """<!DOCTYPE html>
 </style>
 </head>
 <body>
-<div class="card">{{ content | safe }}</div>
+<div class="card">
+<div class="hero">{{ hero | safe }}</div>
+<div class="body">{{ content | safe }}</div>
+</div>
 </body>
 </html>
 """
+
+
+def monster_icon(monster: Mapping[str, Any] | None) -> str:
+    """该怪物的游戏内图标 URL；没有（或不是 http 地址）就返回空串。
+
+    ``icon`` 由 scraper 从 kiranico 的列表页采集（见 ``scraper/icons.py``），
+    随 ``data/monsters/*.json`` 一起提交，所以查询时**不需要联网**。真正加载图片的
+    是 AstrBot 的文转图端点，它会带着这个 URL 去取图。
+    """
+    if not monster:
+        return ""
+    raw = str(monster.get("icon") or "").strip()
+    if not raw.startswith(("https://", "http://")):
+        return ""
+    return raw
+
+
+def card_hero(monster: Mapping[str, Any] | None) -> str:
+    """卡片顶部居中的怪物图标；没有图标时返回空串。
+
+    只有 ``output_mode=image`` 用得上 —— text / markdown 输出不带图标。
+
+    ``onerror`` 是必要的降级：kiranico 的图挂了或端点取不到时，直接把 img 摘掉，
+    卡片退化成「只有居中的怪物名」，而不是显示一个破图。
+    """
+    url = monster_icon(monster)
+    if not url:
+        return ""
+    return (
+        f'<img class="monster-icon" src="{html.escape(url, quote=True)}" alt="" '
+        'onerror="this.remove()">'
+    )
 
 #: 传给 AstrBot 文转图的渲染选项。默认值是 ``{"full_page": True, "type": "jpeg",
 #: "quality": 40}``（见 ``NetworkRenderStrategy``）—— JPEG 40 的文字明显发糊，
@@ -390,9 +434,11 @@ __all__ = [
     "CARD_RENDER_OPTIONS",
     "CARD_TEMPLATE",
     "MODES",
+    "card_hero",
     "light_table",
     "markdown_to_html",
     "markdown_to_plaintext",
     "mode_hint",
+    "monster_icon",
     "resolve_mode",
 ]

@@ -10,7 +10,7 @@
       "species": "飞龙种",
       "hr_point": 700,
       "base_hp": 4500,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -483,7 +483,7 @@
       "species": "飞龙种",
       "hr_point": 850,
       "base_hp": 4500,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0002_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -1001,7 +1001,7 @@
       "species": "造龙种",
       "hr_point": 800,
       "base_hp": 5000,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0002_50_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -1516,7 +1516,7 @@
       "species": "飞龙种",
       "hr_point": 850,
       "base_hp": 5500,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0005_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -2064,7 +2064,7 @@
       "species": "鸟龙种",
       "hr_point": 550,
       "base_hp": 3800,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0008_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -2533,7 +2533,7 @@
       "species": "鸟龙种",
       "hr_point": 550,
       "base_hp": 4200,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0009_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -2992,7 +2992,7 @@
       "species": "牙兽种",
       "hr_point": 550,
       "base_hp": 5000,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0021_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -3421,7 +3421,7 @@
       "species": "牙兽种",
       "hr_point": 750,
       "base_hp": 4500,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0022_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -3845,7 +3845,7 @@
       "species": "海龙种",
       "hr_point": 900,
       "base_hp": 5600,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0046_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -4613,7 +4613,7 @@
       "species": "钳角种",
       "hr_point": 650,
       "base_hp": 4400,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0070_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -5965,7 +5965,7 @@
       "species": "亚龙种",
       "hr_point": 950,
       "base_hp": 5100,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0071_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -6663,7 +6663,7 @@
       "species": "飞龙种",
       "hr_point": 900,
       "base_hp": 5500,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0077_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -7216,7 +7216,7 @@
       "species": "古龙种",
       "hr_point": 1550,
       "base_hp": 10000,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0078_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -8461,7 +8461,7 @@
       "species": "海龙种",
       "hr_point": 850,
       "base_hp": 5500,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0082_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -9071,7 +9071,7 @@
       "species": "造龙种",
       "hr_point": 800,
       "base_hp": 5000,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0100_51_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -9825,7 +9825,7 @@
       "species": "造龙种",
       "hr_point": 800,
       "base_hp": 5000,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0113_51_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -10475,7 +10475,7 @@
       "species": "牙兽种",
       "hr_point": 700,
       "base_hp": 4800,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0150_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -10904,7 +10904,7 @@
       "species": "造龙种",
       "hr_point": 750,
       "base_hp": 5800,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0150_50_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -11385,7 +11385,7 @@
       "species": "海龙种",
       "hr_point": 600,
       "base_hp": 4400,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0151_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -11878,7 +11878,7 @@
       "species": "两栖种",
       "hr_point": 500,
       "base_hp": 4000,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0152_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -12414,7 +12414,7 @@
       "species": "兽龙种",
       "hr_point": 500,
       "base_hp": 4000,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0153_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -12877,7 +12877,7 @@
       "species": "钳角种",
       "hr_point": 500,
       "base_hp": 4000,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0154_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -13416,7 +13416,7 @@
       "species": "兽龙种",
       "hr_point": 550,
       "base_hp": 4500,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0155_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -13955,7 +13955,7 @@
       "species": "飞龙种",
       "hr_point": 900,
       "base_hp": 5000,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0156_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -14528,7 +14528,7 @@
       "species": "海龙种",
       "hr_point": 900,
       "base_hp": 5500,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0157_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -15347,7 +15347,7 @@
       "species": "头足种",
       "hr_point": 900,
       "base_hp": 5250,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0158_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -16225,7 +16225,7 @@
       "species": "牙兽种",
       "hr_point": 750,
       "base_hp": 5200,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0159_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -16873,7 +16873,7 @@
       "species": "飞龙种",
       "hr_point": 1250,
       "base_hp": 5200,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0160_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -17481,7 +17481,7 @@
       "species": "造龙种",
       "hr_point": 1000,
       "base_hp": 5200,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0160_50_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -17862,7 +17862,7 @@
       "species": "海龙种",
       "hr_point": 700,
       "base_hp": 4500,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0161_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -18321,7 +18321,7 @@
       "species": "海龙种",
       "hr_point": 1000,
       "base_hp": 7400,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0162_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -19054,7 +19054,7 @@
       "species": "头足种",
       "hr_point": 850,
       "base_hp": 4500,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0163_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -19637,7 +19637,7 @@
       "species": "造龙种",
       "hr_point": 1500,
       "base_hp": 9000,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0164_50_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -20533,7 +20533,7 @@
       "species": "",
       "hr_point": 0,
       "base_hp": 50000,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0165_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -20869,7 +20869,7 @@
       "species": "????",
       "hr_point": 1500,
       "base_hp": 7000,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM0166_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -21471,7 +21471,7 @@
       "species": "甲虫种",
       "hr_point": 0,
       "base_hp": 8,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM1006_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -21569,7 +21569,7 @@
       "species": "牙兽种",
       "hr_point": 0,
       "base_hp": 130,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM1022_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -21655,7 +21655,7 @@
       "species": "牙兽种",
       "hr_point": 0,
       "base_hp": 120,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM1023_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -21741,7 +21741,7 @@
       "species": "草食种",
       "hr_point": 0,
       "base_hp": 150,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM1150_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -21827,7 +21827,7 @@
       "species": "草食种",
       "hr_point": 0,
       "base_hp": 150,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM1151_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -21923,7 +21923,7 @@
       "species": "草食种",
       "hr_point": 0,
       "base_hp": 150,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM1151_00_1.webp",
       "meat": {
         "headers": [
           "部位",
@@ -22019,7 +22019,7 @@
       "species": "甲虫种",
       "hr_point": 0,
       "base_hp": 80,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM1152_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -22152,7 +22152,7 @@
       "species": "鸟龙种",
       "hr_point": 0,
       "base_hp": 150,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM1153_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -22260,7 +22260,7 @@
       "species": "翼龙种",
       "hr_point": 0,
       "base_hp": 80,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM1154_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -22348,7 +22348,7 @@
       "species": "海龙种",
       "hr_point": 0,
       "base_hp": 130,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM1155_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -22429,7 +22429,7 @@
       "species": "海龙种",
       "hr_point": 0,
       "base_hp": 110,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM1156_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -22537,7 +22537,7 @@
       "species": "翼龙种",
       "hr_point": 0,
       "base_hp": 80,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM1157_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -22618,7 +22618,7 @@
       "species": "鸟龙种",
       "hr_point": 0,
       "base_hp": 150,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM1158_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -22748,7 +22748,7 @@
       "species": "甲虫种",
       "hr_point": 0,
       "base_hp": 120,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM1159_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -22851,7 +22851,7 @@
       "species": "两栖种",
       "hr_point": 0,
       "base_hp": 80,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM1160_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -22932,7 +22932,7 @@
       "species": "草食种",
       "hr_point": 0,
       "base_hp": 100,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM1161_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -23018,7 +23018,7 @@
       "species": "鸟龙种",
       "hr_point": 0,
       "base_hp": 80,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM1162_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -23104,7 +23104,7 @@
       "species": "钳角种",
       "hr_point": 0,
       "base_hp": 10,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM1163_00_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -23170,7 +23170,7 @@
       "species": "造龙种",
       "hr_point": 0,
       "base_hp": 120,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM1164_50_0.webp",
       "meat": {
         "headers": [
           "部位",
@@ -23290,7 +23290,7 @@
       "species": "????",
       "hr_point": 0,
       "base_hp": 8,
-      "icon": "https://mhwilds.kiranico.net/em_icon/EM0001.webp",
+      "icon": "https://mhwilds.kiranico.net/em_icon/EM1165_00_0.webp",
       "meat": {
         "headers": [
           "部位",

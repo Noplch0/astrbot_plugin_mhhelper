@@ -10,6 +10,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em080_01_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -820,6 +821,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em050_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -1638,6 +1640,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em127_01_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -2080,6 +2083,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em100_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -2790,6 +2794,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em002_01_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -3435,6 +3440,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em123_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -4035,6 +4041,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em042_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -4600,6 +4607,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em044_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -5320,6 +5328,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em118_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -5905,6 +5914,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em121_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -6493,6 +6503,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em122_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -6898,6 +6909,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em007_01_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -7523,6 +7535,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em115_05_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -8362,6 +8375,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em063_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -8777,6 +8791,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em032_01_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -9682,6 +9697,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em102_01_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -9987,6 +10003,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em043_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -10827,6 +10844,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em007_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -11452,6 +11470,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em116_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -12052,6 +12071,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em113_01_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -12687,6 +12707,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em013_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -13874,6 +13895,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em042_05_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -14539,6 +14561,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em100_01_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -15624,6 +15647,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em023_05_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -16349,6 +16373,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em080_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -17199,6 +17224,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em001_02_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -18049,6 +18075,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em112_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -18449,6 +18476,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em101_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -19054,6 +19082,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em108_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -19564,6 +19593,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em011_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -20153,6 +20183,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em107_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -20573,6 +20604,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em117_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -21376,6 +21408,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em024_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -22106,6 +22139,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em036_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -22621,6 +22655,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em111_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -23171,6 +23206,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em127_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -23613,6 +23649,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em026_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -24527,6 +24564,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em125_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -25186,6 +25224,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em037_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -25611,6 +25650,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em103_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -26485,6 +26525,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em110_01_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -26975,6 +27016,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em113_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -27485,6 +27527,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em110_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -28040,6 +28083,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em001_01_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -28670,6 +28714,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em102_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -29140,6 +29185,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em114_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -29700,6 +29746,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em063_05_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -30249,6 +30296,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em023_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -30959,6 +31007,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em002_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -31539,6 +31588,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em001_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -32154,6 +32204,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em103_05_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -33273,6 +33324,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em104_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -34872,6 +34924,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em043_05_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -35776,6 +35829,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em018_05_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -36256,6 +36310,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em118_05_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -37086,6 +37141,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em126_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -37954,6 +38010,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em111_05_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -38449,6 +38506,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em002_02_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -39249,6 +39307,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em057_01_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -39974,6 +40033,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em027_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -40678,6 +40738,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em032_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -41118,6 +41179,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em109_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -41603,6 +41665,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em120_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -41983,6 +42046,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em045_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -42778,6 +42842,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em115_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -43492,6 +43557,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em124_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -44031,6 +44097,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em109_01_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -44451,6 +44518,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em105_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -45273,6 +45341,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em018_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -45753,6 +45822,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em057_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -46408,6 +46478,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/em106_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -46931,6 +47002,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems016_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -47019,6 +47091,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems002_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -47112,6 +47185,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems001_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -47204,6 +47278,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems055_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -47301,6 +47376,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems061_01_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -47538,6 +47614,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems064_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -47631,6 +47708,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems061_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -47823,6 +47901,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems029_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -47931,6 +48010,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems058_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -48054,6 +48134,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems056_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -48201,6 +48282,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems005_01_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -48264,6 +48346,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems049_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -48391,6 +48474,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems003_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -48474,6 +48558,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems003_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -48557,6 +48642,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems051_05_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -48670,6 +48756,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems051_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -48788,6 +48875,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems050_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -48871,6 +48959,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems004_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -48999,6 +49088,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems059_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -49077,6 +49167,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems014_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -49164,6 +49255,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems053_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -49247,6 +49339,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems054_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -49385,6 +49478,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems006_ID.png",
       "meat": {
         "headers": [
           "部位",
@@ -49463,6 +49557,7 @@
       "species": "",
       "hr_point": null,
       "base_hp": null,
+      "icon": "https://cdn.kiranico.net/file/kiranico/mhworld-web/mhw/icon/ems063_ID.png",
       "meat": {
         "headers": [
           "部位",

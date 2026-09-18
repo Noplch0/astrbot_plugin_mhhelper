@@ -323,6 +323,54 @@ def test_image_mode_retries_defaults_when_options_are_rejected(monkeypatch, tmp_
     assert attempts == [CARD_RENDER_OPTIONS, None]
 
 
+def test_image_mode_passes_the_monster_icon_into_the_card(monkeypatch, tmp_path):
+    """只有 image 模式才贴怪物图：卡片数据里要带上该怪的 icon。"""
+    install_fake_loader(monkeypatch)
+    plugin = make_plugin(state_dir=tmp_path / "plugin_data", config={"output_mode": "image"})
+    seen: dict = {}
+
+    async def fake_render(tmpl, data, *args, **kwargs):
+        seen["data"] = data
+        return "https://example.com/card.png"
+
+    plugin.html_render = fake_render
+    result = dispatch(plugin, "/mh 肉质 雌火龙")
+    assert result.text.startswith("[image] ")
+    assert 'src="https://example.com/icons/ci-huo-long.webp"' in seen["data"]["hero"]
+    assert "onerror" in seen["data"]["hero"]
+
+
+def test_image_mode_omits_the_hero_when_the_monster_has_no_icon(monkeypatch, tmp_path):
+    install_fake_loader(monkeypatch)
+    plugin = make_plugin(state_dir=tmp_path / "plugin_data", config={"output_mode": "image"})
+    seen: dict = {}
+
+    async def fake_render(tmpl, data, *args, **kwargs):
+        seen["data"] = data
+        return "https://example.com/card.png"
+
+    plugin.html_render = fake_render
+    dispatch(plugin, "/mh 弱点 神龙")
+    assert seen["data"]["hero"] == "", "没有图标就留空，由 .hero:empty 折叠掉"
+
+
+def test_image_mode_omits_the_hero_for_non_monster_queries(monkeypatch, tmp_path):
+    """作品 / 帮助 / 列表这类没有具体怪物的查询不带图标。"""
+    install_fake_loader(monkeypatch)
+    plugin = make_plugin(state_dir=tmp_path / "plugin_data", config={"output_mode": "image"})
+    seen: list = []
+
+    async def fake_render(tmpl, data, *args, **kwargs):
+        seen.append(data)
+        return "https://example.com/card.png"
+
+    plugin.html_render = fake_render
+    dispatch(plugin, "/mh 作品")
+    dispatch(plugin, "/mh 帮助")
+    assert len(seen) == 2
+    assert all(d["hero"] == "" for d in seen)
+
+
 def test_image_mode_falls_back_when_renderer_raises(monkeypatch, tmp_path):
     install_fake_loader(monkeypatch)
     plugin = make_plugin(state_dir=tmp_path / "plugin_data", config={"output_mode": "image"})
@@ -334,6 +382,25 @@ def test_image_mode_falls_back_when_renderer_raises(monkeypatch, tmp_path):
     result = dispatch(plugin, "/mh 肉质 雌火龙")
     assert "肉质表" in result.text
     assert "|" not in result.text
+
+
+def test_text_and_markdown_modes_never_carry_the_icon(monkeypatch, tmp_path):
+    """文本 / markdown 输出保持原样 —— 不出现图标、也不触发渲染。"""
+    install_fake_loader(monkeypatch)
+    calls: list = []
+
+    async def fake_render(tmpl, data, *args, **kwargs):  # pragma: no cover - 不该被调用
+        calls.append(data)
+        return "https://example.com/card.png"
+
+    for mode in ("text", "markdown"):
+        plugin = make_plugin(state_dir=tmp_path / f"state_{mode}", config={"output_mode": mode})
+        plugin.html_render = fake_render
+        result = dispatch(plugin, "/mh 肉质 雌火龙")
+        assert "https://example.com/icons" not in result.text
+        assert "<img" not in result.text
+        assert "部位" in result.text
+    assert calls == [], "text / markdown 模式不应该走文转图"
 
 
 def test_errors_stay_plain_text_even_in_image_mode(monkeypatch, tmp_path):

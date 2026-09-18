@@ -17,6 +17,7 @@ import httpx
 from bs4 import BeautifulSoup
 
 from .base import fetch, make_client
+from .icons import parse_icons
 from .kiranico import (
     find_ailment_table,
     find_meat_table,
@@ -40,6 +41,8 @@ UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like 
 class MHWildsScraper:
     BASE = "https://mhwilds.kiranico.com"
     LOCALE = "zh"
+    #: 与 core.data_loader.GAMES 的键一致；scraper/icons.py 靠它选解析规则。
+    GAME = "mhwilds"
 
     async def list_monsters(self, client: httpx.AsyncClient) -> list[dict[str, str]]:
         text = await fetch(client, f"{self.BASE}/{self.LOCALE}/data/monsters")
@@ -53,6 +56,8 @@ class MHWildsScraper:
         soup = BeautifulSoup(text, "lxml")
         seen: set[str] = set()
         items: list[dict[str, str]] = []
+        # 图标只出现在列表页，详情页没有 —— 在这里抓，随 item 传给 run_update。
+        found_icons = parse_icons(self.GAME, text) if kind == "monsters" else {}
         # Each monster link points to /zh/data/monsters/{slug}
         pattern = re.compile(rf"/{self.LOCALE}/data/{kind}/([a-z0-9-]+)")
         for a in soup.find_all("a", href=pattern):
@@ -61,7 +66,12 @@ class MHWildsScraper:
                 continue
             seen.add(slug)
             label = a.get_text(strip=True)
-            items.append({"id": slug, "name": label, "url": f"{self.BASE}/{self.LOCALE}/data/{kind}/{slug}"})
+            items.append({
+                "id": slug,
+                "name": label,
+                "url": f"{self.BASE}/{self.LOCALE}/data/{kind}/{slug}",
+                "icon": found_icons.get(slug, ""),
+            })
         return items
 
     async def fetch_monster(self, client: httpx.AsyncClient, slug: str) -> dict[str, Any]:
@@ -100,7 +110,8 @@ class MHWildsScraper:
             "species": species,
             "hr_point": hr_point,
             "base_hp": base_hp,
-            "icon": f"https://mhwilds.kiranico.net/em_icon/EM{self._icon_id(slug)}.webp",
+            # 详情页没有图标，由 run_update 从列表页的 item["icon"] 填进来。
+            "icon": "",
             "meat": meat,
             "ailments": ailments,
             "rewards": rewards,
@@ -136,10 +147,6 @@ class MHWildsScraper:
             "levels": levels,
         }
 
-    def _icon_id(self, slug: str) -> str:
-        # placeholder: real icon ids require a separate lookup; we leave 0001
-        return "0001"
-
     def _parse_int(self, raw: str) -> int | None:
         if not raw:
             return None
@@ -157,6 +164,7 @@ class MHWildsScraper:
 
 class MHRiseScraper:
     BASE = "https://mhrise.kiranico.com"
+    GAME = "mhrise"
 
     async def list_monsters(self, client: httpx.AsyncClient) -> list[dict[str, str]]:
         text = await fetch(client, f"{self.BASE}/data/monsters?view=lg")
@@ -168,12 +176,18 @@ class MHRiseScraper:
 
     def _parse_monster_index(self, text: str) -> list[dict[str, str]]:
         soup = BeautifulSoup(text, "lxml")
+        found_icons = parse_icons(self.GAME, text)
         items: list[dict[str, str]] = []
         for a in soup.find_all("a", href=re.compile(r"/data/monsters/\d+")):
             href = a.get("href", "")
             mid = re.search(r"/data/monsters/(\d+)", href).group(1)
             label = a.get_text(strip=True)
-            items.append({"id": mid, "name": label, "url": f"{self.BASE}/data/monsters/{mid}"})
+            items.append({
+                "id": mid,
+                "name": label,
+                "url": f"{self.BASE}/data/monsters/{mid}",
+                "icon": found_icons.get(mid, ""),
+            })
         # Deduplicate by id
         seen = set()
         out = []
@@ -253,6 +267,7 @@ class MHRiseScraper:
             "species": "",
             "hr_point": None,
             "base_hp": None,
+            "icon": "",
             "meat": meat,
             "ailments": ailments,
             "rewards": rewards,
@@ -328,6 +343,7 @@ class MHRiseScraper:
 
 class MHWorldScraper:
     BASE = "https://mhworld.kiranico.com"
+    GAME = "mhworld"
 
     async def list_monsters(self, client: httpx.AsyncClient) -> list[dict[str, str]]:
         text = await fetch(client, f"{self.BASE}/en/monsters")
@@ -339,6 +355,7 @@ class MHWorldScraper:
 
     def _parse_monster_index(self, text: str) -> list[dict[str, str]]:
         soup = BeautifulSoup(text, "lxml")
+        found_icons = parse_icons(self.GAME, text)
         items: list[dict[str, str]] = []
         for a in soup.find_all("a", href=re.compile(r"/en/monsters/([A-Za-z0-9]+)/([a-z0-9-]+)")):
             href = a.get("href", "")
@@ -346,7 +363,13 @@ class MHWorldScraper:
             mid = m.group(1)
             slug = m.group(2)
             label = a.get_text(strip=True)
-            items.append({"id": mid, "slug": slug, "name": label, "url": f"{self.BASE}/en/monsters/{mid}/{slug}"})
+            items.append({
+                "id": mid,
+                "slug": slug,
+                "name": label,
+                "url": f"{self.BASE}/en/monsters/{mid}/{slug}",
+                "icon": found_icons.get(mid, ""),
+            })
         seen = set()
         out = []
         for it in items:
@@ -428,6 +451,7 @@ class MHWorldScraper:
             "species": "",
             "hr_point": None,
             "base_hp": None,
+            "icon": "",
             "meat": meat,
             "ailments": ailments,
             "rewards": rewards,

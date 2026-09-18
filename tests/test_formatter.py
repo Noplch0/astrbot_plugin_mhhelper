@@ -10,6 +10,7 @@ from core.formatter import (
     render_meat,
     render_monster_info,
     render_skill,
+    render_weak,
 )
 
 
@@ -131,3 +132,94 @@ def test_render_help_is_markdown():
     assert txt.startswith("## 🎮")
     assert "### 怪物" in txt
     assert "- `/mh 肉质 <名字> [作品]`" in txt
+
+
+# --------------------------------------------------------------------------
+# 弱点 / 状态异常（v0.3.5 起的文案约定）
+# --------------------------------------------------------------------------
+
+#: 完整的异常表，键名与 kiranico 一致。
+FULL_AILMENTS = {
+    "毒": 150, "睡眠": 150, "麻痹": 300,
+    "爆破异常": 70, "昏厥": 150, "减气": 225,
+}
+
+
+def _weak(monster: dict) -> str:
+    return render_weak(monster, "mhwilds")
+
+
+def test_ailment_labels_are_single_characters():
+    txt = _weak({"name_zh": "煌雷龙", "ailments": dict(FULL_AILMENTS)})
+    body = [l for l in txt.splitlines() if l.startswith("- ")]
+    assert body == [
+        "- **毒**：150",
+        "- **眠**：150",
+        "- **麻**：300",
+        "- **爆**：70",
+        "- **晕**：150",
+        "- **减气**：225",  # 减气保持不变
+    ]
+
+
+def test_ailment_values_are_preserved():
+    txt = _weak({"name_zh": "X", "ailments": dict(FULL_AILMENTS)})
+    for value in FULL_AILMENTS.values():
+        assert str(value) in txt
+
+
+def test_unknown_ailment_keys_pass_through():
+    """没登记过的键宁可长一点，也不能被丢掉。"""
+    txt = _weak({"name_zh": "X", "ailments": {"怪异化": 99}})
+    assert "- **怪异化**：99" in txt
+
+
+def test_english_ailment_keys_from_mhworld_are_labelled():
+    """世界的 kiranico 页混进了英文键。"""
+    txt = _weak({"name_zh": "X", "ailments": {"Mount": 50, "Captures": 150, "Stamina": 225}})
+    assert "- **骑乘**：50" in txt
+    assert "- **捕获**：150" in txt
+    assert "- **减气**：225" in txt
+
+
+def test_elemental_weakness_uses_only_the_five_elements():
+    """肉质表最后一列的「麻」数值其实是晕厥，不能当成属性弱点。"""
+    txt = _weak(SAMPLE_MONSTER)
+    section = txt.split("属性弱点概览", 1)[1]
+    # SAMPLE_MONSTER 两行的属性值是 [0,15,20,15,30,100] / [0,5,10,5,20,0]
+    assert "- **火**：0" in section
+    assert "- **水**：15" in section
+    assert "- **雷**：20" in section
+    assert "- **冰**：15" in section
+    assert "- **龙**：30" in section
+    assert "**麻**" not in section, "麻（=晕厥）不属于属性弱点，这一行必须没有"
+    assert "100" not in section, "100 是那一列「麻」的最大值，删掉后不该再出现"
+
+
+def test_elemental_weakness_takes_the_max_across_parts():
+    monster = {
+        "name_zh": "X",
+        "meat": {
+            "headers": ["部位", "状态", "斩", "打", "弹", "火", "水", "雷", "冰", "龙", "麻"],
+            "rows": [
+                {"part": "头", "state": "通常", "values": [1, 1, 1, 5, 25, 0, 10, 0, 999]},
+                {"part": "身", "state": "通常", "values": [1, 1, 1, 12, 5, 20, 3, 0, 0]},
+            ],
+        },
+    }
+    txt = render_weak(monster, "mhwilds")
+    assert "- **火**：12" in txt
+    assert "- **水**：25" in txt
+    assert "- **雷**：20" in txt
+    assert "999" not in txt
+
+
+def test_render_weak_without_ailments():
+    txt = render_weak({"name_zh": "X"}, "mhrise")
+    assert "该作品暂无状态异常数据。" in txt
+    assert "属性弱点概览" not in txt
+
+
+def test_render_weak_keeps_the_monster_name_heading():
+    txt = _weak({"name_zh": "煌雷龙", "ailments": {"毒": 1}})
+    assert txt.startswith("## ⚔️ 煌雷龙")

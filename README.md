@@ -109,6 +109,11 @@ v0.3.0 起格式化层统一产出 **markdown**，再由配置项 `output_mode` 
 >   表格较宽的怪物上出现）；
 > - 正文字号 **24px**（AstrBot 官方 `base.html` 的基准是 25px，之前只有 15px）；
 > - 通过 `options={"quality": 92}` 覆盖默认的 40。
+
+> **卡片顶部的怪物图标**（v0.3.5 起）：`image` 模式下，卡片顶部会居中显示该怪物的
+> 图鉴图标，下面的怪物名也居中。图标只出现在图片里 —— `text` / `markdown` 输出
+> **完全不变**。图标取自 kiranico（见「数据来源与归属」），URL 随数据一起提交，
+> 加载失败时（图挂了 / 端点取不到）会直接隐藏，卡片退化成「只有居中的怪物名」。
 >
 > 老版本 AstrBot 的 `html_render` 没有 `options` 形参，插件会捕获 `TypeError` 后
 > **改用默认参数重试一次**，所以不会因为传参而丢掉图片模式。
@@ -232,11 +237,13 @@ git push
 |---|---|---|
 | `default_game` | `mhwilds` | 未指定 game 时的默认作品 |
 | `enable_world` / `enable_rise` / `enable_wilds` | `true` | 启用对应作品 |
-| `with_icon` | `false` | 是否在结果附带怪物图鉴图标 |
 | `output_mode` | `auto` | 结果输出方式：`auto` / `text` / `markdown` / `image`，见上一节 |
 | `proxy` | `""` | 抓取 kiranico 时使用的代理 URL |
 | `max_rows_per_message` | `30` | 单条消息最多行数，超出后截断 |
 | `allow_runtime_update` | `true` | 是否允许 `/mh 更新` 在线刷新 |
+
+> v0.3.5 起删掉了 `with_icon`（一个从没被读取过的死配置）。怪物图标现在只在
+> `image` 模式下自动出现在卡片顶部，不需要也无法单独开关。
 
 ---
 
@@ -247,6 +254,16 @@ git push
 - `mhworld.kiranico.com`(MHWorld / Iceborne,英语页面,**无中文**)
 - `mhrise.kiranico.com`(MHRise / Sunbreak,英语页面,**无中文**)
 - `mhwilds.kiranico.com`(MHWilds,**含中文**)
+
+**怪物图标**同样来自这三个站点的列表页（每只怪一张小图，采集规则见
+`scraper/icons.py`），URL 随 `data/monsters/*.json` 一起提交，所以**查询时不需要联网**；
+真正去取图的是 AstrBot 的文转图端点。三个站点的列表页结构各不相同，各自的地址是：
+
+| 作品 | 列表页 |
+|---|---|
+| 荒野 | `https://mhwilds.kiranico.com/zh/data/monsters` |
+| 崛起 | `https://mhrise.kiranico.com/zh/data/monsters?view=lg` |
+| 世界 | `https://mhworld.kiranico.com/zh/monsters` |
 
 MHWorld 和 MHRise 的怪物 / 技能名字在 kiranico 上仅提供英文/日文,本插件默认显示英文名(可在插件内手动添加中文别名)。MHWilds 的中文直接来自 kiranico。
 
@@ -275,6 +292,7 @@ astrbot_plugin_mhhelper/
 │   ├── base.py
 │   ├── kiranico.py
 │   ├── common.py            ← 三作的抓取器
+│   ├── icons.py             ← 三站列表页的怪物图标解析(纯正则,测试可离线跑)
 │   ├── normalize.py
 │   └── run_update.py
 ├── data/                    ← 全量静态 JSON(随仓库提交，与 AstrBot 的 data/ 无关)
@@ -299,6 +317,7 @@ astrbot_plugin_mhhelper/
 │   ├── test_render.py       ← markdown 降级 / 模式决策 / light_table 导入兼容
 │   ├── test_state_dir.py    ← 运行期状态目录解析 + 旧数据迁移
 │   ├── test_import_bootstrap.py ← 子模块淘汰规则（插件更新后仍用旧代码的根因）
+│   ├── test_icons.py        ← 三站图标解析规则（含各站的反例）
 │   └── test_*.py
 └── .github/workflows/data-refresh.yml
 ```
