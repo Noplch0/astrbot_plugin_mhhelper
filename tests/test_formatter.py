@@ -39,22 +39,20 @@ def test_render_monster_info_includes_basic_fields():
     assert "4,500" in txt or "4500" in txt
 
 
-def test_render_meat_aligns_columns():
+def test_render_meat_includes_values():
     txt = render_meat(SAMPLE_MONSTER, "mhwilds")
     lines = txt.splitlines()
-    # table separator lines start with '+' and end with '+'
-    assert any(line.startswith("+") and line.endswith("+") for line in lines)
+    # No heavy ASCII borders in the new style — only plain text + spaces.
+    assert not any(line.startswith("+") and line.endswith("+") for line in lines)
+    # header row present
+    assert "部位" in txt
+    assert "斩" in txt
     # every numeric value from the rows appears in the output
     for v in [70, 75, 65, 100, 35, 30, 25]:
         assert str(v) in txt
 
 
-def test_render_meat_empty_data():
-    txt = render_meat({"name_zh": "X", "name_en": "X"}, "mhworld")
-    assert "暂无肉质" in txt
-
-
-def test_render_skill_shows_levels():
+def test_render_skill_uses_list_style():
     s = {
         "name_zh": "攻击力强化",
         "name_en": "Attack Boost",
@@ -64,3 +62,18 @@ def test_render_skill_shows_levels():
     assert "攻击力强化" in txt
     assert "+3" in txt
     assert "+6" in txt
+    # New style: levels as `Lv N  effect` lines, no border characters
+    assert "Lv 1" in txt
+    assert "Lv 2" in txt
+    assert not any(line.startswith("+") and line.endswith("+") for line in txt.splitlines())
+
+
+def test_render_meat_empty_data():
+    txt = render_meat({"name_zh": "X", "name_en": "X"}, "mhworld")
+    assert "暂无肉质" in txt
+
+
+def test_render_skill_no_data():
+    s = {"name_zh": "X", "name_en": "X"}
+    txt = render_skill(s, "mhwilds")
+    assert "暂无" in txt or "X" in txt
