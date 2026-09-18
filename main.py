@@ -1,33 +1,38 @@
 """AstrBot plugin entry: Monster Hunter information lookup (MHWorld / MHRise / MHWilds).
 
-Every subcommand is registered as a first-class AstrBot command so each one
-appears in the admin UI's command list (where the previous single-decorator
-version only exposed `mh` itself).
+The whole plugin exposes exactly **one** AstrBot command (group):
 
-Registered commands:
+    /mh <子命令> [名字] [作品]
 
-  /mh                show help
-  /mh肉质 <名> [game]    meat / hit zone table
-  /mh弱点 <名> [game]    elemental weakness + ailments
-  /mh素材 <名> [game]    carve / break / reward materials
-  /mh怪物 <名> [game]    monster basic info
-  /mh怪物列表 [game]     list large monsters in the given game
-  /mh技能 <名> [game]    skill level effects
-  /mh技能列表 [game]      list skills in the given game
-  /mh作品             list enabled games
-  /mh更新 [game]      admin: refresh data from kiranico
+Registering a single command group instead of ~20 flat commands is what makes
+the WebUI 「指令管理」 page readable: it shows one collapsible `mh` row whose
+badge counts the sub-commands, and expanding it lists the second-level
+sub-commands with their descriptions (taken from each handler's docstring).
 
-Each handler also accepts the corresponding English form
-(mh_meat, mh_weak, mh_monster, mh_monsters, mh_skill, mh_skills,
-mh_games, mh_update, mh_help).
+    /mh 帮助              查看完整帮助            (help)
+    /mh 怪物列表 [作品]     列出该作大型怪物         (monsters)
+    /mh 怪物 <名字> [作品]  怪物基础信息            (monster)
+    /mh 肉质 <名字> [作品]  肉质表                  (meat)
+    /mh 弱点 <名字> [作品]  属性弱点与状态异常       (weak)
+    /mh 素材 <名字> [作品]  剥取 / 破坏 / 目标报酬   (rewards)
+    /mh 技能列表 [作品]     列出该作技能            (skills)
+    /mh 技能 <名字> [作品]  技能各等级效果          (skill)
+    /mh 作品              列出已启用作品            (games)
+    /mh 更新 [作品]         管理员：在线刷新数据      (update)
 
-`game` is optional and defaults to the user's last-used game (or mhwilds).
-Game identifiers: mhworld / mhrise / mhwilds  (and 世界 / 崛起 / 荒野 etc.).
+括号里是等价别名：`/mh meat Rathian` == `/mh 肉质 Rathian`。
+
+`作品` 可省略；省略时按「该用户上次使用 → 配置 default_game」解析。
+作品标识支持：mhworld / world / 世界、mhrise / rise / 崛起、mhwilds / wilds / 荒野。
+
+用户直接发送裸 `/mh`（不带子命令）时，AstrBot 会自动渲染出本指令组的树形
+结构（含子指令描述），因此无需再额外注册一个「帮助」根命令。
 """
 from __future__ import annotations
 
 import json
 import logging
+import re
 import sys
 import time
 from pathlib import Path
@@ -73,18 +78,50 @@ from core.skill_index import get_skill_index  # noqa: E402
 log = logging.getLogger("astrbot-mhhelper")
 
 PLUGIN_NAME = "astrbot_plugin_mhhelper"
+PLUGIN_VERSION = "0.2.0"
+
+#: 指令组名与别名 —— 面板里显示的顶层条目就是它。
+GROUP_NAME = "mh"
+GROUP_ALIASES: set[str] = {"怪物猎人"}
+_GROUP_TOKENS: frozenset[str] = frozenset(
+    {GROUP_NAME.lower(), *(a.lower() for a in GROUP_ALIASES)}
+)
+
+#: 唤醒前缀之外可能残留的前导符号（用户 `@bot /mh …` 时 AstrBot 不会剥离前缀）。
+_LEADING_JUNK = "/!！~.。、"
 
 GAME_ALIASES: dict[str, str] = {
     "world": "mhworld",
     "mhworld": "mhworld",
+    "iceborne": "mhworld",
     "rise": "mhrise",
     "mhrise": "mhrise",
+    "sunbreak": "mhrise",
     "wilds": "mhwilds",
     "mhwilds": "mhwilds",
     "荒野": "mhwilds",
     "崛起": "mhrise",
     "世界": "mhworld",
     "曙光": "mhrise",
+}
+
+#: 只接受「作品」一个参数的子命令（没有「名字」参数）。
+_GAME_ONLY_SUBS: frozenset[str] = frozenset({"monsters", "skills", "games", "update"})
+
+#: 作品 → 控制其可用性的配置项。
+_ENABLE_CONFIG_KEY: dict[str, str] = {
+    "mhworld": "enable_world",
+    "mhrise": "enable_rise",
+    "mhwilds": "enable_wilds",
+}
+
+#: 缺少「名字」参数时提示的用法片段，键为 _dispatch 的内部子命令标识。
+USAGE: dict[str, str] = {
+    "monster": "怪物 <名字> [作品]",
+    "meat": "肉质 <名字> [作品]",
+    "weak": "弱点 <名字> [作品]",
+    "rewards": "素材 <名字> [作品]",
+    "skill": "技能 <名字> [作品]",
 }
 
 
@@ -100,7 +137,7 @@ def _looks_like_game(token: str) -> bool:
     return token in GAMES or token in GAME_ALIASES
 
 
-@register(PLUGIN_NAME, "Noplch0", "怪物猎人信息查询 (MHWorld / MHRise / MHWilds)", "0.1.0")
+@register(PLUGIN_NAME, "Noplch0", "怪物猎人信息查询 (MHWorld / MHRise / MHWilds)", PLUGIN_VERSION)
 class MHHelperPlugin(Star):
     def __init__(self, context, config: AstrBotConfig | None = None):
         super().__init__(context)
@@ -141,22 +178,15 @@ class MHHelperPlugin(Star):
     def _init_indexes(self) -> None:
         loader = get_loader()
         loader.invalidate()
+        enabled = {
+            game: bool(self.config.get(key, True))
+            for game, key in _ENABLE_CONFIG_KEY.items()
+        }
+        self._enabled_games = {g for g, on in enabled.items() if on}
         self._monster_idx = get_monster_index()
-        self._monster_idx.configure(
-            {
-                "mhworld": bool(self.config.get("enable_world", True)),
-                "mhrise": bool(self.config.get("enable_rise", True)),
-                "mhwilds": bool(self.config.get("enable_wilds", True)),
-            }
-        )
+        self._monster_idx.configure(enabled)
         self._skill_idx = get_skill_index()
-        self._skill_idx.configure(
-            {
-                "mhworld": bool(self.config.get("enable_world", True)),
-                "mhrise": bool(self.config.get("enable_rise", True)),
-                "mhwilds": bool(self.config.get("enable_wilds", True)),
-            }
-        )
+        self._skill_idx.configure(enabled)
         for g in GAMES:
             try:
                 self._monster_idx.reload(g)
@@ -200,118 +230,135 @@ class MHHelperPlugin(Star):
             return ""
 
     @staticmethod
-    def _strip_command(message_str: str, command: str) -> str:
-        """Strip a leading `/command` (case-insensitive, optional slash) from message_str."""
-        text = (message_str or "").lstrip()
-        for v in (f"/{command}", command):
-            if text[: len(v)].lower() == v.lower():
-                return text[len(v):].lstrip()
-        return text
+    def _arg_tokens(event: AstrMessageEvent) -> list[str]:
+        """Return the argument tokens a sub-command handler should parse.
 
-    # ------------------- shared dispatch -------------------
-
-    async def _dispatch(self, event: AstrMessageEvent, sub: str, raw_body: str):
-        """Single dispatch used by every command handler.
-
-        `raw_body` is the message text with the leading command token already
-        stripped — it's where we look for `[<name>...] [<game>]`.
+        AstrBot strips the wake prefix but leaves the command itself in
+        `event.message_str`, so `/mh 肉质 火龙` reaches the handler as
+        `"mh 肉质 火龙"`. The first token is the group name and the second is
+        the sub-command; everything after those is the actual argument list.
         """
-        parts = raw_body.strip().split()
+        text = re.sub(r"\s+", " ", (event.message_str or "").strip())
+        text = text.lstrip(_LEADING_JUNK).strip()
+        tokens = [t for t in text.split(" ") if t]
+        # 找到指令组名（mh / 别名），其后第一个 token 才是子指令名。
+        for i, tok in enumerate(tokens):
+            if tok.lower() in _GROUP_TOKENS:
+                return tokens[i + 2:]
+        # 理论上不会被走到；退化为「跳过子指令名」。
+        return tokens[1:]
+
+    def _split_args(self, event: AstrMessageEvent, sub: str) -> tuple[str, list[str]]:
+        """Resolve `[名字…] [作品]` into (game, name_tokens)."""
+        parts = self._arg_tokens(event)
         game_hint = None
-        # Last token may be a game hint
+        # 最后一个 token 可能是作品标识
         if parts and _looks_like_game(parts[-1]):
             game_hint = _resolve_game(parts[-1])
             parts = parts[:-1]
-        elif sub in {"monsters", "skills", "games", "update"} and parts:
-            # These subcommands take an optional single game hint
+        elif sub in _GAME_ONLY_SUBS and parts:
+            # 这些子命令只接受一个可选的作品标识
             only = _resolve_game(parts[0])
             if only in GAMES:
                 game_hint = only
                 parts = parts[1:]
-        name_args = parts
-
         game = game_hint or self._user_default_game(event)
+        return game, parts
+
+    # ------------------- shared dispatch -------------------
+
+    async def _dispatch(self, event: AstrMessageEvent, sub: str):
+        """Single dispatch used by every sub-command handler."""
+        game, name_args = self._split_args(event, sub)
+
+        if sub == "help":
+            yield event.plain_result(render_help())
+            return
+
         if game not in GAMES:
-            yield event.plain_result(render_error("未知作品", f"未识别的作品标识: {game}", list(GAME_LABELS)))
+            yield event.plain_result(
+                render_error("未知作品", f"未识别的作品标识: {game}", list(GAME_LABELS))
+            )
+            return
+        if game not in self._enabled_games:
+            yield event.plain_result(
+                render_error(
+                    "作品不可用",
+                    f"{GAME_LABELS.get(game, game)} 已在插件配置中禁用。",
+                )
+            )
             return
         self._remember_game(event, game)
 
+        max_rows = self.config.get("max_rows_per_message", 30)
+
         try:
-            if sub == "help":
-                yield event.plain_result(render_help())
-                return
             if sub == "games":
                 yield event.plain_result(render_games(self._monster_idx.list_games()))
                 return
             if sub == "monsters":
                 monsters = self._monster_idx.list_monsters(game)
-                yield event.plain_result(
-                    render_monster_list(game, monsters, self.config.get("max_rows_per_message", 30))
-                )
+                yield event.plain_result(render_monster_list(game, monsters, max_rows))
                 return
             if sub == "skills":
                 skills = self._skill_idx.list_skills(game)
-                yield event.plain_result(
-                    render_skill_list(game, skills, self.config.get("max_rows_per_message", 30))
-                )
+                yield event.plain_result(render_skill_list(game, skills, max_rows))
                 return
-            if sub == "monster":
+            if sub in {"monster", "meat", "weak", "rewards", "skill"}:
                 if not name_args:
-                    yield event.plain_result(render_error("缺少参数", "用法: /mh怪物 <名字> [作品]"))
+                    yield event.plain_result(
+                        render_error(
+                            "缺少参数",
+                            f"用法: /mh {USAGE[sub]}",
+                        )
+                    )
                     return
+            if sub == "monster":
                 _, monster, resolved_game = self._monster_idx.lookup(" ".join(name_args), game)
                 yield event.plain_result(render_monster_info(monster, resolved_game))
                 return
             if sub == "meat":
-                if not name_args:
-                    yield event.plain_result(render_error("缺少参数", "用法: /mh肉质 <名字> [作品]"))
-                    return
                 _, monster, resolved_game = self._monster_idx.lookup(" ".join(name_args), game)
-                yield event.plain_result(
-                    render_meat(monster, resolved_game, self.config.get("max_rows_per_message", 30))
-                )
+                yield event.plain_result(render_meat(monster, resolved_game, max_rows))
                 return
             if sub == "weak":
-                if not name_args:
-                    yield event.plain_result(render_error("缺少参数", "用法: /mh弱点 <名字> [作品]"))
-                    return
                 _, monster, resolved_game = self._monster_idx.lookup(" ".join(name_args), game)
                 yield event.plain_result(render_weak(monster, resolved_game))
                 return
             if sub == "rewards":
-                if not name_args:
-                    yield event.plain_result(render_error("缺少参数", "用法: /mh素材 <名字> [作品]"))
-                    return
                 _, monster, resolved_game = self._monster_idx.lookup(" ".join(name_args), game)
-                yield event.plain_result(
-                    render_rewards(monster, resolved_game, self.config.get("max_rows_per_message", 30))
-                )
+                yield event.plain_result(render_rewards(monster, resolved_game, max_rows))
                 return
             if sub == "skill":
-                if not name_args:
-                    yield event.plain_result(render_error("缺少参数", "用法: /mh技能 <名字> [作品]"))
-                    return
                 _, skill, resolved_game = self._skill_idx.lookup(" ".join(name_args), game)
                 yield event.plain_result(render_skill(skill, resolved_game))
                 return
             if sub == "update":
-                async for r in self._cmd_update(game):
+                async for r in self._cmd_update(event, game):
                     yield r
                 return
             yield event.plain_result(render_help())
         except MonsterNotFound as exc:
             yield event.plain_result(
-                render_error("未找到怪物", f"在 {GAME_LABELS.get(game, game)} 中找不到: {exc.query}", exc.suggestions)
+                render_error(
+                    "未找到怪物",
+                    f"在 {GAME_LABELS.get(game, game)} 中找不到: {exc.query}",
+                    exc.suggestions,
+                )
             )
         except SkillNotFound as exc:
             yield event.plain_result(
-                render_error("未找到技能", f"在 {GAME_LABELS.get(game, game)} 中找不到: {exc.query}", exc.suggestions)
+                render_error(
+                    "未找到技能",
+                    f"在 {GAME_LABELS.get(game, game)} 中找不到: {exc.query}",
+                    exc.suggestions,
+                )
             )
         except DataNotLoaded as exc:
             yield event.plain_result(
                 render_error(
                     "数据未加载",
-                    f"该作品的数据未就绪。请联系管理员执行 /mh更新 {exc.game} 或重新安装插件。",
+                    f"该作品的数据未就绪。请联系管理员执行 /mh 更新 {exc.game} 或重新安装插件。",
                 )
             )
         except (InvalidGame, GameDisabled) as exc:
@@ -320,9 +367,11 @@ class MHHelperPlugin(Star):
             log.exception("Handler error: %s", exc)
             yield event.plain_result(render_error("内部错误", str(exc)))
 
-    async def _cmd_update(self, game: str):
+    async def _cmd_update(self, event: AstrMessageEvent, game: str):
         if not self.config.get("allow_runtime_update", True):
-            yield event.plain_result(render_error("已禁用", "管理员已禁用在线刷新。请让管理员重新安装插件。"))
+            yield event.plain_result(
+                render_error("已禁用", "管理员已禁用在线刷新。请让管理员重新安装插件。")
+            )
             return
         yield event.plain_result(f"⏳ 正在从 kiranico 拉取 {GAME_LABELS.get(game, game)} 数据…")
         try:
@@ -345,93 +394,71 @@ class MHHelperPlugin(Star):
         self._init_indexes()
         yield event.plain_result(render_update_result(game, monsters, skills, time.time() - t0))
 
-    # ------------------- registered commands -------------------
-    # Each `@filter.command(...)` makes the subcommand individually visible
-    # in AstrBot's admin command list. They all dispatch to `_dispatch(...)`.
+    # ------------------- command group -------------------
+    # 「指令管理」面板会把下面这一整块收拢成一个可展开的 `mh` 行；
+    # 每个子命令的 docstring 就是面板/树形结构里显示的中文说明。
 
-    @filter.command("mh")
-    async def cmd_mh(self, event: AstrMessageEvent):
-        """`/mh` — show help."""
-        body = self._strip_command(event.message_str, "mh")
-        async for r in self._dispatch(event, "help", body):
+    @filter.command_group(GROUP_NAME, alias=GROUP_ALIASES)
+    def mh(self):
+        """怪物猎人信息查询：肉质 / 弱点 / 素材 / 技能 / 怪物 / 作品"""
+
+    @mh.command("帮助", alias={"help", "用法"})
+    async def mh_help(self, event: AstrMessageEvent):
+        """查看完整帮助：全部子命令、作品标识与用法示例"""
+        async for r in self._dispatch(event, "help"):
             yield r
 
-    @filter.command("mh_help")
-    @filter.command("mh帮助")
-    async def cmd_help(self, event: AstrMessageEvent):
-        """`/mh_help` / `/mh帮助` — show help."""
-        body = self._strip_command(event.message_str, "mh_help")
-        async for r in self._dispatch(event, "help", body):
+    @mh.command("怪物列表", alias={"monsters", "怪物表", "list"})
+    async def mh_monsters(self, event: AstrMessageEvent):
+        """列出该作品的全部大型怪物（用法：/mh 怪物列表 [作品]）"""
+        async for r in self._dispatch(event, "monsters"):
             yield r
 
-    # ----- meat / 肉质 -----
-    @filter.command("mh肉质")
-    @filter.command("mh_meat")
-    async def cmd_meat(self, event: AstrMessageEvent):
-        body = self._strip_command(event.message_str, "mh肉质")
-        async for r in self._dispatch(event, "meat", body):
+    @mh.command("怪物", alias={"monster", "info"})
+    async def mh_monster(self, event: AstrMessageEvent):
+        """查看怪物基础信息：种类 / HR 点数 / 基础 HP（用法：/mh 怪物 <名字> [作品]）"""
+        async for r in self._dispatch(event, "monster"):
             yield r
 
-    # ----- weak / 弱点 -----
-    @filter.command("mh弱点")
-    @filter.command("mh_weak")
-    async def cmd_weak(self, event: AstrMessageEvent):
-        body = self._strip_command(event.message_str, "mh弱点")
-        async for r in self._dispatch(event, "weak", body):
+    @mh.command("肉质", alias={"meat", "肉"})
+    async def mh_meat(self, event: AstrMessageEvent):
+        """查看怪物各部位肉质表：斩 / 打 / 弹 / 火水雷冰龙（用法：/mh 肉质 <名字> [作品]）"""
+        async for r in self._dispatch(event, "meat"):
             yield r
 
-    # ----- rewards / 素材 -----
-    @filter.command("mh素材")
-    @filter.command("mh_rewards")
-    async def cmd_rewards(self, event: AstrMessageEvent):
-        body = self._strip_command(event.message_str, "mh素材")
-        async for r in self._dispatch(event, "rewards", body):
+    @mh.command("弱点", alias={"weak", "属性"})
+    async def mh_weak(self, event: AstrMessageEvent):
+        """查看属性弱点概览与状态异常累积值（用法：/mh 弱点 <名字> [作品]）"""
+        async for r in self._dispatch(event, "weak"):
             yield r
 
-    # ----- monster / 怪物 (info) -----
-    @filter.command("mh怪物")
-    @filter.command("mh_monster")
-    async def cmd_monster(self, event: AstrMessageEvent):
-        body = self._strip_command(event.message_str, "mh怪物")
-        async for r in self._dispatch(event, "monster", body):
+    @mh.command("素材", alias={"rewards", "报酬", "掉落"})
+    async def mh_rewards(self, event: AstrMessageEvent):
+        """查看剥取 / 部位破坏 / 目标报酬素材（用法：/mh 素材 <名字> [作品]）"""
+        async for r in self._dispatch(event, "rewards"):
             yield r
 
-    # ----- monsters / 怪物列表 -----
-    @filter.command("mh怪物列表")
-    @filter.command("mh_monsters")
-    async def cmd_monsters(self, event: AstrMessageEvent):
-        body = self._strip_command(event.message_str, "mh怪物列表")
-        async for r in self._dispatch(event, "monsters", body):
+    @mh.command("技能列表", alias={"skills", "技能表"})
+    async def mh_skills(self, event: AstrMessageEvent):
+        """列出该作品的全部技能（用法：/mh 技能列表 [作品]）"""
+        async for r in self._dispatch(event, "skills"):
             yield r
 
-    # ----- skill / 技能 (info) -----
-    @filter.command("mh技能")
-    @filter.command("mh_skill")
-    async def cmd_skill(self, event: AstrMessageEvent):
-        body = self._strip_command(event.message_str, "mh技能")
-        async for r in self._dispatch(event, "skill", body):
+    @mh.command("技能", alias={"skill"})
+    async def mh_skill(self, event: AstrMessageEvent):
+        """查看技能各等级效果（用法：/mh 技能 <名字> [作品]）"""
+        async for r in self._dispatch(event, "skill"):
             yield r
 
-    # ----- skills / 技能列表 -----
-    @filter.command("mh技能列表")
-    @filter.command("mh_skills")
-    async def cmd_skills(self, event: AstrMessageEvent):
-        body = self._strip_command(event.message_str, "mh技能列表")
-        async for r in self._dispatch(event, "skills", body):
+    @mh.command("作品", alias={"games", "game"})
+    async def mh_games(self, event: AstrMessageEvent):
+        """列出已启用、可查询的作品"""
+        async for r in self._dispatch(event, "games"):
             yield r
 
-    # ----- games / 作品 -----
-    @filter.command("mh作品")
-    @filter.command("mh_games")
-    async def cmd_games(self, event: AstrMessageEvent):
-        body = self._strip_command(event.message_str, "mh作品")
-        async for r in self._dispatch(event, "games", body):
-            yield r
-
-    # ----- update / 更新 -----
-    @filter.command("mh更新")
-    @filter.command("mh_update")
-    async def cmd_update(self, event: AstrMessageEvent):
-        body = self._strip_command(event.message_str, "mh更新")
-        async for r in self._dispatch(event, "update", body):
+    @filter.permission_type(filter.PermissionType.ADMIN)
+    @mh.command("更新", alias={"update", "刷新"})
+    async def mh_update(self, event: AstrMessageEvent):
+        """管理员：从 kiranico 在线刷新该作品数据（用法：/mh 更新 [作品]）"""
+        async for r in self._dispatch(event, "update"):
             yield r

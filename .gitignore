@@ -53,3 +53,6 @@ scraper/.cache/
 
 # Local debug / probe scripts that should never be tracked
 scripts/_*.py
+
+# Agent / tooling workspace data (memory notes, not part of the plugin)
+.workbuddy/

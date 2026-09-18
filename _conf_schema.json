@@ -38,6 +38,6 @@
   "allow_runtime_update": {
     "type": "bool",
     "default": true,
-    "description": "是否允许 /mh update 在线刷新数据(需要能直连 kiranico)"
+    "description": "是否允许 /mh 更新 在线刷新数据(需要能直连 kiranico)"
   }
 }

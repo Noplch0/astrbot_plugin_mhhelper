@@ -22,22 +22,58 @@ AstrBot 会自动 git clone → 把仓库根拷贝到 `data/plugins/astrbot_plug
 
 ## 命令速查
 
+插件的所有功能都收在一个 **AstrBot 指令组** `/mh` 下,统一格式:
+
 ```
-/mh 怪物列表 [game]   列出该作大型怪物
-/mh 怪物 <名> [game]   怪物基础信息(种类/HR点/HP)
-/mh 肉质 <名> [game]   肉质表(斩/打/弹/火/水/雷/冰/龙/麻)
-/mh 弱点 <名> [game]   属性弱点与状态异常累积
-/mh 素材 <名> [game]   剥取/破坏/目标报酬
-/mh 技能列表 [game]    列出该作技能
-/mh 技能 <名> [game]   技能各等级效果
-/mh 作品               列出已启用作品
-/mh 更新 [game]        管理员:在线刷新数据
-/mh 帮助               帮助
+/mh <子命令> [名字] [作品]
 ```
 
-`game` 可省略;省略时按"上次使用 → 默认 mhwilds"。作品标识支持:`mhworld / world / 世界`、`mhrise / rise / 崛起`、`mhwilds / wilds / 荒野`。
+**怪物**
 
-支持中英文别名混用,例如 `/mh 肉质 雌火龙`、`/mh meat Rathian`、`/mh 肉质 雷颚龙 mhrise`。
+| 命令 | 说明 |
+|---|---|
+| `/mh 怪物列表 [作品]` | 列出该作大型怪物 |
+| `/mh 怪物 <名字> [作品]` | 怪物基础信息(种类 / HR 点数 / HP) |
+| `/mh 肉质 <名字> [作品]` | 肉质表(斩 / 打 / 弹 / 火水雷冰龙 / 麻) |
+| `/mh 弱点 <名字> [作品]` | 属性弱点与状态异常累积 |
+| `/mh 素材 <名字> [作品]` | 剥取 / 破坏 / 目标报酬 |
+
+**技能**
+
+| 命令 | 说明 |
+|---|---|
+| `/mh 技能列表 [作品]` | 列出该作技能 |
+| `/mh 技能 <名字> [作品]` | 技能各等级效果 |
+
+**其他**
+
+| 命令 | 说明 |
+|---|---|
+| `/mh 作品` | 列出已启用的作品 |
+| `/mh 更新 [作品]` | 管理员: 在线刷新数据 |
+| `/mh 帮助` | 显示完整帮助 |
+
+每个子命令都注册了英文 / 简写别名: `help` `monsters` `monster` `meat` `weak`
+`rewards` `skills` `skill` `games` `update`,以及 `肉` `属性` `报酬` `掉落` `刷新` 等中文简写。
+`/mh meat Rathian` 等价于 `/mh 肉质 Rathian`。
+
+`作品` 可省略;省略时按"该用户上次使用 → 配置默认作品"解析。作品标识支持:
+`mhworld / world / 世界 / iceborne`、`mhrise / rise / 崛起 / sunbreak`、`mhwilds / wilds / 荒野`。
+指令组本身也有别名 `/怪物猎人`。
+
+---
+
+## 管理面板里的指令
+
+插件只注册 **一个** AstrBot 指令组,因此管理面板 → 插件 → 指令管理 里只会看到一行
+`mh`;点击展开即可看到上面的二级命令列表和各自的中文介绍,并可对单个子指令
+**启用 / 禁用 / 重命名**。相比把每个功能都注册成独立顶层命令,面板清爽很多。
+
+> 直接发送裸 `/mh`(不带子命令)时,AstrBot 会自动渲染出该指令组的树形结构,内容与
+> 面板中的列表一致 —— 所以"帮助"既有 `/mh 帮助` 的排版版,也有 `/mh` 的速查版。
+
+`/mh 更新` 标记为管理员指令,只有 `admins_id` 中的用户可触发,且需要
+`allow_runtime_update` 为 `true`。
 
 ---
 
@@ -73,12 +109,16 @@ git push
 
 | 用户输入 | 解析为 |
 |---|---|
-| `/mh 肉质 火龙` | 肉质查询,默认 mhwilds |
+| `/mh 肉质 火龙` | 肉质查询,使用你的默认作品 |
 | `/mh 肉质 火龙 mhrise` | 肉质查询,显式指定崛起 |
 | `/mh meat Rathian wilds` | 英文别名查询,作品用英文标识 |
-| `/mh 技能 攻击 boost` | 模糊匹配"攻击 boost"系列技能 |
-| `/mh 怪物列表` | 列出 mhwilds 怪物 |
+| `/mh 技能 攻击` | 模糊匹配"攻击"系列技能 |
+| `/mh 怪物列表` | 列出上次使用作品的怪物 |
 | `/mh 更新 mhwilds` | 管理员刷新 mhwilds 数据 |
+| `/mh` | 渲染指令组树形结构(速查) |
+
+> 注意子命令与参数之间需要空格:`/mh 肉质 火龙`。旧版的连写形式
+> `/mh肉质`(v0.1.x)已不再支持,详见 `RELEASE_NOTES_v0.2.0.md`。
 
 ---
 
@@ -114,7 +154,7 @@ MHWorld 和 MHRise 的怪物 / 技能名字在 kiranico 上仅提供英文/日�
 ```
 astrbot_plugin_mhhelper/
 ├── metadata.yaml            ← AstrBot 插件清单(关键)
-├── main.py                  ← 命令分发入口(@register)
+├── main.py                  ← AstrBot 指令组 mh 的注册与分发(@register)
 ├── _conf_schema.json        ← 配置 schema
 ├── requirements.txt         ← 运行期依赖(httpx / bs4 / lxml)
 ├── requirements-dev.txt     ← 开发期额外依赖(jieba / pytest)
@@ -141,8 +181,14 @@ astrbot_plugin_mhhelper/
 │       ├── mhworld.json
 │       ├── mhrise.json
 │       └── mhwilds.json
-├── scripts/bootstrap_data.py
+├── scripts/
+│   ├── bootstrap_data.py    ← 维护者全量刷新数据
+│   └── _import_test.py      ← 本地冒烟测试(被 .gitignore 排除,不入库)
 ├── tests/
+│   ├── fixtures/            ← 离线样本 JSON
+│   ├── _astrbot_fake.py     ← AstrBot 注册/过滤器层的最小仿真
+│   ├── test_command_group.py← 指令组结构 + 路由回归测试
+│   └── test_*.py
 └── .github/workflows/data-refresh.yml
 ```
 
@@ -156,6 +202,19 @@ pytest -q
 ```
 
 测试位于 `tests/`,使用 `tests/fixtures/` 内的极简样本离线运行,不需要联网。
+
+其中 `tests/test_command_group.py` 是专门锁住"面板里只有一个 `mh` 指令组"这条
+需求的回归测试:它借助 `tests/_astrbot_fake.py`(按 AstrBot 真实语义实现的
+指令组注册 / 过滤器 / 唤醒前缀仿真)加载 `main.py`,断言顶层指令数量、子指令
+名称与别名表、树形结构、每条子指令的路由与参数解析。
+
+另有一个可读性更好的本地冒烟脚本,会直接打印出指令树和逐条路由结果:
+
+```powershell
+python scripts/_import_test.py
+```
+
+退出码非 0 表示有断言失败。
 
 ---
 
