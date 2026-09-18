@@ -50,3 +50,6 @@ data/icons/
 
 # Local scrape artifacts (kept out, only committed canonical data)
 scraper/.cache/
+
+# Local debug / probe scripts that should never be tracked
+scripts/_*.py
