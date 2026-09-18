@@ -44,17 +44,108 @@ import logging
 import re
 import sys
 import time
+from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
-# Make sibling subpackages importable when AstrBot loads this file as a module.
-# AstrBot v4 imports the plugin via `__import__("astrbot_plugin_mhhelper.main", ...)`,
-# which means the plugin's own directory is not on sys.path — so `from core import …`
-# fails with ModuleNotFoundError. Prepending __file__'s parent fixes that, and
-# is a no-op when AstrBot already placed the dir on sys.path.
+# ---------------------------------------------------------------------------
+# Import bootstrap — why this is not just `sys.path.insert`
+# ---------------------------------------------------------------------------
+# AstrBot loads a plugin as `data.plugins.<目录名>.main` and, when reloading or
+# updating it, purges `sys.modules` entries whose name starts with
+# `data.plugins.<目录名>` (see `PluginManager._purge_modules` in
+# `astrbot/core/star/star_manager.py`, and the `path = "data.plugins."` +
+# `root_dir_name` construction in `load()`).
+#
+# Our own subpackages are imported by their *bare top-level* names
+# (`core.formatter`, `scraper.common`), which that prefix never matches, so a
+# reload leaves the previous version's modules alive in memory. Two real
+# consequences, both seen in the wild:
+#
+#   1. after an in-place update the new `main.py` keeps binding the *old*
+#      submodules, and fails with import errors that do not match the files on
+#      disk — e.g. `cannot import name 'light_table' from 'core.formatter'`
+#      even though the file on disk does define it;
+#   2. `core` is generic enough that another plugin can claim the name first,
+#      in which case we would silently import somebody else's code.
+#
+# Both are fixed by evicting the affected entries before we import anything.
+# `main.py` itself is always re-executed on reload (AstrBot does purge its own
+# module), so this runs exactly when it is needed.
+
 _PKG_DIR = Path(__file__).resolve().parent
+
+#: 插件自己用绝对名导入的顶层包。新增子包时**必须**同步加进来，否则它不会
+#: 在插件重载时被清掉。
+_INTERNAL_PACKAGES: tuple[str, ...] = ("core", "scraper")
+
+_boot_log = logging.getLogger("astrbot-mhhelper")
+
+
+def _module_origin(module: Any) -> Path | None:
+    """``Path(module.__file__).resolve()``, or None when unavailable."""
+    path = getattr(module, "__file__", None)
+    if not path:
+        return None
+    try:
+        return Path(path).resolve()
+    except OSError:  # pragma: no cover - 病态路径
+        return None
+
+
+def _is_inside_plugin_dir(path: Path) -> bool:
+    return path == _PKG_DIR or _PKG_DIR in path.parents
+
+
+def _stale_module_names(modules: Mapping[str, Any]) -> list[str]:
+    """Entries of ``modules`` that must be dropped before importing our code.
+
+    Anything whose *top-level* name is one of :data:`_INTERNAL_PACKAGES` — the
+    package itself, or any submodule of it. Such an entry is either our own code
+    left behind by a previous version, or another plugin squatting the name;
+    both must go so that `import core.x` resolves to the files on disk.
+
+    Deliberately name-based and narrow: the plugin directory also holds things
+    like `tests/`, and a path-based rule would evict those too. Pure function, so
+    it can be tested without touching the real ``sys.modules``.
+    """
+    return [
+        name
+        for name, module in list(modules.items())
+        if module is not None and name.split(".", 1)[0] in _INTERNAL_PACKAGES
+    ]
+
+
+def _evict_stale_modules() -> list[str]:
+    """Drop the entries reported by :func:`_stale_module_names`."""
+    names = _stale_module_names(sys.modules)
+    for name in names:
+        module = sys.modules.get(name)
+        origin = _module_origin(module) if module is not None else None
+        if origin is not None and not _is_inside_plugin_dir(origin):
+            _boot_log.warning(
+                "[astrbot_plugin_mhhelper] module %r was claimed by %s; dropping it "
+                "so our own copy wins",
+                name,
+                origin,
+            )
+        sys.modules.pop(name, None)
+    return names
+
+
+_EVICTED_MODULES: list[str] = _evict_stale_modules()
+
+# 插件目录本身也要在 sys.path 上：我们用绝对名 `core.*` 导入子包。
 if str(_PKG_DIR) not in sys.path:
     sys.path.insert(0, str(_PKG_DIR))
+
+if _EVICTED_MODULES:
+    _boot_log.info(
+        "[astrbot_plugin_mhhelper] dropped %d stale module(s) left over from a "
+        "previous load: %s",
+        len(_EVICTED_MODULES),
+        ", ".join(sorted(_EVICTED_MODULES)),
+    )
 
 from astrbot.api.event import AstrMessageEvent, filter  # noqa: E402
 from astrbot.api.star import Star, register  # noqa: E402
@@ -93,7 +184,7 @@ from core.skill_index import get_skill_index  # noqa: E402
 log = logging.getLogger("astrbot-mhhelper")
 
 PLUGIN_NAME = "astrbot_plugin_mhhelper"
-PLUGIN_VERSION = "0.3.1"
+PLUGIN_VERSION = "0.3.2"
 
 #: 运行期状态：每个用户上次查询的作品。
 STATE_FILENAME = "user_last_game.json"

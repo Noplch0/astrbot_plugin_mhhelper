@@ -134,6 +134,37 @@ Path(get_astrbot_data_path()) / "plugin_data" / "astrbot_plugin_mhhelper"
 
 ---
 
+## 更新插件后为什么还在跑旧代码
+
+AstrBot 加载插件用的是 `data.plugins.<插件目录名>.main` 这个名字，重载 / 更新插件时
+它只清理 `sys.modules` 里**以 `data.plugins.<插件目录名>` 开头**的条目（见
+`astrbot/core/star/star_manager.py` 的 `_purge_modules`）。
+
+而本插件的子包是用**裸顶层名**导入的（`core.formatter`、`scraper.common`），这个
+前缀根本匹配不到它们。于是更新插件后，进程内存里还留着上一个版本的子模块，新的
+`main.py` 会把它们绑上去 —— 表现就是**报错内容和磁盘上的文件完全对不上**，例如：
+
+```
+cannot import name 'light_table' from 'core.formatter'
+(/AstrBot/data/plugins/astrbot_plugin_mhhelper/core/formatter.py)
+```
+
+而磁盘上那个 `formatter.py` 里明明定义了 `light_table`。
+
+v0.3.2 起 `main.py` 会在导入任何子模块**之前**把这些陈旧条目从 `sys.modules` 摘掉
+（同时也处理了「别的插件先占了 `core` 这个名字」的情况），因此点一次「重载插件」
+即可生效，**不需要**重启 AstrBot。日志里能看到：
+
+```
+[astrbot_plugin_mhhelper] dropped 4 stale module(s) left over from a previous load:
+core, core.data_loader, core.errors, core.formatter
+```
+
+> `main.py` 顶部的 `_INTERNAL_PACKAGES` 必须列全插件自己的顶层包，否则新加的子包不会
+> 被清理 —— `tests/test_import_bootstrap.py` 会强制这件事。
+
+---
+
 ## 维护者:更新数据
 
 游戏更新后(尤其是 MHWilds 持续更新),刷新本仓库的 `data/`:
@@ -251,6 +282,7 @@ astrbot_plugin_mhhelper/
 │   ├── test_formatter.py    ← markdown 契约
 │   ├── test_render.py       ← markdown 降级 / 模式决策 / light_table 导入兼容
 │   ├── test_state_dir.py    ← 运行期状态目录解析 + 旧数据迁移
+│   ├── test_import_bootstrap.py ← 子模块淘汰规则（插件更新后仍用旧代码的根因）
 │   └── test_*.py
 └── .github/workflows/data-refresh.yml
 ```
@@ -273,9 +305,9 @@ pytest -q
 
 `tests/test_state_dir.py` 锁住运行期状态的存放位置:官方 API 优先级、路径反推
 降级、最后退路，以及旧 `plugin_data/user_last_game.json` 的读取与迁移。
-`tests/test_render.py` 另外锁住了 `light_table` 的双名导入兼容 —— 它防的是
-「旧 `formatter.py` + 新 `render.py`」这种混装安装导致整个插件加载失败
-（`cannot import name 'light_table' from 'core.formatter'`）。
+`tests/test_render.py` 另外锁住了 `light_table` 的双名导入兼容。
+`tests/test_import_bootstrap.py` 锁住下面「更新后仍在用旧代码」那节讲的子模块淘汰
+规则，并且会强制 `main.py` 里新出现的顶层包必须登记到 `_INTERNAL_PACKAGES`。
 
 另有一个可读性更好的本地冒烟脚本,会直接打印出指令树和逐条路由结果:
 
@@ -300,10 +332,8 @@ python scripts/_card_preview.py
 - **大表格截断**:肉质/报酬表超过 `max_rows_per_message` 会截断,显示部分。
 - **文转图依赖 AstrBot**:`image` 模式需要宿主机的 AstrBot 文转图可用(Playwright 或渲染服务)。不可用时自动回退纯文本,表格会退化成空格对齐。
 - **图片模式不适合复制**:`image` 模式发的是图片,用户没法直接选中文字复制;需要复制时把 `output_mode` 调成 `text` 或 `markdown`。
-- **升级后请让 AstrBot 完整替换插件目录**:若插件目录里新旧文件混装(例如只覆盖了
-  一部分文件),会报 `cannot import name 'light_table' from 'core.formatter'` 这类
-  加载错误。v0.3.1 已对该混装场景做了兼容,但升级后仍建议在插件页点一次「重载插件」,
-  或在插件管理里卸载后重新安装。
+- **升级后建议点一次「重载插件」**:v0.3.2 起插件会自己清理上一版残留在内存里的子模块,
+  但保险起见升级后仍然点一下「重载插件」最稳妥(见上一节)。
 
 ---
 
