@@ -1,0 +1,3518 @@
+{
+  "version": "kiranico-2026-09-18",
+  "source": "https://mhworld.kiranico.com/en/skilltrees",
+  "skills": [
+    {
+      "id": "rmZ5b",
+      "name_en": "Poison Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "Mm98b",
+      "name_en": "Paralysis Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "XArPm",
+      "name_en": "Sleep Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "zAM6b",
+      "name_en": "Stun Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "ZLOQb",
+      "name_en": "Muck Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "wbdnL",
+      "name_en": "Blast Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "db3aL",
+      "name_en": "Bleeding Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "6bj9A",
+      "name_en": "Iron Skin",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "qAB8m",
+      "name_en": "Earplugs",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "1L05A",
+      "name_en": "Windproof",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "0AxRm",
+      "name_en": "Tremor Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "8LnWA",
+      "name_en": "Dungmaster",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "7LlJb",
+      "name_en": "Effluvial Expert",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "nbQjm",
+      "name_en": "Heat Guard",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "nAJ8m",
+      "name_en": "Attack Boost",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        },
+        {
+          "lv": 6,
+          "effect": "0"
+        },
+        {
+          "lv": 7,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "rA5qA",
+      "name_en": "Defense Boost",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        },
+        {
+          "lv": 6,
+          "effect": "0"
+        },
+        {
+          "lv": 7,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "VL7ab",
+      "name_en": "Health Boost",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "pLzem",
+      "name_en": "Recovery Up",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "dbkdm",
+      "name_en": "Recovery Speed",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "YbReA",
+      "name_en": "Fire Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "9be1b",
+      "name_en": "Water Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "MbpvL",
+      "name_en": "Ice Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "VL1aL",
+      "name_en": "Thunder Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "NAqJb",
+      "name_en": "Dragon Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "BA4yb",
+      "name_en": "Blight Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "PLNgA",
+      "name_en": "Fire Attack",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        },
+        {
+          "lv": 6,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "XA2Gb",
+      "name_en": "Water Attack",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        },
+        {
+          "lv": 6,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "aLD9A",
+      "name_en": "Ice Attack",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        },
+        {
+          "lv": 6,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "ym65b",
+      "name_en": "Thunder Attack",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        },
+        {
+          "lv": 6,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "Omy9m",
+      "name_en": "Dragon Attack",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        },
+        {
+          "lv": 6,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "3bG2A",
+      "name_en": "Poison Attack",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "JbvPL",
+      "name_en": "Paralysis Attack",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "JbEyb",
+      "name_en": "Sleep Attack",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "1AoOA",
+      "name_en": "Blast Attack",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "YAVOb",
+      "name_en": "Normal Shots",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "WmWyA",
+      "name_en": "Piercing Shots",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "BbYEb",
+      "name_en": "Spread/Power Shots",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "6Agam",
+      "name_en": "Poison Functionality",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "xbK7b",
+      "name_en": "Para Functionality",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LPlXL",
+      "name_en": "Sleep Functionality",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "m9g8A",
+      "name_en": "Blast Functionality",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "Ar2PA",
+      "name_en": "Free Elem/Ammo Up",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AM36m",
+      "name_en": "Critical Eye",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        },
+        {
+          "lv": 6,
+          "effect": "0"
+        },
+        {
+          "lv": 7,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LOlQA",
+      "name_en": "Critical Boost",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bdpnb",
+      "name_en": "Weakness Exploit",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bjw9m",
+      "name_en": "Focus",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "A8j9m",
+      "name_en": "Power Prolonger",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bXBeL",
+      "name_en": "Handicraft",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AB48m",
+      "name_en": "Critical Draw",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "L0k5m",
+      "name_en": "Partbreaker",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AxqRb",
+      "name_en": "Slugger",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "Ln5Wm",
+      "name_en": "Stamina Thief",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bwjVA",
+      "name_en": "Master Mounter",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "Ll0JL",
+      "name_en": "Airborne",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bQzjm",
+      "name_en": "Latent Power",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        },
+        {
+          "lv": 6,
+          "effect": "0"
+        },
+        {
+          "lv": 7,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "manqL",
+      "name_en": "Agitator",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        },
+        {
+          "lv": 6,
+          "effect": "0"
+        },
+        {
+          "lv": 7,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AJ68A",
+      "name_en": "Peak Performance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "A50qL",
+      "name_en": "Heroics",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        },
+        {
+          "lv": 6,
+          "effect": "0"
+        },
+        {
+          "lv": 7,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "L7daA",
+      "name_en": "Fortify",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "3000"
+        }
+      ]
+    },
+    {
+      "id": "Lz8eb",
+      "name_en": "Resentment",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bkadL",
+      "name_en": "Resuscitate",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bR6eb",
+      "name_en": "Horn Maestro",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "be01A",
+      "name_en": "Capacity Boost",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bpwvA",
+      "name_en": "Special Ammo Boost",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "L14am",
+      "name_en": "Artillery",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AqkJm",
+      "name_en": "Heavy Artillery",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "A4Rym",
+      "name_en": "Marathon Runner",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LNlgb",
+      "name_en": "Constitution",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "A2oGb",
+      "name_en": "Leap of Faith",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LDB9b",
+      "name_en": "Stamina Surge",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "m6V5m",
+      "name_en": "Hunger Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "my39A",
+      "name_en": "Evade Window",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bGR2A",
+      "name_en": "Evade Extender",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bvDPL",
+      "name_en": "Guard",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bENym",
+      "name_en": "Quick Sheath",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AolOb",
+      "name_en": "Wide",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AV0Om",
+      "name_en": "Item Prolonger",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "mWXyL",
+      "name_en": "Free Meal",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bY0EA",
+      "name_en": "Speed Eating",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "Agdab",
+      "name_en": "Speed Sharpening",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LPJXb",
+      "name_en": "Bombardier",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "m988b",
+      "name_en": "Mushroomancer",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "ArXPm",
+      "name_en": "Master Fisher",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AMx6L",
+      "name_en": "BBQ Master",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LOzQm",
+      "name_en": "Pro Transporter",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bdvnL",
+      "name_en": "Master Gatherer",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "b31aL",
+      "name_en": "Honey Hunter",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bjV9b",
+      "name_en": "Carving Pro",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "A8V9m",
+      "name_en": "Divine Blessing",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bXoeA",
+      "name_en": "Palico Rally",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AB38b",
+      "name_en": "Botanist",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "1"
+        }
+      ]
+    },
+    {
+      "id": "LPJdb",
+      "name_en": "Geologist",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "mZ2vm",
+      "name_en": "Maximum Might",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "m984b",
+      "name_en": "Slinger Capacity",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "ArXom",
+      "name_en": "Stealth",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AMxvL",
+      "name_en": "Flinch Free",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LOzdm",
+      "name_en": "Scoutfly Range Up",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bdvEL",
+      "name_en": "Speed Crawler",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "b31vL",
+      "name_en": "Jump Master",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bjVDb",
+      "name_en": "Survival Expert",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "A8VJm",
+      "name_en": "Aquatic/Polar Mobility",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AB3Bb",
+      "name_en": "Cliffhanger",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "L0z0b",
+      "name_en": "Blindsider",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LnaNm",
+      "name_en": "Scholar",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bw43m",
+      "name_en": "Entomologist",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "Ll7nm",
+      "name_en": "Effluvia Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bQ5Zb",
+      "name_en": "Scenthound",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "maOGA",
+      "name_en": "Forager's Luck",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AJQrL",
+      "name_en": "Detector",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "A5d6L",
+      "name_en": "Tool Specialist",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LzWrA",
+      "name_en": "Affinity Sliding",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bklDm",
+      "name_en": "Elderseal Boost",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bR5PA",
+      "name_en": "Intimidator",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bea4b",
+      "name_en": "Anjanath Power",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bpVdL",
+      "name_en": "Nergigante Hunger",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "L1P3m",
+      "name_en": "Vaal Hazak Vitality",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AqnYb",
+      "name_en": "Rathalos Power",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "A4rPm",
+      "name_en": "Diablos Power",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LNQGm",
+      "name_en": "Kirin Blessing",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "A2ZnA",
+      "name_en": "Pink Rathian Mastery",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LDvYb",
+      "name_en": "Anjanath Will",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "50"
+        }
+      ]
+    },
+    {
+      "id": "bGNNA",
+      "name_en": "Rathalos Mastery",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bv2pb",
+      "name_en": "Diablos Mastery",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bEY0b",
+      "name_en": "Kirin Favor",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AownA",
+      "name_en": "Uragaan Protection",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AgVQL",
+      "name_en": "Bazelgeuse Protection",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bKxom",
+      "name_en": "Teostra Technique",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LPRdb",
+      "name_en": "Kushala Daora Flight",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "mZVvm",
+      "name_en": "Xeno'jiiva Divinity",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "ArPom",
+      "name_en": "Zorah Magdaros Mastery",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LO5db",
+      "name_en": "Guild Guidance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bdjEL",
+      "name_en": "Commission Guidance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "b3zvA",
+      "name_en": "Legiana Blessing",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bjXDL",
+      "name_en": "Legiana Favor",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "A88JA",
+      "name_en": "Odogaron Power",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bXJPL",
+      "name_en": "Odogaron Mastery",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "ABzBA",
+      "name_en": "Bow Charge Plus",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "L0o0m",
+      "name_en": "Mind's Eye/Ballistics",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "Ax4gA",
+      "name_en": "Guard Up",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LnBNL",
+      "name_en": "Protective Polish",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bwO3b",
+      "name_en": "Non",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "Ll8nL",
+      "name_en": "Guts",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bQgZL",
+      "name_en": "Hasten Recovery",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "majGL",
+      "name_en": "Razor Sharp/Spare Shot",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AJwrb",
+      "name_en": "Lunastra Favor",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "A5M6A",
+      "name_en": "Soul of the Dragoon",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "L7z7m",
+      "name_en": "Critical Element",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LzjrL",
+      "name_en": "Critical Status",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bkXDm",
+      "name_en": "Witcher's Knowledge",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bREPA",
+      "name_en": "Astera Blessing",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bee4b",
+      "name_en": "Zinogre Essence",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bpldb",
+      "name_en": "Tigrex Essence",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "L1j3A",
+      "name_en": "Nargacuga Essence",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AqWYm",
+      "name_en": "Brachydios Essence",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "A4oPL",
+      "name_en": "Glavenus Essence",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LN7GA",
+      "name_en": "Silver Rathalos Essence",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "A2YnL",
+      "name_en": "Gold Rathian Essence",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LD8YL",
+      "name_en": "Shara Ishvalda Divinity",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "m6oVL",
+      "name_en": "Namielle Divinity",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "myXRb",
+      "name_en": "Velkhana Divinity",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bGQNL",
+      "name_en": "Ancient Divinity",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bvppL",
+      "name_en": "Commission Alchemy",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bEw0L",
+      "name_en": "Instructor's Guidance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AoPnb",
+      "name_en": "Anjanath Dominance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AVz8A",
+      "name_en": "Rathian Essence",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "mWx4L",
+      "name_en": "Provoker",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bYJVm",
+      "name_en": "Offensive Guard",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AglQb",
+      "name_en": "Coalescence",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bKvoA",
+      "name_en": "Safe Landing",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LP6db",
+      "name_en": "Barioth Hidden Art",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "mZ4vA",
+      "name_en": "Rathalos Essence",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "m9X4b",
+      "name_en": "Diablos Ambition",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "ArroA",
+      "name_en": "Legiana Ambition",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AM6vb",
+      "name_en": "Odogaron Essence",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LOodL",
+      "name_en": "Uragaan Ambition",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bdNEL",
+      "name_en": "Bazelgeuse Ambition",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "b3YvL",
+      "name_en": "Deviljho Essence",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bjQDA",
+      "name_en": "Vaal Soulvein",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "ABlBm",
+      "name_en": "Kirin Divinity",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LP6eb",
+      "name_en": "Guild Pride",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "mZ41A",
+      "name_en": "Zorah Magdaros Essence",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "m9XWb",
+      "name_en": "Lunastra Essence",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "Arr9A",
+      "name_en": "Nergigante Ambition",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LOoyL",
+      "name_en": "Bludgeoner",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bdNGL",
+      "name_en": "Adrenaline",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "b3YGL",
+      "name_en": "Coldproof",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bjQjA",
+      "name_en": "Rajang's Rage",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "A8Nzm",
+      "name_en": "Power Cell",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bXNgL",
+      "name_en": "Survivor",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "ABlpm",
+      "name_en": "Safi'jiiva Seal",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "L0e9A",
+      "name_en": "Joyful Blessing",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AxdBA",
+      "name_en": "Appreciation Blessing",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "Ln7MA",
+      "name_en": "Full Bloom Blessing",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bwdom",
+      "name_en": "Sizzling Blessing",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "LllYL",
+      "name_en": "Fun Fright Blessing",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "0"
+        },
+        {
+          "lv": 5,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bQB4m",
+      "name_en": "Rajang Will",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "mav0L",
+      "name_en": "Brachydios Will",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 4,
+          "effect": "0"
+        },
+        {
+          "lv": 2,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "AJBJA",
+      "name_en": "Kulve Taroth Essence",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "A5Y1A",
+      "name_en": "Frostfang Absolute Art",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "L7Ydb",
+      "name_en": "Alatreon Divinity",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 3,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "Lz6WL",
+      "name_en": "Fatalis Legend",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bkBXA",
+      "name_en": "Clutch Claw Boost",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "0"
+        }
+      ]
+    },
+    {
+      "id": "bRx1L",
+      "name_en": "New World",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "0"
+        },
+        {
+          "lv": 4,
+          "effect": "0"
+        }
+      ]
+    }
+  ]
+}

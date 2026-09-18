@@ -1,0 +1,37 @@
+{
+  "version": "kiranico-test-fixture",
+  "source": "test://fixture",
+  "monsters": [
+    {
+      "id": "test-rathian",
+      "name_zh": "雌火龙",
+      "name_en": "Rathian",
+      "aliases": ["陆之女王", "ラティアン"],
+      "species": "飞龙种",
+      "hr_point": 700,
+      "base_hp": 4500,
+      "meat": {
+        "headers": ["部位", "状态", "斩", "打", "弹", "火", "水", "雷", "冰", "龙", "麻"],
+        "rows": [
+          {"part": "头部", "state": "通常", "values": [70, 75, 65, 0, 15, 20, 15, 30, 100]},
+          {"part": "头部", "state": "伤口", "values": [80, 82, 70, 0, 15, 20, 15, 30, 100]},
+          {"part": "躯干", "state": "通常", "values": [35, 30, 25, 0, 5, 10, 5, 20, 0]}
+        ]
+      },
+      "ailments": {"毒": 250, "睡眠": 150, "麻痹": 180},
+      "rewards": {"剥取": [{"item": "测试鳞", "rate": "30%"}]}
+    },
+    {
+      "id": "test-god",
+      "name_zh": "神龙",
+      "name_en": "Valstrax",
+      "aliases": [],
+      "species": "古龙种",
+      "hr_point": 1000,
+      "base_hp": 9000,
+      "meat": {"headers": [], "rows": []},
+      "ailments": {},
+      "rewards": {}
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "version": "kiranico-test-fixture",
+  "skills": [
+    {
+      "id": "test-attack",
+      "name_zh": "攻击力强化",
+      "name_en": "Attack Boost",
+      "levels": [
+        {"lv": 1, "effect": "攻击力 +3"},
+        {"lv": 2, "effect": "攻击力 +6"},
+        {"lv": 7, "effect": "攻击力 +21"}
+      ]
+    },
+    {
+      "id": "test-defense",
+      "name_zh": "防御力强化",
+      "name_en": "Defense Boost",
+      "levels": [
+        {"lv": 1, "effect": "防御力 +5"}
+      ]
+    }
+  ]
+}

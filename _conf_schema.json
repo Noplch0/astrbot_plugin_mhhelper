@@ -1,0 +1,43 @@
+{
+  "default_game": {
+    "type": "string",
+    "default": "mhwilds",
+    "options": ["mhworld", "mhrise", "mhwilds"],
+    "description": "未指定 game 时的默认作品"
+  },
+  "enable_world": {
+    "type": "bool",
+    "default": true,
+    "description": "启用怪物猎人:世界"
+  },
+  "enable_rise": {
+    "type": "bool",
+    "default": true,
+    "description": "启用怪物猎人:崛起(含曙光)"
+  },
+  "enable_wilds": {
+    "type": "bool",
+    "default": true,
+    "description": "启用怪物猎人:荒野"
+  },
+  "with_icon": {
+    "type": "bool",
+    "default": false,
+    "description": "怪物查询结果附带图鉴图标(部分 IM 适配器支持不一)"
+  },
+  "proxy": {
+    "type": "string",
+    "default": "",
+    "description": "抓取 kiranico 时使用的代理 URL,例如 http://127.0.0.1:7890,留空为直连"
+  },
+  "max_rows_per_message": {
+    "type": "int",
+    "default": 30,
+    "description": "单条消息最多显示的行数,超出后截断并提示"
+  },
+  "allow_runtime_update": {
+    "type": "bool",
+    "default": true,
+    "description": "是否允许 /mh update 在线刷新数据(需要能直连 kiranico)"
+  }
+}

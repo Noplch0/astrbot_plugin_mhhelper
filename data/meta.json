@@ -1,0 +1,23 @@
+{
+  "mhwilds": {
+    "monsters": 55,
+    "skills": 177,
+    "seconds": 29.6
+  },
+  "mhrise": {
+    "monsters": 78,
+    "skills": 147,
+    "seconds": 73.9
+  },
+  "mhworld": {
+    "monsters": 95,
+    "skills": 203,
+    "seconds": 93.5
+  },
+  "updated_at": "2026-09-18T04:30:00+00:00",
+  "source": {
+    "mhwilds": "https://mhwilds.kiranico.com/zh/data",
+    "mhrise": "https://mhrise.kiranico.com/data",
+    "mhworld": "https://mhworld.kiranico.com/en"
+  }
+}

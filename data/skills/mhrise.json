@@ -1,0 +1,3018 @@
+{
+  "version": "kiranico-2026-09-18",
+  "source": "https://mhrise.kiranico.com/data/skills",
+  "skills": [
+    {
+      "id": "366824395",
+      "name_en": "Attack Boost",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Attack +3"
+        },
+        {
+          "lv": 2,
+          "effect": "Attack +6"
+        },
+        {
+          "lv": 3,
+          "effect": "Attack +9"
+        },
+        {
+          "lv": 4,
+          "effect": "Attack +5% Bonus: +7"
+        },
+        {
+          "lv": 5,
+          "effect": "Attack +6% Bonus: +8"
+        },
+        {
+          "lv": 6,
+          "effect": "Attack +8% Bonus: +9"
+        },
+        {
+          "lv": 7,
+          "effect": "Attack +10% Bonus: +10"
+        }
+      ]
+    },
+    {
+      "id": "381074408",
+      "name_en": "Agitator",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Attack +4 and affinity +3% while active."
+        },
+        {
+          "lv": 2,
+          "effect": "Attack +8 and affinity +5% while active."
+        },
+        {
+          "lv": 3,
+          "effect": "Attack +12 and affinity +7% while active."
+        },
+        {
+          "lv": 4,
+          "effect": "Attack +16 and affinity +10% while active."
+        },
+        {
+          "lv": 5,
+          "effect": "Attack +20 and affinity +15% while active."
+        }
+      ]
+    },
+    {
+      "id": "395307913",
+      "name_en": "Peak Performance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Attack +5 while active."
+        },
+        {
+          "lv": 2,
+          "effect": "Attack +10 while active."
+        },
+        {
+          "lv": 3,
+          "effect": "Attack +20 while active."
+        }
+      ]
+    },
+    {
+      "id": "274815918",
+      "name_en": "Resentment",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Attack +5 while active."
+        },
+        {
+          "lv": 2,
+          "effect": "Attack +10 while active."
+        },
+        {
+          "lv": 3,
+          "effect": "Attack +15 while active."
+        },
+        {
+          "lv": 4,
+          "effect": "Attack +20 while active."
+        },
+        {
+          "lv": 5,
+          "effect": "Attack +25 while active."
+        }
+      ]
+    },
+    {
+      "id": "289049423",
+      "name_en": "Resuscitate",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Attack +5 while active."
+        },
+        {
+          "lv": 2,
+          "effect": "Attack +10 while active."
+        },
+        {
+          "lv": 3,
+          "effect": "Attack +20 while active."
+        }
+      ]
+    },
+    {
+      "id": "303299436",
+      "name_en": "Critical Eye",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Affinity +5%"
+        },
+        {
+          "lv": 2,
+          "effect": "Affinity +10%"
+        },
+        {
+          "lv": 3,
+          "effect": "Affinity +15%"
+        },
+        {
+          "lv": 4,
+          "effect": "Affinity +20%"
+        },
+        {
+          "lv": 5,
+          "effect": "Affinity +25%"
+        },
+        {
+          "lv": 6,
+          "effect": "Affinity +30%"
+        },
+        {
+          "lv": 7,
+          "effect": "Affinity +40%"
+        }
+      ]
+    },
+    {
+      "id": "485829389",
+      "name_en": "Critical Boost",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Increases damage dealt by critical hits to 30%."
+        },
+        {
+          "lv": 2,
+          "effect": "Increases damage dealt by critical hits to 35%."
+        },
+        {
+          "lv": 3,
+          "effect": "Increases damage dealt by critical hits to 40%."
+        }
+      ]
+    },
+    {
+      "id": "500079394",
+      "name_en": "Weakness Exploit",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Attacks that hit weak spots have 15% increased affinity."
+        },
+        {
+          "lv": 2,
+          "effect": "Attacks that hit weak spots have 30% increased affinity."
+        },
+        {
+          "lv": 3,
+          "effect": "Attacks that hit weak spots have 50% increased affinity."
+        }
+      ]
+    },
+    {
+      "id": "514312899",
+      "name_en": "Latent Power",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "While active, increases affinity by 10% and reduces stamina depletion by 30%."
+        },
+        {
+          "lv": 2,
+          "effect": "While active, increases affinity by 20% and reduces stamina depletion by 30%."
+        },
+        {
+          "lv": 3,
+          "effect": "While active, increases affinity by 30% and reduces stamina depletion by 50%."
+        },
+        {
+          "lv": 4,
+          "effect": "While active, increases affinity by 40% and reduces stamina depletion by 50%."
+        },
+        {
+          "lv": 5,
+          "effect": "While active, increases affinity by 50% and reduces stamina depletion by 50%."
+        }
+      ]
+    },
+    {
+      "id": "528038624",
+      "name_en": "Maximum Might",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "While active, increases affinity by 10%."
+        },
+        {
+          "lv": 2,
+          "effect": "While active, increases affinity by 20%."
+        },
+        {
+          "lv": 3,
+          "effect": "While active, increases affinity by 30%."
+        }
+      ]
+    },
+    {
+      "id": "408054401",
+      "name_en": "Critical Element",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Grants elemental damage +5% while active."
+        },
+        {
+          "lv": 2,
+          "effect": "Grants elemental damage +10% while active."
+        },
+        {
+          "lv": 3,
+          "effect": "Grants elemental damage +15% while active."
+        }
+      ]
+    },
+    {
+      "id": "422304422",
+      "name_en": "Master's Touch",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Grants a 20% chance of no sharpness loss while active."
+        },
+        {
+          "lv": 2,
+          "effect": "Grants a 40% chance of no sharpness loss while active."
+        },
+        {
+          "lv": 3,
+          "effect": "Grants an 80% chance of no sharpness loss while active."
+        }
+      ]
+    },
+    {
+      "id": "437062215",
+      "name_en": "Fire Attack",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Fire attack +2"
+        },
+        {
+          "lv": 2,
+          "effect": "Fire attack +3"
+        },
+        {
+          "lv": 3,
+          "effect": "Fire attack +5% Bonus: +4"
+        },
+        {
+          "lv": 4,
+          "effect": "Fire attack +10% Bonus: +4"
+        },
+        {
+          "lv": 5,
+          "effect": "Fire attack +20% Bonus: +4"
+        }
+      ]
+    },
+    {
+      "id": "82213476",
+      "name_en": "Water Attack",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Water attack +2"
+        },
+        {
+          "lv": 2,
+          "effect": "Water attack +3"
+        },
+        {
+          "lv": 3,
+          "effect": "Water attack +5% Bonus: +4"
+        },
+        {
+          "lv": 4,
+          "effect": "Water attack +10% Bonus: +4"
+        },
+        {
+          "lv": 5,
+          "effect": "Water attack +20% Bonus: +4"
+        }
+      ]
+    },
+    {
+      "id": "96446981",
+      "name_en": "Ice Attack",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Ice attack +2"
+        },
+        {
+          "lv": 2,
+          "effect": "Ice attack +3"
+        },
+        {
+          "lv": 3,
+          "effect": "Ice attack +5% Bonus: +4"
+        },
+        {
+          "lv": 4,
+          "effect": "Ice attack +10% Bonus: +4"
+        },
+        {
+          "lv": 5,
+          "effect": "Ice attack +20% Bonus: +4"
+        }
+      ]
+    },
+    {
+      "id": "110172730",
+      "name_en": "Thunder Attack",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Thunder attack +2"
+        },
+        {
+          "lv": 2,
+          "effect": "Thunder attack +3"
+        },
+        {
+          "lv": 3,
+          "effect": "Thunder attack +5% Bonus: +4"
+        },
+        {
+          "lv": 4,
+          "effect": "Thunder attack +10% Bonus: +4"
+        },
+        {
+          "lv": 5,
+          "effect": "Thunder attack +20% Bonus: +4"
+        }
+      ]
+    },
+    {
+      "id": "124406235",
+      "name_en": "Dragon Attack",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Dragon attack +2"
+        },
+        {
+          "lv": 2,
+          "effect": "Dragon attack +3"
+        },
+        {
+          "lv": 3,
+          "effect": "Dragon attack +5% Bonus: +4"
+        },
+        {
+          "lv": 4,
+          "effect": "Dragon attack +10% Bonus: +4"
+        },
+        {
+          "lv": 5,
+          "effect": "Dragon attack +20% Bonus: +4"
+        }
+      ]
+    },
+    {
+      "id": "4438520",
+      "name_en": "Poison Attack",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Poison buildup +5% Bonus: +1"
+        },
+        {
+          "lv": 2,
+          "effect": "Poison buildup +10% Bonus: +2"
+        },
+        {
+          "lv": 3,
+          "effect": "Poison buildup +20% Bonus: +5"
+        }
+      ]
+    },
+    {
+      "id": "19196313",
+      "name_en": "Paralysis Attack",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Paralysis buildup +5% Bonus: +1"
+        },
+        {
+          "lv": 2,
+          "effect": "Paralysis buildup +10% Bonus: +2"
+        },
+        {
+          "lv": 3,
+          "effect": "Paralysis buildup +20% Bonus: +5"
+        }
+      ]
+    },
+    {
+      "id": "67000766",
+      "name_en": "Sleep Attack",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Sleep buildup +5% Bonus: +1"
+        },
+        {
+          "lv": 2,
+          "effect": "Sleep buildup +10% Bonus: +2"
+        },
+        {
+          "lv": 3,
+          "effect": "Sleep buildup +20% Bonus: +5"
+        }
+      ]
+    },
+    {
+      "id": "215451999",
+      "name_en": "Blast Attack",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Blast buildup +5% Bonus: +1"
+        },
+        {
+          "lv": 2,
+          "effect": "Blast buildup +10% Bonus: +2"
+        },
+        {
+          "lv": 3,
+          "effect": "Blast buildup +20% Bonus: +5"
+        }
+      ]
+    },
+    {
+      "id": "229177724",
+      "name_en": "Handicraft",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Weapon sharpness +10"
+        },
+        {
+          "lv": 2,
+          "effect": "Weapon sharpness +20"
+        },
+        {
+          "lv": 3,
+          "effect": "Weapon sharpness +30"
+        },
+        {
+          "lv": 4,
+          "effect": "Weapon sharpness +40"
+        },
+        {
+          "lv": 5,
+          "effect": "Weapon sharpness +50"
+        }
+      ]
+    },
+    {
+      "id": "243411229",
+      "name_en": "Razor Sharp",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Activates 10% of the time."
+        },
+        {
+          "lv": 2,
+          "effect": "Activates 25% of the time."
+        },
+        {
+          "lv": 3,
+          "effect": "Activates 50% of the time."
+        }
+      ]
+    },
+    {
+      "id": "257661234",
+      "name_en": "Spare Shot",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Activates 3% of the time."
+        },
+        {
+          "lv": 2,
+          "effect": "Activates 10% of the time."
+        },
+        {
+          "lv": 3,
+          "effect": "Activates 20% of the time."
+        }
+      ]
+    },
+    {
+      "id": "138201299",
+      "name_en": "Protective Polish",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Effect lasts 30 seconds."
+        },
+        {
+          "lv": 2,
+          "effect": "Effect lasts 60 seconds."
+        },
+        {
+          "lv": 3,
+          "effect": "Effect lasts 90 seconds."
+        }
+      ]
+    },
+    {
+      "id": "152451312",
+      "name_en": "Mind's Eye",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "50% chance of your attacks not being deflected. (+10% damage to hard targets when activated)."
+        },
+        {
+          "lv": 2,
+          "effect": "100% chance of your attacks not being deflected. (+15% damage to hard targets when activated)."
+        },
+        {
+          "lv": 3,
+          "effect": "100% chance of your attacks not being deflected. (+30% damage to hard targets when activated)."
+        }
+      ]
+    },
+    {
+      "id": "200239249",
+      "name_en": "Ballistics",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Slightly extends range."
+        },
+        {
+          "lv": 2,
+          "effect": "Extends range."
+        },
+        {
+          "lv": 3,
+          "effect": "Greatly extends range."
+        }
+      ]
+    },
+    {
+      "id": "885053622",
+      "name_en": "Bludgeoner",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "+5% attack power when your weapon sharpness gauge is yellow or lower."
+        },
+        {
+          "lv": 2,
+          "effect": "+10% attack power when your sharpness gauge is yellow or lower."
+        },
+        {
+          "lv": 3,
+          "effect": "+10% attack power when your sharpness gauge is green or lower."
+        }
+      ]
+    },
+    {
+      "id": "899287127",
+      "name_en": "Bow Charge Plus",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Activates skill effect."
+        }
+      ]
+    },
+    {
+      "id": "913537140",
+      "name_en": "Focus",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "5% faster gauge fill rate and 5% faster charge times."
+        },
+        {
+          "lv": 2,
+          "effect": "10% faster gauge fill rate and 10% faster charge times."
+        },
+        {
+          "lv": 3,
+          "effect": "20% faster gauge fill rate and 15% faster charge times."
+        }
+      ]
+    },
+    {
+      "id": "928294933",
+      "name_en": "Power Prolonger",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Slightly boosts the duration weapons are powered up."
+        },
+        {
+          "lv": 2,
+          "effect": "Boosts the duration weapons are powered up."
+        },
+        {
+          "lv": 3,
+          "effect": "Greatly boosts the duration weapons are powered up."
+        }
+      ]
+    },
+    {
+      "id": "808327178",
+      "name_en": "Marathon Runner",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Reduces continuous stamina depletion by 15%."
+        },
+        {
+          "lv": 2,
+          "effect": "Reduces continuous stamina depletion by 30%."
+        },
+        {
+          "lv": 3,
+          "effect": "Reduces continuous stamina depletion by 50%."
+        }
+      ]
+    },
+    {
+      "id": "822560811",
+      "name_en": "Constitution",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Reduces fixed stamina depletion by 10%."
+        },
+        {
+          "lv": 2,
+          "effect": "Reduces fixed stamina depletion by 20%."
+        },
+        {
+          "lv": 3,
+          "effect": "Reduces fixed stamina depletion by 30%."
+        },
+        {
+          "lv": 4,
+          "effect": "Reduces fixed stamina depletion by 40%."
+        },
+        {
+          "lv": 5,
+          "effect": "Reduces fixed stamina depletion by 50%."
+        }
+      ]
+    },
+    {
+      "id": "869842888",
+      "name_en": "Stamina Surge",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Stamina recovery speed +10%"
+        },
+        {
+          "lv": 2,
+          "effect": "Stamina recovery speed +20%"
+        },
+        {
+          "lv": 3,
+          "effect": "Stamina recovery speed +40%"
+        }
+      ]
+    },
+    {
+      "id": "1018294249",
+      "name_en": "Guard",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Very slightly decreases the impact of attacks."
+        },
+        {
+          "lv": 2,
+          "effect": "Slightly decreases the impact of attacks and reduces stamina depletion by 15%."
+        },
+        {
+          "lv": 3,
+          "effect": "Decreases the impact of attacks and reduces stamina depletion by 15%."
+        },
+        {
+          "lv": 4,
+          "effect": "Decreases the impact of attacks and reduces stamina depletion by 30%."
+        },
+        {
+          "lv": 5,
+          "effect": "Greatly decreases the impact of attacks and reduces stamina depletion by 30%."
+        }
+      ]
+    },
+    {
+      "id": "1032544142",
+      "name_en": "Guard Up",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Reduces damage taken by 30%."
+        },
+        {
+          "lv": 2,
+          "effect": "Reduces damage taken by 50%."
+        },
+        {
+          "lv": 3,
+          "effect": "Reduces damage taken by 80%."
+        }
+      ]
+    },
+    {
+      "id": "1047302063",
+      "name_en": "Offensive Guard",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Attack +5% while active."
+        },
+        {
+          "lv": 2,
+          "effect": "Attack +10% while active."
+        },
+        {
+          "lv": 3,
+          "effect": "Attack +15% while active."
+        }
+      ]
+    },
+    {
+      "id": "1061551948",
+      "name_en": "Critical Draw",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Affinity +10%"
+        },
+        {
+          "lv": 2,
+          "effect": "Affinity +20%"
+        },
+        {
+          "lv": 3,
+          "effect": "Affinity +40%"
+        }
+      ]
+    },
+    {
+      "id": "941567853",
+      "name_en": "Punishing Draw",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Draw attacks deal a small amount of stun damage and get attack +3."
+        },
+        {
+          "lv": 2,
+          "effect": "Draw attacks deal a small amount of stun damage and get attack +5."
+        },
+        {
+          "lv": 3,
+          "effect": "Draw attacks deal a small amount of stun damage and get attack +7."
+        }
+      ]
+    },
+    {
+      "id": "988847874",
+      "name_en": "Quick Sheathe",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Slightly increases sheathing speed."
+        },
+        {
+          "lv": 2,
+          "effect": "Moderately increases sheathing speed."
+        },
+        {
+          "lv": 3,
+          "effect": "Greatly increases sheathing speed."
+        }
+      ]
+    },
+    {
+      "id": "1003081507",
+      "name_en": "Slugger",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Stun power +20%"
+        },
+        {
+          "lv": 2,
+          "effect": "Stun power +30%"
+        },
+        {
+          "lv": 3,
+          "effect": "Stun power +40%"
+        }
+      ]
+    },
+    {
+      "id": "614678208",
+      "name_en": "Stamina Thief",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Exhaust power +20%"
+        },
+        {
+          "lv": 2,
+          "effect": "Exhaust power +30%"
+        },
+        {
+          "lv": 3,
+          "effect": "Exhaust power +40%"
+        }
+      ]
+    },
+    {
+      "id": "629436129",
+      "name_en": "Affinity Sliding",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Enables skill use."
+        }
+      ]
+    },
+    {
+      "id": "643686022",
+      "name_en": "Horn Maestro",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Activates skill effect."
+        }
+      ]
+    },
+    {
+      "id": "657919655",
+      "name_en": "Artillery",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Increases power of each attack by 10% and reduces Wyvern's Fire cooldown by 15%."
+        },
+        {
+          "lv": 2,
+          "effect": "Increases power of each attack by 20% and reduces Wyvern's Fire cooldown by 30%."
+        },
+        {
+          "lv": 3,
+          "effect": "Increases power of each attack by 30% and reduces Wyvern's Fire cooldown by 50%."
+        }
+      ]
+    },
+    {
+      "id": "537427524",
+      "name_en": "Load Shells",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Increases ammo and coating reloading speed."
+        },
+        {
+          "lv": 2,
+          "effect": "Gunlance loading capacity +1 Increases charge blade phials"
+        }
+      ]
+    },
+    {
+      "id": "585215589",
+      "name_en": "Special Ammo Boost",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Increases power of bowgun special ammo and Dragon Piercer by 10%."
+        },
+        {
+          "lv": 2,
+          "effect": "Increases power of bowgun special ammo and Dragon Piercer by 20%."
+        }
+      ]
+    },
+    {
+      "id": "599465498",
+      "name_en": "Normal/Rapid Up",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Slightly increases the power of Normal Ammo and Rapid-type arrows."
+        },
+        {
+          "lv": 2,
+          "effect": "Increases the power of Normal Ammo and  Rapid-type arrows."
+        },
+        {
+          "lv": 3,
+          "effect": "Greatly increases the power of Normal Ammo and  Rapid-type arrows."
+        }
+      ]
+    },
+    {
+      "id": "748441147",
+      "name_en": "Pierce Up",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Slightly increases the power of Piercing Ammo and Piercing-type arrows."
+        },
+        {
+          "lv": 2,
+          "effect": "Increases the power of Piercing Ammo and Piercing-type arrows."
+        },
+        {
+          "lv": 3,
+          "effect": "Greatly increases the power of Piercing Ammo and Piercing-type arrows."
+        }
+      ]
+    },
+    {
+      "id": "762691032",
+      "name_en": "Spread Up",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Slightly increases the power of Spread Ammo, Shrapnel Ammo, and Spread-type arrows."
+        },
+        {
+          "lv": 2,
+          "effect": "Increases the power of Spread Ammo, Shrapnel Ammo, and Spread-type arrows."
+        },
+        {
+          "lv": 3,
+          "effect": "Greatly increases the power of Spread Ammo, Shrapnel Ammo, and Spread-type arrows."
+        }
+      ]
+    },
+    {
+      "id": "776924665",
+      "name_en": "Ammo Up",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Expands clip size for some ammo types."
+        },
+        {
+          "lv": 2,
+          "effect": "Expands clip size for many ammo types."
+        },
+        {
+          "lv": 3,
+          "effect": "Expands clip size for most ammo types."
+        }
+      ]
+    },
+    {
+      "id": "790650270",
+      "name_en": "Reload Speed",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Bowgun speed +1. Improves bow handling."
+        },
+        {
+          "lv": 2,
+          "effect": "Bowgun speed +2. Loads bow coating automatically."
+        },
+        {
+          "lv": 3,
+          "effect": "Bowgun speed +3."
+        }
+      ]
+    },
+    {
+      "id": "704220607",
+      "name_en": "Recoil Down",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Recoil -1"
+        },
+        {
+          "lv": 2,
+          "effect": "Recoil -2"
+        },
+        {
+          "lv": 3,
+          "effect": "Recoil -3"
+        }
+      ]
+    },
+    {
+      "id": "718470492",
+      "name_en": "Steadiness",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Deviation -1"
+        },
+        {
+          "lv": 2,
+          "effect": "Deviation -2"
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "733228413",
+      "name_en": "Rapid Fire Up",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Rapid fire damage +5%"
+        },
+        {
+          "lv": 2,
+          "effect": "Rapid fire damage +10%"
+        },
+        {
+          "lv": 3,
+          "effect": "Rapid fire damage +20%"
+        }
+      ]
+    },
+    {
+      "id": "1418566930",
+      "name_en": "Defense Boost",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Defense +5"
+        },
+        {
+          "lv": 2,
+          "effect": "Defense +10"
+        },
+        {
+          "lv": 3,
+          "effect": "Defense +5% Bonus: +10"
+        },
+        {
+          "lv": 4,
+          "effect": "Defense +5% Bonus: +20 All elemental resistances +3"
+        },
+        {
+          "lv": 5,
+          "effect": "Defense +8% Bonus: +20 All elemental resistances +3"
+        },
+        {
+          "lv": 6,
+          "effect": "Defense +8% Bonus: +35 All elemental resistances +5"
+        },
+        {
+          "lv": 7,
+          "effect": "Defense +10% Bonus: +35 All elemental resistances +5"
+        }
+      ]
+    },
+    {
+      "id": "1432800563",
+      "name_en": "Divine Blessing",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "While active, reduces damage taken by 15%."
+        },
+        {
+          "lv": 2,
+          "effect": "While active, reduces damage taken by 30%."
+        },
+        {
+          "lv": 3,
+          "effect": "While active, reduces damage taken by 50%."
+        }
+      ]
+    },
+    {
+      "id": "1446526160",
+      "name_en": "Recovery Up",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Slightly increases recovery."
+        },
+        {
+          "lv": 2,
+          "effect": "Increases recovery."
+        },
+        {
+          "lv": 3,
+          "effect": "Greatly increases recovery."
+        }
+      ]
+    },
+    {
+      "id": "1460759793",
+      "name_en": "Recovery Speed",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Doubles the speed at which you heal recoverable damage."
+        },
+        {
+          "lv": 2,
+          "effect": "Triples the speed at which you heal recoverable damage."
+        },
+        {
+          "lv": 3,
+          "effect": "Quadruples the speed at which you heal recoverable damage."
+        }
+      ]
+    },
+    {
+      "id": "1374346390",
+      "name_en": "Speed Eating",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Slightly increases eating speed."
+        },
+        {
+          "lv": 2,
+          "effect": "Increases eating speed."
+        },
+        {
+          "lv": 3,
+          "effect": "Greatly increases eating speed."
+        }
+      ]
+    },
+    {
+      "id": "1389104311",
+      "name_en": "Earplugs",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Reduces the effects of weak monster roars."
+        },
+        {
+          "lv": 2,
+          "effect": "Nullifies weak monster roars."
+        },
+        {
+          "lv": 3,
+          "effect": "Nullifies weak monster roars and reduces the effects of strong monster roars."
+        },
+        {
+          "lv": 4,
+          "effect": "Nullifies weak and strong monster roars."
+        },
+        {
+          "lv": 5,
+          "effect": "Nullifies weak and strong monster roars. Reduces the effects of powerful monster roars."
+        }
+      ]
+    },
+    {
+      "id": "1403354196",
+      "name_en": "Windproof",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Negates minor wind pressure."
+        },
+        {
+          "lv": 2,
+          "effect": "Negates minor and major wind pressure."
+        },
+        {
+          "lv": 3,
+          "effect": "Negates minor and major wind pressure and reduces the effects of dragon wind pressure."
+        }
+      ]
+    },
+    {
+      "id": "1551805557",
+      "name_en": "Tremor Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Nullifies minor ground tremors."
+        },
+        {
+          "lv": 2,
+          "effect": "Nullifies minor ground tremors and reduces the effects of major ground tremors."
+        },
+        {
+          "lv": 3,
+          "effect": "Nullifies minor and major ground tremors."
+        }
+      ]
+    },
+    {
+      "id": "1565531242",
+      "name_en": "Bubbly Dance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Reduces the effects of major bubbleblight."
+        },
+        {
+          "lv": 2,
+          "effect": "Reduces major bubbleblight to minor bubbleblight and increases evasiveness while afflicted."
+        },
+        {
+          "lv": 3,
+          "effect": "Also inflicts bubbleblight when performing consecutive evasive movement."
+        }
+      ]
+    },
+    {
+      "id": "1579764747",
+      "name_en": "Evade Window",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Very slightly increases invulnerability window."
+        },
+        {
+          "lv": 2,
+          "effect": "Slightly increases invulnerability window."
+        },
+        {
+          "lv": 3,
+          "effect": "Increases invulnerability window."
+        },
+        {
+          "lv": 4,
+          "effect": "Greatly increases invulnerability window."
+        },
+        {
+          "lv": 5,
+          "effect": "Massively increases invulnerability window."
+        }
+      ]
+    },
+    {
+      "id": "1594014760",
+      "name_en": "Evade Extender",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Slightly extends evasion distance."
+        },
+        {
+          "lv": 2,
+          "effect": "Extends evasion distance."
+        },
+        {
+          "lv": 3,
+          "effect": "Greatly extends evasion distance."
+        }
+      ]
+    },
+    {
+      "id": "1507582921",
+      "name_en": "Fire Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Fire resistance +6"
+        },
+        {
+          "lv": 2,
+          "effect": "Fire resistance +12"
+        },
+        {
+          "lv": 3,
+          "effect": "Fire resistance +20 Defense +10"
+        }
+      ]
+    },
+    {
+      "id": "1522357230",
+      "name_en": "Water Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Water resistance +6"
+        },
+        {
+          "lv": 2,
+          "effect": "Water resistance +12"
+        },
+        {
+          "lv": 3,
+          "effect": "Water resistance +20 Defense +10"
+        }
+      ]
+    },
+    {
+      "id": "1536590735",
+      "name_en": "Ice Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Ice resistance +6"
+        },
+        {
+          "lv": 2,
+          "effect": "Ice resistance +12"
+        },
+        {
+          "lv": 3,
+          "effect": "Ice resistance +20 Defense +10"
+        }
+      ]
+    },
+    {
+      "id": "1148187564",
+      "name_en": "Thunder Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Thunder resistance +6"
+        },
+        {
+          "lv": 2,
+          "effect": "Thunder resistance +12"
+        },
+        {
+          "lv": 3,
+          "effect": "Thunder resistance +20 Defense +10"
+        }
+      ]
+    },
+    {
+      "id": "1161896781",
+      "name_en": "Dragon Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Dragon resistance +6"
+        },
+        {
+          "lv": 2,
+          "effect": "Dragon resistance +12"
+        },
+        {
+          "lv": 3,
+          "effect": "Dragon resistance +20 Defense +10"
+        }
+      ]
+    },
+    {
+      "id": "1176146786",
+      "name_en": "Blight Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Reduces the duration of all elemental blights by 50%."
+        },
+        {
+          "lv": 2,
+          "effect": "Reduces the duration of all elemental blights by 75%."
+        },
+        {
+          "lv": 3,
+          "effect": "Nullifies all elemental blights."
+        }
+      ]
+    },
+    {
+      "id": "1089716995",
+      "name_en": "Poison Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Reduces the number of times you take poison damage."
+        },
+        {
+          "lv": 2,
+          "effect": "Greatly reduces the number of times you take poison damage."
+        },
+        {
+          "lv": 3,
+          "effect": "Prevents poison and reduces venom."
+        }
+      ]
+    },
+    {
+      "id": "1104491296",
+      "name_en": "Paralysis Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Reduces the duration of paralysis by 30%."
+        },
+        {
+          "lv": 2,
+          "effect": "Reduces the duration of paralysis by 60%."
+        },
+        {
+          "lv": 3,
+          "effect": "Prevents paralysis."
+        }
+      ]
+    },
+    {
+      "id": "1118724801",
+      "name_en": "Sleep Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Reduces the duration of sleep by 30%."
+        },
+        {
+          "lv": 2,
+          "effect": "Reduces the duration of sleep by 60%."
+        },
+        {
+          "lv": 3,
+          "effect": "Prevents sleep."
+        }
+      ]
+    },
+    {
+      "id": "1132974822",
+      "name_en": "Stun Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Reduces the duration of stun by 60%."
+        },
+        {
+          "lv": 2,
+          "effect": "Reduces the duration of stun by 90%."
+        },
+        {
+          "lv": 3,
+          "effect": "Prevents stun."
+        }
+      ]
+    },
+    {
+      "id": "1280901767",
+      "name_en": "Muck Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Reduces limits on movement speed."
+        },
+        {
+          "lv": 2,
+          "effect": "Negates limits to movement speed."
+        }
+      ]
+    },
+    {
+      "id": "1295151780",
+      "name_en": "Blast Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Delays blastblight and reduces blast damage."
+        },
+        {
+          "lv": 2,
+          "effect": "Greatly delays blastblight and greatly reduces blast damage."
+        },
+        {
+          "lv": 3,
+          "effect": "Prevents blastblight."
+        }
+      ]
+    },
+    {
+      "id": "1309385285",
+      "name_en": "Botanist",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "One extra consumable herb item per gather."
+        },
+        {
+          "lv": 2,
+          "effect": "One extra consumable herb, fruit, nut, or seed item per gather."
+        },
+        {
+          "lv": 3,
+          "effect": "One extra consumable herb, fruit, nut, seed, or insect item per gather."
+        },
+        {
+          "lv": 4,
+          "effect": "One extra consumable herb, fruit, nut, seed, insect, or mushroom item per gather."
+        }
+      ]
+    },
+    {
+      "id": "1223496314",
+      "name_en": "Geologist",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Allows you to gather one extra time from bonepiles."
+        },
+        {
+          "lv": 2,
+          "effect": "Allows you to gather one extra time from gathering points."
+        },
+        {
+          "lv": 3,
+          "effect": "Allows you to gather one extra time from mining outcrops."
+        }
+      ]
+    },
+    {
+      "id": "1237729819",
+      "name_en": "Partbreaker",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Part damage +10%"
+        },
+        {
+          "lv": 2,
+          "effect": "Part damage +20%"
+        },
+        {
+          "lv": 3,
+          "effect": "Part damage +30%"
+        }
+      ]
+    },
+    {
+      "id": "1251979832",
+      "name_en": "Capture Master",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Activates skill effect."
+        }
+      ]
+    },
+    {
+      "id": "1265689049",
+      "name_en": "Carving Master",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Activates skill effect."
+        }
+      ]
+    },
+    {
+      "id": "1951027710",
+      "name_en": "Good Luck",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Slightly increases luck."
+        },
+        {
+          "lv": 2,
+          "effect": "Increases luck."
+        },
+        {
+          "lv": 3,
+          "effect": "Greatly increases luck."
+        }
+      ]
+    },
+    {
+      "id": "1965261215",
+      "name_en": "Speed Sharpening",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Removes one cycle from the sharpening process."
+        },
+        {
+          "lv": 2,
+          "effect": "Removes two cycles from the sharpening process."
+        },
+        {
+          "lv": 3,
+          "effect": "Removes three cycles from the sharpening process."
+        }
+      ]
+    },
+    {
+      "id": "1980035516",
+      "name_en": "Bombardier",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Explosive power +10%"
+        },
+        {
+          "lv": 2,
+          "effect": "Explosive power +20%"
+        },
+        {
+          "lv": 3,
+          "effect": "Explosive power +30%"
+        }
+      ]
+    },
+    {
+      "id": "1893605725",
+      "name_en": "Mushroomancer",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Lets you digest blue mushrooms and toadstools."
+        },
+        {
+          "lv": 2,
+          "effect": "Additionally lets you digest nitroshrooms and parashrooms."
+        },
+        {
+          "lv": 3,
+          "effect": "Additionally lets you digest mandragoras and exciteshrooms."
+        }
+      ]
+    },
+    {
+      "id": "1907855730",
+      "name_en": "Item Prolonger",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Item effect duration +10%"
+        },
+        {
+          "lv": 2,
+          "effect": "Item effect duration +25%"
+        },
+        {
+          "lv": 3,
+          "effect": "Item effect duration +50%"
+        }
+      ]
+    },
+    {
+      "id": "1921564947",
+      "name_en": "Wide-Range",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Items affect nearby allies with 33% of their efficacy."
+        },
+        {
+          "lv": 2,
+          "effect": "Items affect nearby allies in a wider radius with 33% of their efficacy."
+        },
+        {
+          "lv": 3,
+          "effect": "Items affect nearby allies in a wider radius with 66% of their efficacy."
+        },
+        {
+          "lv": 4,
+          "effect": "Items affect nearby allies in a much wider radius with 66% of their efficacy."
+        },
+        {
+          "lv": 5,
+          "effect": "Items affect nearby allies in a much wider radius with full efficacy."
+        }
+      ]
+    },
+    {
+      "id": "1935814960",
+      "name_en": "Free Meal",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Activates 10% of the time."
+        },
+        {
+          "lv": 2,
+          "effect": "Activates 25% of the time."
+        },
+        {
+          "lv": 3,
+          "effect": "Activates 45% of the time."
+        }
+      ]
+    },
+    {
+      "id": "2084266193",
+      "name_en": "Heroics",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "While active, increases defense by 50 points."
+        },
+        {
+          "lv": 2,
+          "effect": "Attack +5% and defense +50 while active."
+        },
+        {
+          "lv": 3,
+          "effect": "Attack +5% and defense +100 while active."
+        },
+        {
+          "lv": 4,
+          "effect": "Attack +10% and defense +100 while active."
+        },
+        {
+          "lv": 5,
+          "effect": "While active, attack power +30% and defense-increasing effects are negated."
+        }
+      ]
+    },
+    {
+      "id": "2099040502",
+      "name_en": "Fortify",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Increases attack by 10% and defense by 15% with each use."
+        }
+      ]
+    },
+    {
+      "id": "2146828439",
+      "name_en": "Flinch Free",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Prevents knockbacks."
+        },
+        {
+          "lv": 2,
+          "effect": "Prevents knockbacks. Tripping is reduced to a knockback instead."
+        },
+        {
+          "lv": 3,
+          "effect": "Prevents knockbacks and tripping."
+        }
+      ]
+    },
+    {
+      "id": "2026860724",
+      "name_en": "Jump Master",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Negates knockback during jumps."
+        }
+      ]
+    },
+    {
+      "id": "2040569941",
+      "name_en": "Carving Pro",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Activates skill effect."
+        }
+      ]
+    },
+    {
+      "id": "2054819914",
+      "name_en": "Hunger Resistance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Extends the time until your stamina cap reduces by 50%."
+        },
+        {
+          "lv": 2,
+          "effect": "Extends the time until your stamina cap reduces by 100%."
+        },
+        {
+          "lv": 3,
+          "effect": "Prevents your stamina cap from decreasing."
+        }
+      ]
+    },
+    {
+      "id": "2069053547",
+      "name_en": "Leap of Faith",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Enables skill use."
+        }
+      ]
+    },
+    {
+      "id": "1681174536",
+      "name_en": "Diversion",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Activates skill effect."
+        }
+      ]
+    },
+    {
+      "id": "1695408169",
+      "name_en": "Master Mounter",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Makes filling the Riding Gauge easier and increases ease of parrying."
+        }
+      ]
+    },
+    {
+      "id": "1743214542",
+      "name_en": "Chameleos Blessing",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Sometimes increases the effects of Spiribirds."
+        },
+        {
+          "lv": 2,
+          "effect": "Also negates minor and major wind pressure."
+        },
+        {
+          "lv": 3,
+          "effect": "Also extends the duration of your poison's effect on monsters."
+        },
+        {
+          "lv": 4,
+          "effect": "Also negates all wind pressure."
+        }
+      ]
+    },
+    {
+      "id": "1622706159",
+      "name_en": "Kushala Blessing",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Water and ice attack +5%"
+        },
+        {
+          "lv": 2,
+          "effect": "Water and ice attack +10%"
+        },
+        {
+          "lv": 3,
+          "effect": "Also allows recovery to exceed the red portion of the health gauge."
+        },
+        {
+          "lv": 4,
+          "effect": "Also nullifies heat damage."
+        }
+      ]
+    },
+    {
+      "id": "1636956044",
+      "name_en": "Teostra Blessing",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Fire attack and blast buildup +5%"
+        },
+        {
+          "lv": 2,
+          "effect": "Fire attack and blast buildup +10%"
+        },
+        {
+          "lv": 3,
+          "effect": "Also prevents poison and venom."
+        },
+        {
+          "lv": 4,
+          "effect": "Also negates theft."
+        }
+      ]
+    },
+    {
+      "id": "1651189677",
+      "name_en": "Dragonheart",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "When your health is at 50% or less, you contract dragonblight, and all elemental resistances are set to 30."
+        },
+        {
+          "lv": 2,
+          "effect": "When your health is at 50% or less, you contract dragonblight, and all elemental resistances are set to 50."
+        },
+        {
+          "lv": 3,
+          "effect": "When your health is at 70% or less, you contract dragonblight, and all elemental resistances are set to 50."
+        },
+        {
+          "lv": 4,
+          "effect": "Contract dragonblight when at 70% health or less. Sets Elemental resistances to 50 and gain +5% attack power."
+        },
+        {
+          "lv": 5,
+          "effect": "Contract dragonblight when at 80% health or less. Sets Elemental resistances to 50 and gain +10% attack power."
+        }
+      ]
+    },
+    {
+      "id": "1665963842",
+      "name_en": "Wirebug Whisperer",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Extends the duration you can keep a Wirebug by 30%."
+        },
+        {
+          "lv": 2,
+          "effect": "Also increases Wirefall recovery rate."
+        },
+        {
+          "lv": 3,
+          "effect": "Also increases passive recovery rate while on the ground."
+        }
+      ]
+    },
+    {
+      "id": "1814415203",
+      "name_en": "Wall Runner",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Reduces stamina consumption by 25% while wall running."
+        },
+        {
+          "lv": 2,
+          "effect": "Reduces stamina consumption by 50% while wall running."
+        },
+        {
+          "lv": 3,
+          "effect": "Also temporarily increases attack power by wall running."
+        }
+      ]
+    },
+    {
+      "id": "1862219520",
+      "name_en": "Counterstrike",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Attack +10 after activation."
+        },
+        {
+          "lv": 2,
+          "effect": "Attack +15 after activation."
+        },
+        {
+          "lv": 3,
+          "effect": "Attack +25 after activation."
+        }
+      ]
+    },
+    {
+      "id": "1875928865",
+      "name_en": "Rapid Morph",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Speed +10%"
+        },
+        {
+          "lv": 2,
+          "effect": "Speed +20% Morph attack damage +10%"
+        },
+        {
+          "lv": 3,
+          "effect": "Speed +30% Morph attack damage +20%"
+        }
+      ]
+    },
+    {
+      "id": "1755961030",
+      "name_en": "Hellfire Cloak",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Reduces damage from hellfire."
+        },
+        {
+          "lv": 2,
+          "effect": "Increases damage from hellfire blasts."
+        },
+        {
+          "lv": 3,
+          "effect": "Inflicts hellfireblight when monsters are enraged."
+        },
+        {
+          "lv": 4,
+          "effect": "Effect persists for one minute after a monster's rage has subsided."
+        }
+      ]
+    },
+    {
+      "id": "1770194663",
+      "name_en": "Wind Alignment",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Dragon resistance +1"
+        },
+        {
+          "lv": 2,
+          "effect": "Dragon resistance +2"
+        },
+        {
+          "lv": 3,
+          "effect": "Dragon resistance +3"
+        },
+        {
+          "lv": 4,
+          "effect": "Dragon resistance +4"
+        },
+        {
+          "lv": 5,
+          "effect": "Also grants Great Luck."
+        }
+      ]
+    },
+    {
+      "id": "1784968836",
+      "name_en": "Thunder Alignment",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Thunder resistance +1"
+        },
+        {
+          "lv": 2,
+          "effect": "Thunder resistance +2"
+        },
+        {
+          "lv": 3,
+          "effect": "Thunder resistance +3"
+        },
+        {
+          "lv": 4,
+          "effect": "Thunder resistance +4"
+        },
+        {
+          "lv": 5,
+          "effect": "Also grants Great Luck."
+        }
+      ]
+    },
+    {
+      "id": "1799202469",
+      "name_en": "Stormsoul",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "Thunder and dragon attack +5%"
+        },
+        {
+          "lv": 2,
+          "effect": "Thunder and dragon attack +10%"
+        },
+        {
+          "lv": 3,
+          "effect": "Thunder and dragon attack +15%"
+        },
+        {
+          "lv": 4,
+          "effect": "Also increases level of other skills by +1."
+        },
+        {
+          "lv": 5,
+          "effect": "Also increases level of other skills by +1 (stacks with previous bonus)."
+        }
+      ]
+    },
+    {
+      "id": "337057370",
+      "name_en": "Blood Rite",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "384321147",
+      "name_en": "Dereliction",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "398571032",
+      "name_en": "Furious",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "278586937",
+      "name_en": "Mail of Hellfire",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "293361118",
+      "name_en": "Coalescence",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "307594751",
+      "name_en": "Bloodlust",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "321844636",
+      "name_en": "Defiance",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        },
+        {
+          "lv": 4,
+          "effect": ""
+        },
+        {
+          "lv": 5,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "469771709",
+      "name_en": "Sneak Attack",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "517576018",
+      "name_en": "Adrenaline Rush",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "412366096",
+      "name_en": "Redirection",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "426599729",
+      "name_en": "Spiribird's Call",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "440849622",
+      "name_en": "Charge Master",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "454558967",
+      "name_en": "Foray",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "99710100",
+      "name_en": "Tune-Up",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "113943733",
+      "name_en": "Grinder (S)",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "128717994",
+      "name_en": "Bladescale Hone",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "8733771",
+      "name_en": "Wall Runner (Boost)",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "232963023",
+      "name_en": "Quick Breath",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "22983784",
+      "name_en": "Element Exploit",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "37217289",
+      "name_en": "Burst",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "50943022",
+      "name_en": "Guts",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "247196652",
+      "name_en": "Status Trigger",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "261970829",
+      "name_en": "Intrepid Heart",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "141986722",
+      "name_en": "Buildup Boost",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "531809651",
+      "name_en": "Embolden",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "169945952",
+      "name_en": "Wind Mantle",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "888838913",
+      "name_en": "Powder Mantle",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "156236611",
+      "name_en": "Berserk",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "840071771",
+      "name_en": "Strife",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "903072550",
+      "name_en": "Frostcraft",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "917846727",
+      "name_en": "Dragon Conversion",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "932080356",
+      "name_en": "Heaven-Sent",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "812112517",
+      "name_en": "Frenzied Bloodlust",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "825821882",
+      "name_en": "Blood Awakening",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        },
+        {
+          "lv": 2,
+          "effect": ""
+        },
+        {
+          "lv": 3,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "1022077560",
+      "name_en": "Shock Absorber",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        }
+      ]
+    },
+    {
+      "id": "1036851737",
+      "name_en": "Inspiration",
+      "name_zh": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": ""
+        }
+      ]
+    }
+  ]
+}

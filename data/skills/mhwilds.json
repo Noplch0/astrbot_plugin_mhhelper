@@ -1,0 +1,3159 @@
+{
+  "version": "kiranico-2026-09-18",
+  "source": "https://mhwilds.kiranico.com/zh/data/skills",
+  "skills": [
+    {
+      "id": "gong-ji",
+      "name_zh": "攻击",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "基础攻击力+3"
+        },
+        {
+          "lv": 2,
+          "effect": "基础攻击力+5"
+        },
+        {
+          "lv": 3,
+          "effect": "基础攻击力+7"
+        },
+        {
+          "lv": 4,
+          "effect": "攻击力变为1.02倍后，基础攻击力+8"
+        },
+        {
+          "lv": 5,
+          "effect": "攻击力变为1.04倍后，基础攻击力+9"
+        }
+      ]
+    },
+    {
+      "id": "gong-ji-shou-shi",
+      "name_zh": "攻击守势",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "技能发动时，攻击力变为1.05倍"
+        },
+        {
+          "lv": 2,
+          "effect": "技能发动时，攻击力变为1.1倍"
+        },
+        {
+          "lv": 3,
+          "effect": "技能发动时，攻击力变为1.15倍"
+        }
+      ]
+    },
+    {
+      "id": "kan-po",
+      "name_zh": "看破",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "会心率+4%"
+        },
+        {
+          "lv": 2,
+          "effect": "会心率+8%"
+        },
+        {
+          "lv": 3,
+          "effect": "会心率+12%"
+        },
+        {
+          "lv": 4,
+          "effect": "会心率+16%"
+        },
+        {
+          "lv": 5,
+          "effect": "会心率+20%"
+        }
+      ]
+    },
+    {
+      "id": "chao-hui-xin",
+      "name_zh": "超会心",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "会心攻击时的伤害倍率增强为1.28倍"
+        },
+        {
+          "lv": 2,
+          "effect": "会心攻击时的伤害倍率增强为1.31倍"
+        },
+        {
+          "lv": 3,
+          "effect": "会心攻击时的伤害倍率增强为1.34倍"
+        },
+        {
+          "lv": 4,
+          "effect": "会心攻击时的伤害倍率增强为1.37倍"
+        },
+        {
+          "lv": 5,
+          "effect": "会心攻击时的伤害倍率增强为1.4倍"
+        }
+      ]
+    },
+    {
+      "id": "ba-dao-zhu-ji",
+      "name_zh": "拔刀术【技】",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "会心率+50%"
+        },
+        {
+          "lv": 2,
+          "effect": "会心率+75%"
+        },
+        {
+          "lv": 3,
+          "effect": "会心率+100%"
+        }
+      ]
+    },
+    {
+      "id": "huo-shu-xing-gong-ji-qiang-hua",
+      "name_zh": "火属性攻击强化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "火属性攻击值+40"
+        },
+        {
+          "lv": 2,
+          "effect": "火属性攻击值变为1.1倍后，火属性攻击值+50"
+        },
+        {
+          "lv": 3,
+          "effect": "火属性攻击值变为1.2倍后，火属性攻击值+60"
+        }
+      ]
+    },
+    {
+      "id": "shui-shu-xing-gong-ji-qiang-hua",
+      "name_zh": "水属性攻击强化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "水属性攻击值+40"
+        },
+        {
+          "lv": 2,
+          "effect": "水属性攻击值变为1.1倍后，水属性攻击值+50"
+        },
+        {
+          "lv": 3,
+          "effect": "水属性攻击值变为1.2倍后，水属性攻击值+60"
+        }
+      ]
+    },
+    {
+      "id": "bing-shu-xing-gong-ji-qiang-hua",
+      "name_zh": "冰属性攻击强化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "冰属性攻击值+40"
+        },
+        {
+          "lv": 2,
+          "effect": "冰属性攻击值变为1.1倍后，冰属性攻击值+50"
+        },
+        {
+          "lv": 3,
+          "effect": "冰属性攻击值变为1.2倍后，冰属性攻击值+60"
+        }
+      ]
+    },
+    {
+      "id": "lei-shu-xing-gong-ji-qiang-hua",
+      "name_zh": "雷属性攻击强化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "雷属性攻击值+40"
+        },
+        {
+          "lv": 2,
+          "effect": "雷属性攻击值变为1.1倍后，雷属性攻击值+50"
+        },
+        {
+          "lv": 3,
+          "effect": "雷属性攻击值变为1.2倍后，雷属性攻击值+60"
+        }
+      ]
+    },
+    {
+      "id": "long-shu-xing-gong-ji-qiang-hua",
+      "name_zh": "龙属性攻击强化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "龙属性攻击值+40"
+        },
+        {
+          "lv": 2,
+          "effect": "龙属性攻击值变为1.1倍后，龙属性攻击值+50"
+        },
+        {
+          "lv": 3,
+          "effect": "龙属性攻击值变为1.2倍后，龙属性攻击值+60"
+        }
+      ]
+    },
+    {
+      "id": "du-shu-xing-qiang-hua",
+      "name_zh": "毒属性强化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "毒累积值变为1.05倍后，毒累积值+10"
+        },
+        {
+          "lv": 2,
+          "effect": "毒累积值变为1.1倍后，毒累积值+20"
+        },
+        {
+          "lv": 3,
+          "effect": "毒累积值变为1.2倍后，毒累积值+50"
+        }
+      ]
+    },
+    {
+      "id": "ma-bi-shu-xing-qiang-hua",
+      "name_zh": "麻痹属性强化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "麻痹累积值变为1.05倍后，麻痹累积值+10"
+        },
+        {
+          "lv": 2,
+          "effect": "麻痹累积值变为1.1倍后，麻痹累积值+20"
+        },
+        {
+          "lv": 3,
+          "effect": "麻痹累积值变为1.2倍后，麻痹累积值+50"
+        }
+      ]
+    },
+    {
+      "id": "shui-mian-shu-xing-qiang-hua",
+      "name_zh": "睡眠属性强化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "睡眠累积值变为1.05倍后，睡眠累积值+10"
+        },
+        {
+          "lv": 2,
+          "effect": "睡眠累积值变为1.1倍后，睡眠累积值+20"
+        },
+        {
+          "lv": 3,
+          "effect": "睡眠累积值变为1.2倍后，睡眠累积值+50"
+        }
+      ]
+    },
+    {
+      "id": "bao-po-shu-xing-qiang-hua",
+      "name_zh": "爆破属性强化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "爆破累积值变为1.05倍后，爆破累积值+10"
+        },
+        {
+          "lv": 2,
+          "effect": "爆破累积值变为1.1倍后，爆破累积值+20"
+        },
+        {
+          "lv": 3,
+          "effect": "爆破累积值变为1.2倍后，爆破累积值+50"
+        }
+      ]
+    },
+    {
+      "id": "hui-xin-ji-shu-xing",
+      "name_zh": "会心击【属性】",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "效果发动时，略微提升属性伤害"
+        },
+        {
+          "lv": 2,
+          "effect": "效果发动时，提升属性伤害"
+        },
+        {
+          "lv": 3,
+          "effect": "效果发动时，大幅提升属性伤害"
+        }
+      ]
+    },
+    {
+      "id": "hui-xin-ji-te-shu",
+      "name_zh": "会心击【特殊】",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "略微提升会心攻击时施加的状态异常值"
+        },
+        {
+          "lv": 2,
+          "effect": "提升会心攻击时施加的状态异常值"
+        },
+        {
+          "lv": 3,
+          "effect": "大幅提升会心攻击时施加的状态异常值"
+        }
+      ]
+    },
+    {
+      "id": "xu-li-da-shi",
+      "name_zh": "蓄力大师",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "略微提升蓄力攻击的属性攻击值与状态异常累积值"
+        },
+        {
+          "lv": 2,
+          "effect": "提升蓄力攻击的属性攻击值与状态异常累积值"
+        },
+        {
+          "lv": 3,
+          "effect": "大幅提升蓄力攻击的属性攻击值与状态异常累积值"
+        }
+      ]
+    },
+    {
+      "id": "jiang",
+      "name_zh": "匠",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "武器锋利度+10"
+        },
+        {
+          "lv": 2,
+          "effect": "武器锋利度+20"
+        },
+        {
+          "lv": 3,
+          "effect": "武器锋利度+30"
+        },
+        {
+          "lv": 4,
+          "effect": "武器锋利度+40"
+        },
+        {
+          "lv": 5,
+          "effect": "武器锋利度+50"
+        }
+      ]
+    },
+    {
+      "id": "li-ren",
+      "name_zh": "利刃",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "有10%概率不会消耗锋利度"
+        },
+        {
+          "lv": 2,
+          "effect": "有25%概率不会消耗锋利度"
+        },
+        {
+          "lv": 3,
+          "effect": "有50%概率不会消耗锋利度"
+        }
+      ]
+    },
+    {
+      "id": "gang-ren-da-mo",
+      "name_zh": "刚刃打磨",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "效果发动时，30秒内不会消耗锋利度"
+        },
+        {
+          "lv": 2,
+          "effect": "效果发动时，60秒内不会消耗锋利度"
+        },
+        {
+          "lv": 3,
+          "effect": "效果发动时，90秒内不会消耗锋利度"
+        }
+      ]
+    },
+    {
+      "id": "xin-yan",
+      "name_zh": "心眼",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "攻击50%概率不会被弹开，对坚硬部位的攻击威力变为1.1倍"
+        },
+        {
+          "lv": 2,
+          "effect": "攻击100%概率不会被弹开，对坚硬部位的攻击威力变为1.15倍"
+        },
+        {
+          "lv": 3,
+          "effect": "攻击100%概率不会被弹开，对坚硬部位的攻击威力变为1.3倍"
+        }
+      ]
+    },
+    {
+      "id": "dun-qi-neng-shou",
+      "name_zh": "钝器能手",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "锋利度黄色或以下时，造成的伤害变为1.05倍"
+        },
+        {
+          "lv": 2,
+          "effect": "锋利度黄色或以下时，造成的伤害变为1.1倍"
+        },
+        {
+          "lv": 3,
+          "effect": "锋利度绿色或以下时，造成的伤害变为1.1倍"
+        }
+      ]
+    },
+    {
+      "id": "da-ren-yi",
+      "name_zh": "达人艺",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "效果发动时，有80%概率不会消耗锋利度"
+        }
+      ]
+    },
+    {
+      "id": "tong-chang-dan-tong-chang-jian-qiang-hua",
+      "name_zh": "通常弹·通常箭强化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "略微提升上述弹药和箭矢的威力"
+        }
+      ]
+    },
+    {
+      "id": "guan-chuan-dan-long-zhi-jian-qiang-hua",
+      "name_zh": "贯穿弹·龙之箭强化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "略微提升上述弹药和箭矢的威力"
+        }
+      ]
+    },
+    {
+      "id": "san-dan-gang-she-qiang-hua",
+      "name_zh": "散弹·刚射强化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "略微提升上述弹药和箭矢的威力"
+        }
+      ]
+    },
+    {
+      "id": "dan-dao-qiang-hua",
+      "name_zh": "弹道强化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "略微拓展最佳距离"
+        },
+        {
+          "lv": 2,
+          "effect": "拓展最佳距离"
+        },
+        {
+          "lv": 3,
+          "effect": "大幅拓展最佳距离，提升在最佳距离命中的射击威力"
+        }
+      ]
+    },
+    {
+      "id": "su-she-qiang-hua",
+      "name_zh": "速射强化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "速射弹的威力变为1.05倍"
+        }
+      ]
+    },
+    {
+      "id": "shou-fa-xun-ji",
+      "name_zh": "首发迅击",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "小幅提升弩炮的装填速度及满足条件的弹药威力"
+        },
+        {
+          "lv": 2,
+          "effect": "提升弩炮的装填速度及满足条件的弹药威力"
+        },
+        {
+          "lv": 3,
+          "effect": "大幅提升弩炮的装填速度及满足条件的弹药威力"
+        }
+      ]
+    },
+    {
+      "id": "qiang-si-she-ji",
+      "name_zh": "强四射击",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "满足条件时，略微提升射击的会心率及攻击力"
+        },
+        {
+          "lv": 2,
+          "effect": "满足条件时，小幅提升射击的会心率及攻击力"
+        },
+        {
+          "lv": 3,
+          "effect": "满足条件时，提升射击的会心率及攻击力"
+        }
+      ]
+    },
+    {
+      "id": "te-shu-she-ji-qiang-hua",
+      "name_zh": "特殊射击强化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "小幅提升上述弹药和箭矢的威力"
+        },
+        {
+          "lv": 2,
+          "effect": "提升上述弹药和箭矢的威力"
+        }
+      ]
+    },
+    {
+      "id": "du-ping-zhui-jia",
+      "name_zh": "毒瓶追加",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "将可装填毒瓶"
+        }
+      ]
+    },
+    {
+      "id": "ma-bi-ping-zhui-jia",
+      "name_zh": "麻痹瓶追加",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "将可装填麻痹瓶"
+        }
+      ]
+    },
+    {
+      "id": "shui-mian-ping-zhui-jia",
+      "name_zh": "睡眠瓶追加",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "将可装填睡眠瓶"
+        }
+      ]
+    },
+    {
+      "id": "bao-po-ping-zhui-jia",
+      "name_zh": "爆破瓶追加",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "将可装填爆破瓶"
+        }
+      ]
+    },
+    {
+      "id": "jian-qi-ping-zhui-jia",
+      "name_zh": "减气瓶追加",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "将可装备减气瓶"
+        }
+      ]
+    },
+    {
+      "id": "ji-zhong",
+      "name_zh": "集中",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "略微提升槽的上升率，蓄力时间缩短5%"
+        },
+        {
+          "lv": 2,
+          "effect": "小幅提升槽的上升率，蓄力时间缩短10%"
+        },
+        {
+          "lv": 3,
+          "effect": "提升槽的上升率，蓄力时间缩短15%"
+        }
+      ]
+    },
+    {
+      "id": "qiang-hua-chi-xu",
+      "name_zh": "强化持续",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "小幅延长强化时间"
+        },
+        {
+          "lv": 2,
+          "effect": "延长强化时间"
+        },
+        {
+          "lv": 3,
+          "effect": "大幅延长强化时间"
+        }
+      ]
+    },
+    {
+      "id": "ba-dao-zhu-li",
+      "name_zh": "拔刀术【力】",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "略微附加引起昏厥的能力武器拔刀攻击的基础攻击力+3"
+        },
+        {
+          "lv": 2,
+          "effect": "附加引起昏厥的能力武器拔刀攻击的基础攻击力+5"
+        },
+        {
+          "lv": 3,
+          "effect": "大幅附加引起昏厥的能力武器拔刀攻击的基础攻击力+7"
+        }
+      ]
+    },
+    {
+      "id": "ji-yun-zhu",
+      "name_zh": "击晕术",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "昏厥威力变为1.2倍"
+        },
+        {
+          "lv": 2,
+          "effect": "昏厥威力变为1.3倍"
+        },
+        {
+          "lv": 3,
+          "effect": "昏厥威力变为1.4倍"
+        }
+      ]
+    },
+    {
+      "id": "duo-qu-nai-li",
+      "name_zh": "夺取耐力",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "减气威力变为1.2倍"
+        },
+        {
+          "lv": 2,
+          "effect": "减气威力变为1.3倍"
+        },
+        {
+          "lv": 3,
+          "effect": "减气威力变为1.4倍"
+        }
+      ]
+    },
+    {
+      "id": "pao-zhu",
+      "name_zh": "炮术",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "小幅提升对象的攻击威力小幅提升龙击炮的发射速度炮击的火属性攻击值+30"
+        },
+        {
+          "lv": 2,
+          "effect": "提升对象的攻击威力提升龙击炮的发射速度炮击的火属性攻击值+60"
+        },
+        {
+          "lv": 3,
+          "effect": "大幅提升对象的攻击威力大幅提升龙击炮的发射速度炮击的火属性攻击值+90"
+        }
+      ]
+    },
+    {
+      "id": "gao-su-bian-xing",
+      "name_zh": "高速变形",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "速度变为1.1倍"
+        },
+        {
+          "lv": 2,
+          "effect": "速度变为1.2倍变形攻击的威力变为1.1倍"
+        },
+        {
+          "lv": 3,
+          "effect": "速度变为1.3倍变形攻击的威力变为1.2倍"
+        }
+      ]
+    },
+    {
+      "id": "chui-di-ming-ren",
+      "name_zh": "吹笛名人",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "延长狩猎笛的旋律效果时间增加体力回复量的上升率"
+        },
+        {
+          "lv": 2,
+          "effect": "进一步延长狩猎笛的旋律效果时间"
+        }
+      ]
+    },
+    {
+      "id": "xu-ji-qiang-hua",
+      "name_zh": "蓄击强化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "发动技能效果"
+        }
+      ]
+    },
+    {
+      "id": "fei-yan",
+      "name_zh": "飞燕",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "跳跃攻击的威力变为1.1倍"
+        }
+      ]
+    },
+    {
+      "id": "du-shang-hai-qiang-hua",
+      "name_zh": "毒伤害强化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "中毒状态的时间变为1.2倍"
+        }
+      ]
+    },
+    {
+      "id": "ge-dang-xing-neng",
+      "name_zh": "格挡性能",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "略微减少所受攻击的威力格挡的耐力消耗减少15%"
+        },
+        {
+          "lv": 2,
+          "effect": "减少所受攻击的威力格挡的耐力消耗减少30%"
+        },
+        {
+          "lv": 3,
+          "effect": "大幅减少所受攻击的威力格挡的耐力消耗减少50％"
+        }
+      ]
+    },
+    {
+      "id": "ge-dang-qiang-hua",
+      "name_zh": "格挡强化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "减少伤害10%，满足条件时再减少20%"
+        },
+        {
+          "lv": 2,
+          "effect": "减少伤害20%，满足条件时再减少30%"
+        },
+        {
+          "lv": 3,
+          "effect": "减少伤害30%，满足条件时再减少50%"
+        }
+      ]
+    },
+    {
+      "id": "pao-dan-zhuang-tian",
+      "name_zh": "炮弹装填",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "加快弹药与瓶的装填速度"
+        },
+        {
+          "lv": 2,
+          "effect": "进一步加快弹药与瓶的装填速度，铳枪装填数+1，提高盾斧的充能数"
+        }
+      ]
+    },
+    {
+      "id": "di-shi-shi-yong-gao-su-hua",
+      "name_zh": "砥石使用高速化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "省略打磨动作1次"
+        },
+        {
+          "lv": 2,
+          "effect": "省略打磨动作2次"
+        }
+      ]
+    },
+    {
+      "id": "jin-shui-ren-wen",
+      "name_zh": "浸水刃纹",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "身体淋湿时，会心率提升3%泡沫状态时，会心率提升7%"
+        },
+        {
+          "lv": 2,
+          "effect": "身体淋湿时，会心率提升6%泡沫状态时，会心率提升14%"
+        },
+        {
+          "lv": 3,
+          "effect": "身体淋湿时，会心率提升9%泡沫状态时，会心率提升21%"
+        }
+      ]
+    },
+    {
+      "id": "bai-chi-ben-liu",
+      "name_zh": "白炽奔流",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "发动技能效果（若与灼热同时使用，则不会发动灼热效果，但会追加火属性伤害）"
+        }
+      ]
+    },
+    {
+      "id": "nai-xing-bian-huan-lei",
+      "name_zh": "耐性变换【雷】",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "发动技能效果"
+        }
+      ]
+    },
+    {
+      "id": "ren-lin-yan-zhuang",
+      "name_zh": "刃鳞研装",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "发动技能效果"
+        }
+      ]
+    },
+    {
+      "id": "ren-lin-zeng-zhuang",
+      "name_zh": "刃鳞增装",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "发动技能效果"
+        }
+      ]
+    },
+    {
+      "id": "neng-liang-shi",
+      "name_zh": "能量石",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "矿石的稀有度越高，攻击力提升幅度越大。（存在提升上限）"
+        }
+      ]
+    },
+    {
+      "id": "shao-kao-yu-mi-pao",
+      "name_zh": "烧烤玉米炮",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "发动技能效果"
+        }
+      ]
+    },
+    {
+      "id": "yan-zhi-da-chu",
+      "name_zh": "炎之大厨",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "发动技能效果"
+        }
+      ]
+    },
+    {
+      "id": "hui-bi-zhuang-tian",
+      "name_zh": "回避装填",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "发动技能效果"
+        }
+      ]
+    },
+    {
+      "id": "an-hei",
+      "name_zh": "暗黑",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "发动技能效果（发动后一定时间内无法再次发动，　但使出蓄力斩时仍会受到伤害）"
+        }
+      ]
+    },
+    {
+      "id": "he-cheng-dun",
+      "name_zh": "合成盾",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "发动技能效果"
+        }
+      ]
+    },
+    {
+      "id": "xie-zuo-cheng-xu",
+      "name_zh": "协作程序",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "发动技能效果"
+        }
+      ]
+    },
+    {
+      "id": "miao-miao-bang",
+      "name_zh": "miao-miao-bang",
+      "name_en": "",
+      "aliases": [],
+      "levels": []
+    },
+    {
+      "id": "yuan-hen",
+      "name_zh": "怨恨",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "技能发动时，基础攻击力+5"
+        },
+        {
+          "lv": 2,
+          "effect": "技能发动时，基础攻击力+10"
+        },
+        {
+          "lv": 3,
+          "effect": "技能发动时，基础攻击力+15"
+        },
+        {
+          "lv": 4,
+          "effect": "技能发动时，基础攻击力+20"
+        },
+        {
+          "lv": 5,
+          "effect": "技能发动时，基础攻击力+25"
+        }
+      ]
+    },
+    {
+      "id": "qiao-ji",
+      "name_zh": "巧击",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "技能发动时，基础攻击力+10"
+        },
+        {
+          "lv": 2,
+          "effect": "技能发动时，基础攻击力+15"
+        },
+        {
+          "lv": 3,
+          "effect": "技能发动时，基础攻击力+20"
+        },
+        {
+          "lv": 4,
+          "effect": "技能发动时，基础攻击力+25"
+        },
+        {
+          "lv": 5,
+          "effect": "技能发动时，基础攻击力+30"
+        }
+      ]
+    },
+    {
+      "id": "wu-shang",
+      "name_zh": "无伤",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "技能发动时，基础攻击力+3"
+        },
+        {
+          "lv": 2,
+          "effect": "技能发动时，基础攻击力+6"
+        },
+        {
+          "lv": 3,
+          "effect": "技能发动时，基础攻击力+10"
+        },
+        {
+          "lv": 4,
+          "effect": "技能发动时，基础攻击力+15"
+        },
+        {
+          "lv": 5,
+          "effect": "技能发动时，基础攻击力+20"
+        }
+      ]
+    },
+    {
+      "id": "ni-xi",
+      "name_zh": "逆袭",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "技能发动时，基础攻击力+10"
+        },
+        {
+          "lv": 2,
+          "effect": "技能发动时，基础攻击力+15，小幅延长效果时间"
+        },
+        {
+          "lv": 3,
+          "effect": "技能发动时，基础攻击力+25，延长效果时间"
+        }
+      ]
+    },
+    {
+      "id": "ruo-dian-te-xiao",
+      "name_zh": "弱点特效",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "攻击有效部位时，会心率+5%攻击伤口时，会心率再+3%"
+        },
+        {
+          "lv": 2,
+          "effect": "攻击有效部位时，会心率+10%攻击伤口时，会心率再+5%"
+        },
+        {
+          "lv": 3,
+          "effect": "攻击有效部位时，会心率+15%攻击伤口时，会心率再+10%"
+        },
+        {
+          "lv": 4,
+          "effect": "攻击有效部位时，会心率+20%攻击伤口时，会心率再+15%"
+        },
+        {
+          "lv": 5,
+          "effect": "攻击有效部位时，会心率+30%攻击伤口时，会心率再+20%"
+        }
+      ]
+    },
+    {
+      "id": "jing-shen-dou-sou",
+      "name_zh": "精神抖擞",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "效果发动时，会心率+10%"
+        },
+        {
+          "lv": 2,
+          "effect": "效果发动时，会心率+20%"
+        },
+        {
+          "lv": 3,
+          "effect": "效果发动时，会心率+30%"
+        }
+      ]
+    },
+    {
+      "id": "shu-xing-bian-huan",
+      "name_zh": "属性变换",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "效果发动时，略微提升龙属性攻击值，累积属性伤害后，追加造成龙属性伤害"
+        },
+        {
+          "lv": 2,
+          "effect": "效果发动时，提升龙属性攻击值，累积属性伤害后，追加造成较多龙属性伤害"
+        },
+        {
+          "lv": 3,
+          "effect": "效果发动时，进一步提升龙属性攻击值，累积属性伤害后，追加造成更多龙属性伤害"
+        }
+      ]
+    },
+    {
+      "id": "fang-yu",
+      "name_zh": "防御",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "防御力+5"
+        },
+        {
+          "lv": 2,
+          "effect": "防御力+10"
+        },
+        {
+          "lv": 3,
+          "effect": "防御力变为1.05倍后，防御力+10"
+        },
+        {
+          "lv": 4,
+          "effect": "防御力变为1.05倍后，防御力+20，全属性耐性+3"
+        },
+        {
+          "lv": 5,
+          "effect": "防御力变为1.08倍后，防御力+20，全属性耐性值+3"
+        },
+        {
+          "lv": 6,
+          "effect": "防御力变为1.08倍后，防御力+35，全属性耐性值+5"
+        },
+        {
+          "lv": 7,
+          "effect": "防御力变为1.1倍后，防御力+35，全属性耐性值+5"
+        }
+      ]
+    },
+    {
+      "id": "jing-ling-jia-hu",
+      "name_zh": "精灵加护",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "效果发动时，伤害减轻15%"
+        },
+        {
+          "lv": 2,
+          "effect": "效果发动时，伤害减轻30%"
+        },
+        {
+          "lv": 3,
+          "effect": "效果发动时，伤害减轻50%"
+        }
+      ]
+    },
+    {
+      "id": "huo-nai-xing",
+      "name_zh": "火耐性",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "火耐性+6"
+        },
+        {
+          "lv": 2,
+          "effect": "火耐性+12"
+        },
+        {
+          "lv": 3,
+          "effect": "火耐性+20、防御力+10"
+        }
+      ]
+    },
+    {
+      "id": "shui-nai-xing",
+      "name_zh": "水耐性",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "水耐性+6"
+        },
+        {
+          "lv": 2,
+          "effect": "水耐性+12"
+        },
+        {
+          "lv": 3,
+          "effect": "水耐性+20、防御力+10"
+        }
+      ]
+    },
+    {
+      "id": "lei-nai-xing",
+      "name_zh": "雷耐性",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "雷耐性+6"
+        },
+        {
+          "lv": 2,
+          "effect": "雷耐性+12"
+        },
+        {
+          "lv": 3,
+          "effect": "雷耐性+20、防御力+10"
+        }
+      ]
+    },
+    {
+      "id": "bing-nai-xing",
+      "name_zh": "冰耐性",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "冰耐性+6"
+        },
+        {
+          "lv": 2,
+          "effect": "冰耐性+12"
+        },
+        {
+          "lv": 3,
+          "effect": "冰耐性+20、防御力+10"
+        }
+      ]
+    },
+    {
+      "id": "long-nai-xing",
+      "name_zh": "龙耐性",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "龙耐性+6"
+        },
+        {
+          "lv": 2,
+          "effect": "龙耐性+12"
+        },
+        {
+          "lv": 3,
+          "effect": "龙耐性+20、防御力+10"
+        }
+      ]
+    },
+    {
+      "id": "du-nai-xing",
+      "name_zh": "毒耐性",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "减少受到中毒伤害的次数"
+        },
+        {
+          "lv": 2,
+          "effect": "大幅减少受到中毒伤害的次数"
+        },
+        {
+          "lv": 3,
+          "effect": "不会进入中毒状态"
+        }
+      ]
+    },
+    {
+      "id": "ma-bi-nai-xing",
+      "name_zh": "麻痹耐性",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "麻痹状态持续时间减少30%"
+        },
+        {
+          "lv": 2,
+          "effect": "麻痹状态持续时间减少60%"
+        },
+        {
+          "lv": 3,
+          "effect": "不会进入麻痹状态"
+        }
+      ]
+    },
+    {
+      "id": "shui-mian-nai-xing",
+      "name_zh": "睡眠耐性",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "睡眠状态持续时间减少30%"
+        },
+        {
+          "lv": 2,
+          "effect": "睡眠状态持续时间减少60%"
+        },
+        {
+          "lv": 3,
+          "effect": "不会进入睡眠状态"
+        }
+      ]
+    },
+    {
+      "id": "fang-yu-li-xia-jiang-nai-xing",
+      "name_zh": "防御力下降耐性",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "防御力下降状态的时间减少50％"
+        },
+        {
+          "lv": 2,
+          "effect": "防御力下降状态的时间减少75％"
+        },
+        {
+          "lv": 3,
+          "effect": "不会陷入防御力下降状态"
+        }
+      ]
+    },
+    {
+      "id": "shu-xing-yi-chang-nai-xing",
+      "name_zh": "属性异常耐性",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "全属性异常的效果时间减少50%"
+        },
+        {
+          "lv": 2,
+          "effect": "全属性异常的效果时间减少75%"
+        },
+        {
+          "lv": 3,
+          "effect": "使全属性异常无效"
+        }
+      ]
+    },
+    {
+      "id": "hun-jue-nai-xing",
+      "name_zh": "昏厥耐性",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "昏厥状态持续时间减少30%"
+        },
+        {
+          "lv": 2,
+          "effect": "昏厥状态持续时间减少60%"
+        },
+        {
+          "lv": 3,
+          "effect": "不会进入昏厥状态"
+        }
+      ]
+    },
+    {
+      "id": "lie-shang-nai-xing",
+      "name_zh": "裂伤耐性",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "减轻裂伤状态造成的伤害"
+        },
+        {
+          "lv": 2,
+          "effect": "大幅减轻裂伤状态造成的伤害"
+        },
+        {
+          "lv": 3,
+          "effect": "不会陷入裂伤状态"
+        }
+      ]
+    },
+    {
+      "id": "shu-fu-nai-xing",
+      "name_zh": "束缚耐性",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "加快从丝线束缚状态及冻结状态回复的速度"
+        },
+        {
+          "lv": 2,
+          "effect": "极大加快从丝线束缚状态及冻结状态回复的速度"
+        },
+        {
+          "lv": 3,
+          "effect": "不会陷入丝线束缚状态和冻结状态"
+        }
+      ]
+    },
+    {
+      "id": "bao-po-yi-chang-nai-xing",
+      "name_zh": "爆破异常耐性",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "延迟爆破时间减轻爆破时受到的伤害"
+        },
+        {
+          "lv": 2,
+          "effect": "进一步延迟爆破时间大幅减轻爆破时受到的伤害"
+        },
+        {
+          "lv": 3,
+          "effect": "不会陷入爆破异常"
+        }
+      ]
+    },
+    {
+      "id": "e-chou-nai-xing",
+      "name_zh": "恶臭耐性",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "恶臭状态持续时间减少50%"
+        },
+        {
+          "lv": 2,
+          "effect": "不会陷入恶臭状态"
+        }
+      ]
+    },
+    {
+      "id": "gua-ying-huan-jing",
+      "name_zh": "适应环境",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "使炎热、寒冷的影响无效"
+        },
+        {
+          "lv": 2,
+          "effect": "使地形造成的伤害无效"
+        }
+      ]
+    },
+    {
+      "id": "ti-li-hui-fu-liang-ti-sheng",
+      "name_zh": "体力回复量提升",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "略微增加回复量"
+        },
+        {
+          "lv": 2,
+          "effect": "小幅增加回复量"
+        },
+        {
+          "lv": 3,
+          "effect": "大幅增加回复量"
+        }
+      ]
+    },
+    {
+      "id": "hui-fu-su-du",
+      "name_zh": "回复速度",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "红色槽的自动回复速度变为2倍"
+        },
+        {
+          "lv": 2,
+          "effect": "红色槽的自动回复速度变为3倍"
+        },
+        {
+          "lv": 3,
+          "effect": "红色槽的自动回复速度变为4倍"
+        }
+      ]
+    },
+    {
+      "id": "huan-jing-li-yong-zhi-shi",
+      "name_zh": "环境利用知识",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "回复50体力"
+        },
+        {
+          "lv": 2,
+          "effect": "回复80体力"
+        },
+        {
+          "lv": 3,
+          "effect": "回复100体力"
+        }
+      ]
+    },
+    {
+      "id": "ti-zhu",
+      "name_zh": "体术",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "固定耐力消耗量减少10%"
+        },
+        {
+          "lv": 2,
+          "effect": "固定耐力消耗量减少20%"
+        },
+        {
+          "lv": 3,
+          "effect": "固定耐力消耗量减少30%"
+        },
+        {
+          "lv": 4,
+          "effect": "固定耐力消耗量减少40%"
+        },
+        {
+          "lv": 5,
+          "effect": "固定耐力消耗量减少50%"
+        }
+      ]
+    },
+    {
+      "id": "nai-li-ji-su-hui-fu",
+      "name_zh": "耐力急速回复",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "回复速度变为1.1倍"
+        },
+        {
+          "lv": 2,
+          "effect": "回复速度变为1.3倍"
+        },
+        {
+          "lv": 3,
+          "effect": "回复速度变为1.5倍"
+        }
+      ]
+    },
+    {
+      "id": "pao-zhe",
+      "name_zh": "跑者",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "持续耐力消耗量减少15%"
+        },
+        {
+          "lv": 2,
+          "effect": "持续耐力消耗量减少30%"
+        },
+        {
+          "lv": 3,
+          "effect": "持续耐力消耗量减少50%"
+        }
+      ]
+    },
+    {
+      "id": "ji-e-nai-xing",
+      "name_zh": "饥饿耐性",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "减少的间隔时间延长50%"
+        },
+        {
+          "lv": 2,
+          "effect": "减少的间隔时间延长100%"
+        },
+        {
+          "lv": 3,
+          "effect": "耐力最大值不会减少"
+        }
+      ]
+    },
+    {
+      "id": "tiao-zhan-zhe",
+      "name_zh": "挑战者",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "技能发动时，基础攻击力+4会心率+3%"
+        },
+        {
+          "lv": 2,
+          "effect": "技能发动时，基础攻击力+8会心率+5%"
+        },
+        {
+          "lv": 3,
+          "effect": "技能发动时，基础攻击力+12会心率+7%"
+        },
+        {
+          "lv": 4,
+          "effect": "技能发动时，基础攻击力+16会心率+10%"
+        },
+        {
+          "lv": 5,
+          "effect": "技能发动时，基础攻击力+20会心率+15%"
+        }
+      ]
+    },
+    {
+      "id": "li-liang-jie-fang",
+      "name_zh": "力量解放",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "技能发动时，会心率+10%耐力消耗量减少30%"
+        },
+        {
+          "lv": 2,
+          "effect": "技能发动时，会心率+20%耐力消耗量减少30%"
+        },
+        {
+          "lv": 3,
+          "effect": "技能发动时，会心率+30%耐力消耗量减少50%"
+        },
+        {
+          "lv": 4,
+          "effect": "技能发动时，会心率+40%耐力消耗量减少50%"
+        },
+        {
+          "lv": 5,
+          "effect": "技能发动时，会心率+50%耐力消耗量减少50%"
+        }
+      ]
+    },
+    {
+      "id": "huo-chang-guai-li",
+      "name_zh": "火场怪力",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "技能发动时，防御力+50"
+        },
+        {
+          "lv": 2,
+          "effect": "技能发动时，攻击力变为1.05倍，防御力+50"
+        },
+        {
+          "lv": 3,
+          "effect": "技能发动时，攻击力变为1.05倍，防御力+100"
+        },
+        {
+          "lv": 4,
+          "effect": "技能发动时，攻击力变为1.1倍，防御力+100"
+        },
+        {
+          "lv": 5,
+          "effect": "技能发动时，攻击力变为1.3倍，不再有防御力上升效果"
+        }
+      ]
+    },
+    {
+      "id": "lian-ji",
+      "name_zh": "连击",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "攻击命中后一定时间内，略微提升基础攻击力和属性攻击值；连续发动5次效果会提升"
+        },
+        {
+          "lv": 2,
+          "effect": "小幅强化连续发动5次后的提升效果"
+        },
+        {
+          "lv": 3,
+          "effect": "进一步强化连续发动5次后的提升效果"
+        },
+        {
+          "lv": 4,
+          "effect": "大幅强化连续发动5次后的提升效果"
+        },
+        {
+          "lv": 5,
+          "effect": "极大幅强化连续发动5次后的提升效果"
+        }
+      ]
+    },
+    {
+      "id": "gong-shi",
+      "name_zh": "攻势",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "对于陷入毒或麻痹状态的大型怪物基础攻击力+6"
+        },
+        {
+          "lv": 2,
+          "effect": "对于陷入毒或麻痹状态的大型怪物基础攻击力+8、会心率+5%"
+        },
+        {
+          "lv": 3,
+          "effect": "对于陷入毒或麻痹状态的大型怪物基础攻击力+10，会心率+10%"
+        },
+        {
+          "lv": 4,
+          "effect": "对于陷入毒或麻痹状态的大型怪物基础攻击力+12，会心率+15%"
+        },
+        {
+          "lv": 5,
+          "effect": "对于陷入毒或麻痹状态的大型怪物基础攻击力+15，会心率+20%"
+        }
+      ]
+    },
+    {
+      "id": "suo-ren-ci-ji",
+      "name_zh": "锁刃刺击",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "略微提升造成创伤的概率，并额外造成无属性伤害"
+        },
+        {
+          "lv": 2,
+          "effect": "小幅提升造成创伤的概率，并略微提升额外造成的无属性伤害"
+        },
+        {
+          "lv": 3,
+          "effect": "提升造成创伤的概率，并小幅提升额外造成的无属性伤害"
+        },
+        {
+          "lv": 4,
+          "effect": "大幅提升造成创伤的概率，并提升额外造成的无属性伤害"
+        },
+        {
+          "lv": 5,
+          "effect": "极大幅提升造成创伤的概率，并大幅提升额外造成的无属性伤害"
+        }
+      ]
+    },
+    {
+      "id": "zhi-shi-sui-cong",
+      "name_zh": "指示随从",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "随从的攻击力与防御力变为1.05倍"
+        },
+        {
+          "lv": 2,
+          "effect": "随从的攻击力与防御力变为1.1倍"
+        },
+        {
+          "lv": 3,
+          "effect": "随从的攻击力与防御力变为1.15倍"
+        },
+        {
+          "lv": 4,
+          "effect": "随从的攻击力与防御力变为1.2倍"
+        },
+        {
+          "lv": 5,
+          "effect": "随从的攻击力与防御力变为1.25倍"
+        }
+      ]
+    },
+    {
+      "id": "po-pi-wang",
+      "name_zh": "破坏王",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "部位破坏的积蓄值与满足条件时造成的伤害变为1.1倍"
+        },
+        {
+          "lv": 2,
+          "effect": "部位破坏的积蓄值与满足条件时造成的伤害变为1.2倍"
+        },
+        {
+          "lv": 3,
+          "effect": "部位破坏的积蓄值与满足条件时造成的伤害变为1.3倍"
+        }
+      ]
+    },
+    {
+      "id": "yin-huo-de-fu",
+      "name_zh": "因祸得福",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "技能发动时，略微提升属性攻击值和状态异常累积值"
+        },
+        {
+          "lv": 2,
+          "effect": "技能发动时，提升属性攻击值和状态异常累积值"
+        },
+        {
+          "lv": 3,
+          "effect": "技能发动时，大幅提升属性攻击值和状态异常累积值"
+        }
+      ]
+    },
+    {
+      "id": "ji-xi",
+      "name_zh": "急袭",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "技能发动时，攻击力变为1.05倍"
+        },
+        {
+          "lv": 2,
+          "effect": "技能发动时，攻击力变为1.1倍"
+        },
+        {
+          "lv": 3,
+          "effect": "技能发动时，攻击力变为1.15倍"
+        }
+      ]
+    },
+    {
+      "id": "wu-wo-zhi-jing",
+      "name_zh": "无我之境",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "感染狂龙病毒时会略微容易克服，克服状态时的会心率+3%"
+        },
+        {
+          "lv": 2,
+          "effect": "感染狂龙病毒时会更容易克服，克服状态时的会心率+6%"
+        },
+        {
+          "lv": 3,
+          "effect": "感染狂龙病毒时会非常容易克服，克服状态时的会心率+10%"
+        }
+      ]
+    },
+    {
+      "id": "shu-xing-xi-shou",
+      "name_zh": "属性吸收",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "技能发动时，略微提升属性攻击值，发动时所受攻击属性的耐性值+4"
+        },
+        {
+          "lv": 2,
+          "effect": "技能发动时，小幅提升属性攻击值，发动时所受攻击属性的耐性值+6"
+        },
+        {
+          "lv": 3,
+          "effect": "技能发动时，提升属性攻击值，发动时所受攻击属性的耐性值+8"
+        }
+      ]
+    },
+    {
+      "id": "zuan-yan",
+      "name_zh": "钻研",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "发动技能效果"
+        }
+      ]
+    },
+    {
+      "id": "hui-bi-xing-neng",
+      "name_zh": "回避性能",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "极略微延长无敌时间"
+        },
+        {
+          "lv": 2,
+          "effect": "略微延长无敌时间"
+        },
+        {
+          "lv": 3,
+          "effect": "延长无敌时间"
+        },
+        {
+          "lv": 4,
+          "effect": "大幅延长无敌时间"
+        },
+        {
+          "lv": 5,
+          "effect": "极大幅延长无敌时间"
+        }
+      ]
+    },
+    {
+      "id": "hui-bi-ju-chi-ti-sheng",
+      "name_zh": "回避距离提升",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "略微延长回避距离"
+        },
+        {
+          "lv": 2,
+          "effect": "延长回避距离"
+        },
+        {
+          "lv": 3,
+          "effect": "大幅延长回避距离"
+        }
+      ]
+    },
+    {
+      "id": "er-sai",
+      "name_zh": "耳塞",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "减轻咆哮【小】的影响"
+        },
+        {
+          "lv": 2,
+          "effect": "使咆哮【小】无效，减轻咆哮【大】的影响"
+        },
+        {
+          "lv": 3,
+          "effect": "使咆哮【小】【大】无效"
+        }
+      ]
+    },
+    {
+      "id": "na-dao-zhu",
+      "name_zh": "纳刀术",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "略微提升速度"
+        },
+        {
+          "lv": 2,
+          "effect": "提升速度"
+        },
+        {
+          "lv": 3,
+          "effect": "大幅提升速度"
+        }
+      ]
+    },
+    {
+      "id": "feng-ya-nai-xing",
+      "name_zh": "风压耐性",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "使风压【小】无效，风压【大】的影响减半"
+        },
+        {
+          "lv": 2,
+          "effect": "使风压【小】【大】无效，龙风压的影响减半"
+        },
+        {
+          "lv": 3,
+          "effect": "使全部的风压无效"
+        }
+      ]
+    },
+    {
+      "id": "nai-zhen",
+      "name_zh": "耐震",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "使震动【极小】无效，震动【小】影响减半"
+        },
+        {
+          "lv": 2,
+          "effect": "使震动【极小】和【小】无效，震动【大】影响大幅减轻"
+        },
+        {
+          "lv": 3,
+          "effect": "使全部的震动无效"
+        }
+      ]
+    },
+    {
+      "id": "jian-qing-dan-qie",
+      "name_zh": "减轻胆怯",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "使后仰无效"
+        },
+        {
+          "lv": 2,
+          "effect": "使后仰无效，将坐倒在地减轻为后仰"
+        },
+        {
+          "lv": 3,
+          "effect": "使后仰、坐倒在地无效"
+        }
+      ]
+    },
+    {
+      "id": "wei-xia",
+      "name_zh": "威吓",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "即使被发现也不容易进入战斗状态"
+        },
+        {
+          "lv": 2,
+          "effect": "即使被发现也几乎不会进入战斗状态"
+        },
+        {
+          "lv": 3,
+          "effect": "即使被发现也不会进入战斗状态"
+        }
+      ]
+    },
+    {
+      "id": "kuai-chi",
+      "name_zh": "快吃",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "进食速度小幅加快"
+        },
+        {
+          "lv": 2,
+          "effect": "进食速度加快"
+        },
+        {
+          "lv": 3,
+          "effect": "进食速度大幅加快"
+        }
+      ]
+    },
+    {
+      "id": "gua-ying-shui-yu-you-ni",
+      "name_zh": "适应水域·油泥",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "使水域、油泥的移动限制与浊流的影响无效，并缓和重油的移动限制"
+        },
+        {
+          "lv": 2,
+          "effect": "追加使波浪的影响无效"
+        }
+      ]
+    },
+    {
+      "id": "huan-chong",
+      "name_zh": "缓冲",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "发动技能效果"
+        }
+      ]
+    },
+    {
+      "id": "fei-shen-yue-ru",
+      "name_zh": "飞身跃入",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "可发动技能"
+        }
+      ]
+    },
+    {
+      "id": "tiao-yue-tie-ren",
+      "name_zh": "跳跃铁人",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "跳跃中不会后仰"
+        }
+      ]
+    },
+    {
+      "id": "pan-yan-zhe",
+      "name_zh": "攀岩者",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "攀爬耐力消耗量减少50％"
+        }
+      ]
+    },
+    {
+      "id": "yan-yu-hua",
+      "name_zh": "广域化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "给予周围的同伴1/3的效果"
+        },
+        {
+          "lv": 2,
+          "effect": "给予大范围内的同伴1/3的效果"
+        },
+        {
+          "lv": 3,
+          "effect": "给予大范围内的同伴2/3的效果"
+        },
+        {
+          "lv": 4,
+          "effect": "给予极大范围内的同伴2/3的效果"
+        },
+        {
+          "lv": 5,
+          "effect": "给予极大范围内的同伴相同的效果"
+        }
+      ]
+    },
+    {
+      "id": "zheng-bei",
+      "name_zh": "整备",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "冷却时间缩短10%"
+        },
+        {
+          "lv": 2,
+          "effect": "冷却时间缩短20%"
+        },
+        {
+          "lv": 3,
+          "effect": "冷却时间缩短30%"
+        },
+        {
+          "lv": 4,
+          "effect": "冷却时间缩短40%"
+        },
+        {
+          "lv": 5,
+          "effect": "冷却时间缩短50%"
+        }
+      ]
+    },
+    {
+      "id": "zha-dan-ke",
+      "name_zh": "炸弹客",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "威力变为1.1倍"
+        },
+        {
+          "lv": 2,
+          "effect": "威力变为1.2倍"
+        },
+        {
+          "lv": 3,
+          "effect": "威力变为1.3倍"
+        }
+      ]
+    },
+    {
+      "id": "zui-ai-mo-gu",
+      "name_zh": "最爱蘑菇",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "可食用蓝蘑菇与毒菇"
+        },
+        {
+          "lv": 2,
+          "effect": "追加可食用硝化伞菇与麻痹菇"
+        },
+        {
+          "lv": 3,
+          "effect": "追加可食用曼陀罗、鬼硝化伞菇与心跳加速菇。"
+        }
+      ]
+    },
+    {
+      "id": "dao-ju-shi-yong-qiang-hua",
+      "name_zh": "道具使用强化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "效果时间变为1.1倍"
+        },
+        {
+          "lv": 2,
+          "effect": "效果时间变为1.25倍"
+        },
+        {
+          "lv": 3,
+          "effect": "效果时间变为1.5倍"
+        }
+      ]
+    },
+    {
+      "id": "man-zu-gan",
+      "name_zh": "满足感",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "效果发动概率10%"
+        },
+        {
+          "lv": 2,
+          "effect": "效果发动概率25%"
+        },
+        {
+          "lv": 3,
+          "effect": "效果发动概率45%"
+        }
+      ]
+    },
+    {
+      "id": "shan-guang-qiang-hua",
+      "name_zh": "闪光强化",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "提升闪光效果"
+        }
+      ]
+    },
+    {
+      "id": "zhi-sheng-xue",
+      "name_zh": "植生学",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "草系消耗道具的取得数+1"
+        },
+        {
+          "lv": 2,
+          "effect": "追加果实、种子系消耗道具的取得数+1"
+        },
+        {
+          "lv": 3,
+          "effect": "追加虫系消耗道具的取得数+1"
+        },
+        {
+          "lv": 4,
+          "effect": "追加菇系消耗道具的取得数+1"
+        }
+      ]
+    },
+    {
+      "id": "di-zhi-xue",
+      "name_zh": "地质学",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "骸骨采集点的取得数+1"
+        },
+        {
+          "lv": 2,
+          "effect": "追加特产采集点的取得数+1"
+        },
+        {
+          "lv": 3,
+          "effect": "追加矿石采掘点的取得数+1"
+        }
+      ]
+    },
+    {
+      "id": "kun-chong-biao-ben-da-ren",
+      "name_zh": "昆虫标本达人",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "发动技能效果"
+        }
+      ]
+    },
+    {
+      "id": "xi-ren-sheng-huo",
+      "name_zh": "猎人生活",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "提升垂钓、烤肉和搬运的技术"
+        }
+      ]
+    },
+    {
+      "id": "fan-tuan",
+      "name_zh": "饭团",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 1,
+          "effect": "发动技能效果"
+        }
+      ]
+    },
+    {
+      "id": "jia-chong-zhi-zhi-jue",
+      "name_zh": "甲虫之直觉",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "提升在原野采集蜂蜜时的取得数"
+        }
+      ]
+    },
+    {
+      "id": "jia-chong-zhi-ni-tai",
+      "name_zh": "甲虫之拟态",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "加快蹲下移动的速度，更难被大型怪物发现"
+        }
+      ]
+    },
+    {
+      "id": "pu-lin-zhi-ji-fa",
+      "name_zh": "铺鳞之技法",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "更容易骑乘怪物，且更容易在骑乘状态下成功"
+        }
+      ]
+    },
+    {
+      "id": "die-lin-zhi-gong-yi",
+      "name_zh": "叠鳞之工艺",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "体力降低至40%或以下时，减少一定时间内的耐力消耗量"
+        }
+      ]
+    },
+    {
+      "id": "pi-ge-zhi-pin-zhi-rou-ren",
+      "name_zh": "皮革制品之柔韧",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "采集行动的速度加快，采集和剥取时即使遭受攻击，也不会后仰"
+        }
+      ]
+    },
+    {
+      "id": "pi-ge-zhi-pin-zhi-shun-hua",
+      "name_zh": "皮革制品之顺滑",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "利用地形滑行后，提升一定时间内的会心率"
+        }
+      ]
+    },
+    {
+      "id": "mao-pi-zhi-ang-yang",
+      "name_zh": "毛皮之昂扬",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "任务期间每次力尽倒下后，提升攻击力与防御力（最多2次）"
+        }
+      ]
+    },
+    {
+      "id": "mao-pi-zhi-you-huo",
+      "name_zh": "毛皮之诱惑",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "攻击命中时，能更加吸引怪物的注意"
+        }
+      ]
+    },
+    {
+      "id": "ba-zhu-zhi-jiao-ao",
+      "name_zh": "霸主之骄傲",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "发动对一定范围内同伴生效的效果时（如旋律效果），将附加一定时间内攻击力上升的效果"
+        }
+      ]
+    },
+    {
+      "id": "ba-zhu-zhi-fen-kai",
+      "name_zh": "霸主之愤慨",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "陷入状态异常时提升攻击力"
+        }
+      ]
+    },
+    {
+      "id": "hu-long-zhi-mai-dong",
+      "name_zh": "护龙之脉动",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "接近龙乳结晶时，提升红色槽及耐力的回复速度"
+        }
+      ]
+    },
+    {
+      "id": "hu-long-zhi-shou-hu",
+      "name_zh": "护龙之守护",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "位于龙都遗迹时，减轻受到的属性伤害及特殊伤害"
+        }
+      ]
+    },
+    {
+      "id": "qian-bei-zhi-zhi-yin",
+      "name_zh": "前辈之指引",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "提高活跃化采集点的发生率"
+        }
+      ]
+    },
+    {
+      "id": "ba-zhu-zhi-hun",
+      "name_zh": "霸主之魂",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "减轻致命伤害一次，并于发动前提升攻击力、降低防御力；发动后提升防御力与耐性值"
+        }
+      ]
+    },
+    {
+      "id": "quan-zhi-ji-zhe",
+      "name_zh": "拳之极者",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "强化特殊动作的威力，可通过斗气迸放抵消，成功后一定时间内将获得进一步强化。"
+        }
+      ]
+    },
+    {
+      "id": "ji-dian-xun-li",
+      "name_zh": "祭典巡礼",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "任务期间素材剥取次数+1（任务途中无法发动）"
+        }
+      ]
+    },
+    {
+      "id": "rong-guang-sheng-zan",
+      "name_zh": "荣光盛赞",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 3,
+          "effect": "增加任务的目标报酬（任务途中无法发动）"
+        }
+      ]
+    },
+    {
+      "id": "pi-shou-zhi-li",
+      "name_zh": "辟兽之力",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "角力或抵消成功时，一定时间内基础攻击力+10"
+        },
+        {
+          "lv": 4,
+          "effect": "角力或抵消成功时，一定时间内基础攻击力+25"
+        }
+      ]
+    },
+    {
+      "id": "huo-long-zhi-li",
+      "name_zh": "火龙之力",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "攻击命中时，有一定概率额外造成火属性伤害"
+        },
+        {
+          "lv": 4,
+          "effect": "提升额外造成的火属性伤害"
+        }
+      ]
+    },
+    {
+      "id": "an-qi-shao-zhi-li",
+      "name_zh": "暗器蛸之力",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "食用烤熟的肉等道具后，一定时间内基础攻击力+15"
+        },
+        {
+          "lv": 4,
+          "effect": "食用烤熟的肉等道具后，一定时间内基础攻击力+30"
+        }
+      ]
+    },
+    {
+      "id": "kai-long-zhi-shou-hu",
+      "name_zh": "铠龙之守护",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "体力全满时，所受伤害减少20%"
+        },
+        {
+          "lv": 4,
+          "effect": "体力全满时，所受伤害减少35%"
+        }
+      ]
+    },
+    {
+      "id": "xue-shi-zi-wang-zhi-dou-zhi",
+      "name_zh": "雪狮子王之斗志",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "使用肢体动作“咆哮”时，在一定时间内小幅提升周围成员的攻击力。随从与支援猎人所受的效果较大。"
+        },
+        {
+          "lv": 4,
+          "effect": "使用肢体动作“咆哮”时，在一定时间内提升周围成员的攻击力。随从与支援猎人所受的效果较大。"
+        }
+      ]
+    },
+    {
+      "id": "xiong-zhua-long-zhi-li",
+      "name_zh": "凶爪龙之力",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "“连击”技能效果发动时，延长其有效时间，且基础攻击力+8"
+        },
+        {
+          "lv": 4,
+          "effect": "“连击”技能效果发动时，进一步延长其有效时间，且基础攻击力+18"
+        }
+      ]
+    },
+    {
+      "id": "lei-e-long-zhi-dou-zhi",
+      "name_zh": "雷颚龙之斗志",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "获得额外耐力槽"
+        },
+        {
+          "lv": 4,
+          "effect": "获得更长的额外耐力槽"
+        }
+      ]
+    },
+    {
+      "id": "bo-yi-long-zhi-shou-hu",
+      "name_zh": "波衣龙之守护",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "使用特殊装备时，提升一定时间内的防御力"
+        },
+        {
+          "lv": 4,
+          "effect": "使用特殊装备时，大幅提升一定时间内的防御力和耐性值"
+        }
+      ]
+    },
+    {
+      "id": "huang-lei-long-zhi-li",
+      "name_zh": "煌雷龙之力",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "小幅延长“力量解放”技能的发动时间"
+        },
+        {
+          "lv": 4,
+          "effect": "延长“力量解放”技能的发动时间"
+        }
+      ]
+    },
+    {
+      "id": "yu-yan-shao-zhi-fan-pan",
+      "name_zh": "狱焰蛸之反叛",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "“怨恨”技能发动时，造成少量额外伤害"
+        },
+        {
+          "lv": 4,
+          "effect": "“怨恨”技能发动时，造成额外伤害"
+        }
+      ]
+    },
+    {
+      "id": "dong-feng-long-zhi-fan-pan",
+      "name_zh": "冻峰龙之反叛",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "从丝线束缚状态或冻结状态回复，从束缚攻击解放，或者在角力后，提升一定时间内的攻击力"
+        },
+        {
+          "lv": 4,
+          "effect": "从丝线束缚状态或冻结状态回复，从束缚攻击解放，或者在角力后，大幅提升一定时间内的攻击力"
+        }
+      ]
+    },
+    {
+      "id": "hei-shi-long-zhi-li",
+      "name_zh": "黑蚀龙之力",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "狩猎大型怪物时会感染狂龙病毒"
+        },
+        {
+          "lv": 4,
+          "effect": "狩猎大型怪物时会感染狂龙病毒，并提升攻击力；克服狂龙症后，攻击力进一步提升"
+        }
+      ]
+    },
+    {
+      "id": "suo-ren-long-zhi-ji-e",
+      "name_zh": "锁刃龙之饥饿",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "攻击不断命中怪物时，小幅回复体力（回复量依武器种类而异）"
+        },
+        {
+          "lv": 4,
+          "effect": "攻击不断命中怪物时，回复体力（回复量依武器种类而异）"
+        }
+      ]
+    },
+    {
+      "id": "hu-suo-ren-long-zhi-ming-mai",
+      "name_zh": "护锁刃龙之命脉",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "破坏大型怪物的伤口时，小幅回复体力"
+        },
+        {
+          "lv": 4,
+          "effect": "破坏大型怪物的伤口时，回复体力"
+        }
+      ]
+    },
+    {
+      "id": "pao-hu-long-zhi-li",
+      "name_zh": "泡狐龙之力",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "不会进入泡沫状态【大】。回避数次后将陷入泡沫状态【小】。"
+        },
+        {
+          "lv": 4,
+          "effect": "发动与Ⅰ同样的效果。强化泡沫状态下的回避能力。"
+        }
+      ]
+    },
+    {
+      "id": "bai-chi-long-zhi-mai-dong",
+      "name_zh": "白炽龙之脉动",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "持续缓慢回复体力，直至体力槽上限（体力槽即使没有红色部分也会回复）"
+        },
+        {
+          "lv": 4,
+          "effect": "持续回复体力，直至体力槽上限（体力槽即使没有红色部分也会回复）"
+        }
+      ]
+    },
+    {
+      "id": "hua-wu-qi-dao",
+      "name_zh": "花舞祈祷",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "在花舞之仪期间，任务报酬中将追加特殊道具（任务途中无法发动）"
+        },
+        {
+          "lv": 4,
+          "effect": "在花舞之仪期间，任务报酬中将追加特殊道具，攻击力和防御力也会大幅提升"
+        }
+      ]
+    },
+    {
+      "id": "hai-long-de-wo-lei",
+      "name_zh": "海龙的涡雷",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "以攻击累积伤害后，会额外造成雷属性伤害，在一定时间内提高会心率。（部分攻击除外）"
+        },
+        {
+          "lv": 4,
+          "effect": "发动与Ⅰ同样的效果，额外造成的雷属性伤害会有所提高，并略微延长提高会心率的效果持续时间。"
+        }
+      ]
+    },
+    {
+      "id": "qian-ren-long-de-dou-zhi",
+      "name_zh": "千刃龙的斗志",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "延长“巧击”技能的效果时间。此外，发动期间如果再次满足条件，会略微延长效果时间。（仅限一次）"
+        },
+        {
+          "lv": 4,
+          "effect": "发动与Ⅰ同样的效果，发动期间如果再次满足条件，还将提升攻击力。"
+        }
+      ]
+    },
+    {
+      "id": "yong-huo-qi-dao",
+      "name_zh": "踊火祈祷",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "在踊火之仪期间，任务报酬中将追加特殊道具（任务途中无法发动）"
+        },
+        {
+          "lv": 4,
+          "effect": "在踊火之仪期间，任务报酬中将追加特殊道具，攻击力和防御力也会大幅提升"
+        }
+      ]
+    },
+    {
+      "id": "meng-deng-qi-dao",
+      "name_zh": "梦灯祈祷",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "在梦灯之仪期间，任务报酬中将追加特殊道具（任务途中无法启用）"
+        },
+        {
+          "lv": 4,
+          "effect": "在梦灯之仪期间，任务报酬中将追加特殊道具，攻击力和防御力也会大幅提升"
+        }
+      ]
+    },
+    {
+      "id": "zhu-yao-qi-dao",
+      "name_zh": "zhu-yao-qi-dao",
+      "name_en": "",
+      "aliases": [],
+      "levels": []
+    },
+    {
+      "id": "an-hei-qi-shi-zhi-zheng",
+      "name_zh": "暗黑骑士之证",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "体力槽有红色部分时，提升属性攻击力；大剑的部分蓄力斩蓄力到第三阶段会获得强化"
+        },
+        {
+          "lv": 4,
+          "effect": "可使用特殊动作“至黑之夜”"
+        }
+      ]
+    },
+    {
+      "id": "ou-mi-qie-gong-ming",
+      "name_zh": "欧米茄共鸣",
+      "name_en": "",
+      "aliases": [],
+      "levels": [
+        {
+          "lv": 2,
+          "effect": "任务开始后，交替发动“共鸣：远”或“共鸣：近”，满足条件时提升攻击力或会心率"
+        },
+        {
+          "lv": 4,
+          "effect": "提升共鸣Ⅰ的效果，以及武器技能“合成盾”或“协作程序”的效果"
+        }
+      ]
+    },
+    {
+      "id": "ju-ji-long-de-mo-shi-lu",
+      "name_zh": "ju-ji-long-de-mo-shi-lu",
+      "name_en": "",
+      "aliases": [],
+      "levels": []
+    }
+  ]
+}
