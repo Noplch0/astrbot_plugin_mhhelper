@@ -17,7 +17,7 @@ import httpx
 from bs4 import BeautifulSoup
 
 from .base import fetch, make_client
-from .listing import monster_icons, monster_names, skill_names
+from .listing import monster_icons, monster_names, parse_skill_levels, skill_names
 from .kiranico import (
     find_ailment_table,
     find_meat_table,
@@ -240,7 +240,8 @@ class MHRiseScraper:
         return self._parse_monster(text, mid)
 
     async def fetch_skill(self, client: httpx.AsyncClient, sid: str) -> dict[str, Any]:
-        url = f"{self.BASE}/data/skills/{sid}"
+        # zh 详情页：技能效果在那里的**中文**描述（/data/skills/<id> 是英文的）。
+        url = f"{self.BASE}/zh/data/skills/{sid}"
         text = await fetch(client, url)
         return self._parse_skill(text, sid)
 
@@ -296,24 +297,8 @@ class MHRiseScraper:
         soup = BeautifulSoup(text, "lxml")
         title = soup.title.get_text(strip=True) if soup.title else sid
         name_en = title.split("|")[0].strip()
-        levels: list[dict[str, Any]] = []
-        for table in soup.find_all("table"):
-            rows = table.find_all("tr")
-            if not rows:
-                continue
-            for r in rows:
-                cells = r.find_all(["td", "th"])
-                if len(cells) < 2:
-                    continue
-                lv_raw = cells[0].get_text(strip=True)
-                m = re.match(r"Lv\.?\s*(\d+)", lv_raw, re.IGNORECASE)
-                if not m:
-                    continue
-                lv = int(m.group(1))
-                effect = cells[-1].get_text(strip=True)
-                levels.append({"lv": lv, "effect": effect})
-            if levels:
-                break
+        # 整页交给解析器，它自己找第一段等级行（页面上还有装饰品表）。
+        levels = parse_skill_levels(text)
         return {
             "id": sid,
             "name_en": name_en,
@@ -434,13 +419,15 @@ class MHWorldScraper:
         return self._parse_monster(text, mid)
 
     async def fetch_skill(self, client: httpx.AsyncClient, sid: str, slug: str = "") -> dict[str, Any]:
-        url = f"{self.BASE}/en/skilltrees/{sid}"
+        # zh 详情页才有中文效果，而且**必须带 slug**（`/zh/skilltrees/<id>` 单段是 404）。
+        # slug 来自列表页；万一没拿到就退回英文页，宁可英文也别丢数据。
         if slug:
-            url = f"{url}/{slug}"
-        try:
-            text = await fetch(client, url)
-        except FileNotFoundError:
-            text = await fetch(client, f"{self.BASE}/en/skilltrees/{sid}")
+            try:
+                text = await fetch(client, f"{self.BASE}/zh/skilltrees/{sid}/{slug}")
+                return self._parse_skill(text, sid)
+            except FileNotFoundError:
+                log.warning("[mhworld] zh skill page missing for %s, falling back to en", sid)
+        text = await fetch(client, f"{self.BASE}/en/skilltrees/{sid}")
         return self._parse_skill(text, sid)
 
     def _parse_monster(self, text: str, mid: str) -> dict[str, Any]:
@@ -485,24 +472,8 @@ class MHWorldScraper:
         soup = BeautifulSoup(text, "lxml")
         title = soup.title.get_text(strip=True) if soup.title else sid
         name_en = title.split("-")[0].strip()
-        levels: list[dict[str, Any]] = []
-        for table in soup.find_all("table"):
-            rows = table.find_all("tr")
-            if not rows:
-                continue
-            for r in rows:
-                cells = r.find_all(["td", "th"])
-                if len(cells) < 2:
-                    continue
-                lv_raw = cells[0].get_text(strip=True)
-                m = re.match(r"Lv\.?\s*(\d+)", lv_raw, re.IGNORECASE)
-                if not m:
-                    continue
-                lv = int(m.group(1))
-                effect = cells[-1].get_text(strip=True)
-                levels.append({"lv": lv, "effect": effect})
-            if levels:
-                break
+        # 整页交给解析器，它自己找第一段等级行（页面上还有装饰品表）。
+        levels = parse_skill_levels(text)
         return {
             "id": sid,
             "name_en": name_en,

@@ -21,6 +21,7 @@ from scraper.listing import (
     parse_mhwilds_monsters,
     parse_mhworld_monsters,
     parse_monsters,
+    parse_skill_levels,
     skill_names,
 )
 
@@ -230,6 +231,71 @@ def test_mhworld_skill_names_come_from_anchor_text():
 def test_skills_have_no_icons():
     assert monster_icons("mhrise", MHRISE_SKILLS_HTML) == {}
     assert monster_icons("mhworld", MHWORLD_SKILLS_HTML) == {}
+
+
+# --------------------------------------------------------------------------
+# 技能详情页：等级 → 效果
+# --------------------------------------------------------------------------
+
+MHRISE_SKILL_DETAIL = """
+<table><tbody>
+<tr><td class="px-2">Lv1</td><td class="px-2">攻击力+3</td></tr>
+<tr><td class="px-2">Lv2</td><td class="px-2">攻击力+6</td></tr>
+<tr><td class="px-2">Lv3</td><td class="px-2"></td></tr>
+</tbody></table>
+<table><tbody>
+<tr><td>点射珠【1】</td><td>750z</td><td>能够提升抑制偏移技能的装饰品。</td></tr>
+</tbody></table>
+"""
+
+MHWORLD_SKILL_DETAIL = """
+<table class="table table-sm"><tbody>
+<tr>
+  <td>等级1</td>
+  <td><strong>减少受到中毒伤害的次数。</strong></td>
+  <td class="text-center"><code>200</code></td>
+  <td class="text-center"><code>0</code></td>
+</tr>
+<tr>
+  <td>等级2</td>
+  <td><strong>大幅减少受到中毒伤害的次数。</strong></td>
+  <td class="text-center"><code>300</code></td>
+  <td class="text-center"><code>0</code></td>
+</tr>
+</tbody></table>
+"""
+
+
+def test_mhrise_skill_levels():
+    assert parse_skill_levels(MHRISE_SKILL_DETAIL) == [
+        {"lv": 1, "effect": "攻击力+3"},
+        {"lv": 2, "effect": "攻击力+6"},
+        {"lv": 3, "effect": ""},  # kiranico 自己就是空的，保留空串
+    ]
+
+
+def test_mhworld_skill_effect_is_the_second_cell_not_the_code_parameters():
+    """回归：旧代码取 cells[-1]，于是每个世界技能的效果都变成 "0"。"""
+    assert parse_skill_levels(MHWORLD_SKILL_DETAIL) == [
+        {"lv": 1, "effect": "减少受到中毒伤害的次数。"},
+        {"lv": 2, "effect": "大幅减少受到中毒伤害的次数。"},
+    ]
+
+
+def test_skill_levels_stop_at_the_first_gap():
+    """同一页面后面的装饰品 / 道具表不能被当成等级行。"""
+    effects = [lv["effect"] for lv in parse_skill_levels(MHRISE_SKILL_DETAIL)]
+    assert not any("装饰品" in e for e in effects)
+    assert len(effects) == 3
+
+
+def test_skill_levels_accept_the_dotted_lv_form():
+    html = "<tr><td>Lv. 2</td><td>攻击力+6</td></tr>"
+    assert parse_skill_levels(html) == [{"lv": 2, "effect": "攻击力+6"}]
+
+
+def test_skill_levels_on_a_page_without_levels():
+    assert parse_skill_levels("<table><tr><td>名称</td><td>说明</td></tr></table>") == []
 
 
 # --------------------------------------------------------------------------

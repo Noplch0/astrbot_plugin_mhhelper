@@ -235,7 +235,7 @@ def _element_weakness(monster: Mapping[str, Any]) -> list[tuple[str, int]]:
 
 def _weakness_section(monster: Mapping[str, Any]) -> list[str]:
     """属性弱点：只列最强的 :data:`_WEAKNESS_TOP_N` 项，并带上具体数值。"""
-    lines = ["### 属性弱点（最强两项）"]
+    lines = ["### 属性弱点"]
     best = _element_weakness(monster)
     if not best:
         lines.append("- 无属性弱点（各属性在所有部位都是 0）")
@@ -246,9 +246,9 @@ def _weakness_section(monster: Mapping[str, Any]) -> list[str]:
 
 
 def _ailments_section(monster: Mapping[str, Any]) -> list[str]:
-    """状态异常累积值：横过来排 —— 第一行是异常种类，第二行才是数值。"""
+    """异常累积：横过来排 —— 第一行是异常种类，第二行才是数值。"""
     ailments = monster.get("ailments") or {}
-    lines = ["### 状态异常累积值"]
+    lines = ["### 异常累积"]
     if not ailments:
         lines.append("- 该作品暂无状态异常数据。")
         return lines
@@ -294,7 +294,7 @@ def render_monster_report(
 ) -> str:
     """`/mh 怪物` 的合并报告（基础信息 / 肉质 / 弱点三合一）。
 
-    顺序固定：**怪物名 → 属性弱点（最强两项）→ 肉质表 → 状态异常累积值**。
+    顺序固定：**怪物名 → 属性弱点 → 肉质表 → 异常累积**。
     图片模式下卡片顶部还会额外居中显示怪物图标（见 :mod:`core.render`），
     文本模式只是把同一份 markdown 降级成纯文本，所以两边顺序完全一致。
     """
@@ -321,7 +321,7 @@ def render_help() -> str:
             "",
             "### 查询怪物（基础信息 / 肉质 / 弱点 合并成一条）",
             "- `/mh 怪物 <名字> [作品]` — 依次给出：怪物名 → 属性弱点（最强两项）"
-            " → 肉质表 → 状态异常累积值",
+            " → 肉质表 → 异常累积（状态异常）",
             "- 图片模式下卡片顶部还会居中显示该怪物的图鉴图标",
             "",
             "### 技能",
@@ -367,8 +367,10 @@ def render_skill(skill: dict[str, Any], game: str) -> str:
     for lv in levels:
         if isinstance(lv, dict):
             lv_str = str(lv.get("lv") or "?")
-            effect = str(lv.get("effect") or "?").strip()
-            lines.append(f"- **Lv {lv_str}** {effect}")
+            effect = str(lv.get("effect") or "").strip()
+            # kiranico 自己有些等级就是空描述（例：抑制偏移 Lv3），
+            # 空的时候别留一个尾随空格。
+            lines.append(f"- **Lv {lv_str}** {effect}" if effect else f"- **Lv {lv_str}**")
         else:
             lines.append(f"- {lv}")
     return "\n".join(lines)

@@ -1,7 +1,7 @@
 """Unit tests for core.formatter.
 
 v0.3.6 collapsed the per-topic renderers into a single
-:func:`render_monster_report` (怪物名 → 属性弱点 → 肉质表 → 状态异常累积值) and
+:func:`render_monster_report` (怪物名 → 属性弱点 → 肉质表 → 异常累积) and
 dropped the emoji from every heading. These tests pin the report's section order,
 the "top two weaknesses" rule, the transposed ailment table, and the name
 fallback that keeps internal ids out of the UI.
@@ -92,13 +92,13 @@ def test_sections_appear_in_the_required_order():
     md = _report(SAMPLE_MONSTER)
     weak = md.index("### 属性弱点")
     meat = md.index("### 肉质表")
-    ail = md.index("### 状态异常累积值")
+    ail = md.index("### 异常累积")
     assert weak < meat < ail
 
 
 def test_every_section_is_a_heading():
     md = _report(SAMPLE_MONSTER)
-    for heading in ("### 属性弱点（最强两项）", "### 肉质表", "### 状态异常累积值"):
+    for heading in ("### 属性弱点", "### 肉质表", "### 异常累积"):
         assert heading in md
 
 
@@ -213,7 +213,7 @@ def test_meat_children_status_is_filled_in():
 
 
 def test_ailments_are_transposed_into_a_two_row_table():
-    block = _table_block(_report(SAMPLE_MONSTER), "### 状态异常累积值")
+    block = _table_block(_report(SAMPLE_MONSTER), "### 异常累积")
     assert len(block) == 3, "表头（=异常种类）+ 分隔行 + 数值行"
     labels, _separator, values = block
     assert labels == "| 毒 | 眠 | 麻 | 爆 | 晕 | 减气 |"
@@ -221,7 +221,7 @@ def test_ailments_are_transposed_into_a_two_row_table():
 
 
 def test_ailment_columns_are_all_right_aligned():
-    _labels, separator, _values = _table_block(_report(SAMPLE_MONSTER), "### 状态异常累积值")
+    _labels, separator, _values = _table_block(_report(SAMPLE_MONSTER), "### 异常累积")
     assert set(separator.replace("|", " ").split()) == {"---:"}
 
 
@@ -307,6 +307,15 @@ def test_render_skill_uses_list_style():
 
 def test_render_skill_without_levels():
     assert "暂无" in render_skill({"name_zh": "X"}, "mhwilds")
+
+
+def test_render_skill_level_with_a_blank_effect_has_no_trailing_space():
+    """kiranico 有些等级的描述本来就是空的（例：抑制偏移 Lv3）。"""
+    txt = render_skill({"name_zh": "抑制偏移", "levels": [{"lv": 2, "effect": "减轻偏移2个阶段"},
+                                                          {"lv": 3, "effect": ""}]}, "mhrise")
+    body = [l for l in txt.splitlines() if l.strip()]
+    assert body[1] == "- **Lv 2** 减轻偏移2个阶段"
+    assert body[2] == "- **Lv 3**"
 
 
 def test_render_skill_english_only_name():

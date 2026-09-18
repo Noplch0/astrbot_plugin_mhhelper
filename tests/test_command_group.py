@@ -134,7 +134,7 @@ def test_bare_group_renders_tree(run):
     ("message", "handler", "needles"),
     [
         ("/mh 帮助", "mh_help", ["/mh 怪物 <名字>"]),
-        ("/mh 怪物 雌火龙", "mh_monster", ["雌火龙", "属性弱点", "肉质表", "状态异常累积值"]),
+        ("/mh 怪物 雌火龙", "mh_monster", ["雌火龙", "属性弱点", "肉质表", "异常累积"]),
         ("/mh 怪物 Rathian", "mh_monster", ["雌火龙"]),  # 英文名也能查到
         # 老的 肉质 / 弱点 / 属性 都还是别名，返回同一份合并报告
         ("/mh 肉质 雌火龙", "mh_monster", ["雌火龙", "肉质表", "头部"]),
@@ -142,7 +142,7 @@ def test_bare_group_renders_tree(run):
         ("/mh meat 雌火龙 mhwilds", "mh_monster", ["雌火龙"]),
         ("/怪物猎人 肉质 雌火龙", "mh_monster", ["雌火龙"]),  # 指令组别名
         ("!mh 肉质 雌火龙", "mh_monster", ["雌火龙"]),  # 另一个唤醒前缀
-        ("/mh 弱点 雌火龙", "mh_monster", ["状态异常累积值"]),
+        ("/mh 弱点 雌火龙", "mh_monster", ["异常累积"]),
         ("/mh 怪物 陆之女王", "mh_monster", ["雌火龙"]),  # 通过别名命中
         ("/mh 技能 攻击力强化", "mh_skill", ["攻击力 +3"]),
         ("/mh 作品", "mh_games", ["已启用的作品"]),
@@ -376,6 +376,28 @@ def test_image_mode_omits_the_hero_for_non_monster_queries(monkeypatch, tmp_path
     dispatch(plugin, "/mh 帮助")
     assert len(seen) == 2
     assert all(d["hero"] == "" for d in seen)
+
+
+def test_skill_output_is_always_text(monkeypatch, tmp_path):
+    """技能效果只有几行字，无论 output_mode 选什么都不转图。"""
+    install_fake_loader(monkeypatch)
+    calls: list = []
+
+    async def fake_render(tmpl, data, *args, **kwargs):  # pragma: no cover - 不该被调用
+        calls.append(data)
+        return "https://example.com/card.png"
+
+    for mode in ("image", "auto", "markdown", "text"):
+        plugin = make_plugin(state_dir=tmp_path / f"state_{mode}", config={"output_mode": mode})
+        plugin.html_render = fake_render
+        result = dispatch(plugin, "/mh 技能 攻击力强化")
+        assert result.handlers == ["mh_skill"]
+        assert "攻击力 +3" in result.text
+        # 已降级成纯文本：没有 markdown 标记、也没有图片
+        assert "##" not in result.text
+        assert "|" not in result.text
+        assert "[image]" not in result.text
+    assert calls == [], "技能查询不应该走文转图"
 
 
 def test_image_mode_falls_back_when_renderer_raises(monkeypatch, tmp_path):

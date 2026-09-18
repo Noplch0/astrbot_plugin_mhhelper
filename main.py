@@ -15,8 +15,7 @@ sub-commands with their descriptions (taken from each handler's docstring).
     /mh 作品              列出已启用作品            (games)
     /mh 更新 [作品]         管理员：在线刷新数据      (update)
 
-`基础信息 / 肉质 / 弱点` 已合并成 `怪物` 一条，按「怪物名 → 属性弱点（最强两项）
-→ 肉质表 → 状态异常累积值」的顺序输出；图片模式下卡片顶部还会居中显示怪物图标。
+`基础信息 / 肉质 / 弱点` 已合并成 `怪物` 一条，按「怪物名 → 属性弱点 → 肉质表 → 异常累积」的顺序输出；图片模式下卡片顶部还会居中显示怪物图标。
 
 括号里是等价别名：`/mh meat Rathian` == `/mh 怪物 Rathian`（`肉质`/`弱点`/`属性`
 等老名字都保留为别名，习惯输入照旧可用，返回的都是同一份合并报告）。
@@ -180,7 +179,7 @@ from core.skill_index import get_skill_index  # noqa: E402
 log = logging.getLogger("astrbot-mhhelper")
 
 PLUGIN_NAME = "astrbot_plugin_mhhelper"
-PLUGIN_VERSION = "0.3.6"
+PLUGIN_VERSION = "0.3.7"
 
 #: 运行期状态：每个用户上次查询的作品。
 STATE_FILENAME = "user_last_game.json"
@@ -619,7 +618,9 @@ class MHHelperPlugin(Star):
                 return
             if sub == "skill":
                 _, skill, resolved_game = self._skill_idx.lookup(" ".join(name_args), game)
-                yield await self._emit(event, render_skill(skill, resolved_game))
+                # 技能效果**永远发文本**：只有几行字，转图只会更难读，所以这里
+                # 故意不走 _emit —— 无论 output_mode 选什么都不渲染。
+                yield self._text_result(event, render_skill(skill, resolved_game))
                 return
             if sub == "update":
                 async for r in self._cmd_update(event, game):
@@ -707,7 +708,7 @@ class MHHelperPlugin(Star):
         alias={"monster", "info", "肉质", "肉", "meat", "弱点", "属性", "weak"},
     )
     async def mh_monster(self, event: AstrMessageEvent):
-        """查询怪物：属性弱点（最强两项）/ 肉质表 / 状态异常累积值（用法：/mh 怪物 <名字> [作品]）"""
+        """查询怪物：属性弱点（最强两项）/ 肉质表 / 异常累积（用法：/mh 怪物 <名字> [作品]）"""
         async for r in self._dispatch(event, "monster"):
             yield r
 

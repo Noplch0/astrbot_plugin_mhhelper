@@ -1,4 +1,15 @@
-"""Listing-page parsing for the three kiranico sites: monster icons and Chinese names.
+"""Pure-regex parsing rules for kiranico pages.
+
+Covers two kinds of page:
+
+* **listing pages** — monster icons and Chinese names (and skill Chinese names);
+* **skill detail pages** — the per-level effect text.
+
+Why pure ``re`` and not BeautifulSoup: the scrapers run with httpx/bs4, but these
+same rules also have to be usable from plain-stdlib maintenance scripts and from
+the offline test suite — and ``scraper/kiranico.py`` imports bs4 at module level,
+so anything living there is unreachable without it. Keeping the rules here means
+**one** definition per page, so a site change is a one-line fix.
 
 The three sites share nothing — different markup, hosts, file naming and id
 conventions — but every listing page is keyed by the same id that appears in
@@ -214,6 +225,46 @@ def skill_names(game: str, html: str) -> dict[str, str]:
     return parser(html) if callable(parser) else {}
 
 
+
+
+# --------------------------------------------------------------------------
+# 技能详情页：等级 → 效果
+# --------------------------------------------------------------------------
+
+_LEVEL = re.compile(r"(?:Lv\.?|等级)\s*(\d+)", re.IGNORECASE)
+_ROW = re.compile(r"<tr[^>]*>(.*?)</tr>", re.S)
+_CELL = re.compile(r"<t[dh][^>]*>(.*?)</t[dh]>", re.S)
+
+
+def parse_skill_levels(html: str) -> list[dict[str, str]]:
+    """从技能详情页 HTML 里取 ``[{lv, effect}]``。
+
+    两个子域的表结构都是 **等级 | 效果 | (数值参数…)**：:
+
+        mhrise   <td>Lv1</td><td>攻击力+3</td>
+        mhworld  <td>等级1</td><td><strong>减少…</strong></td><td><code>200</code>…
+
+    所以**效果永远是第 2 列**。旧代码取 ``cells[-1]``，在世界那儿取到的是
+    ``<code>`` 参数列 —— 那边每个技能的效果都变成了 ``"0"``。
+
+    只取**第一段连续**的等级行：同一页面后面还有装饰品 / 道具表，它们的首列不是
+    等级，正好被跳过。等级行的效果为空时保留空串 —— kiranico 自己就是空的
+    （例：抑制偏移 Lv3）。
+    """
+    levels: list[dict[str, str]] = []
+    for row in _ROW.finditer(html):
+        cells = [_text(cell) for cell in _CELL.findall(row.group(1))]
+        if len(cells) < 2:
+            continue
+        match = _LEVEL.search(cells[0])
+        if not match:
+            if levels:  # 第一段等级行结束
+                break
+            continue
+        levels.append({"lv": int(match.group(1)), "effect": cells[1]})
+    return levels
+
+
 __all__ = [
     "MONSTER_INDEX_URLS",
     "MONSTER_PARSERS",
@@ -227,5 +278,6 @@ __all__ = [
     "parse_mhworld_monsters",
     "parse_mhworld_skills",
     "parse_monsters",
+    "parse_skill_levels",
     "skill_names",
 ]
